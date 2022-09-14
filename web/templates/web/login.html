@@ -1,0 +1,10 @@
+<title>LOGIN Page</title>
+<h2>Login</h2>
+<form action="{% url 'web:login' %}" method="POST">
+    {% csrf_token %}
+    username : <input type="text" name="username" >
+    password : <input type="password" name="password">
+    <input type="submit" value="Login" style="margin-right: 1em;" class="button">
+    <input type="reset" value="Clear" class="button">
+</form>
+
