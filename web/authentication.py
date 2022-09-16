@@ -14,7 +14,7 @@ def ldap3_authen(username,password):
 
 
     if(result['result'] == 0):
-        conn.search('DC=eng,DC=tu', '(&(name=6210612831))', attributes = ['*'])
+        conn.search('DC=eng,DC=tu', f'(&(name={username}))', attributes = ['*'])
         data_json = conn.entries[0].entry_to_json()
         data_dict = json.loads(data_json)
         # print(data_dict['attributes']['displayName'][0])
