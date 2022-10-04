@@ -3,5 +3,5 @@
 <h1 align="center">INDEX</h1>
 <h3 align="center"><a href="{% url 'web:login' %}">Login</a></h3>
 {% else %}
-<h1 align="center">Hello : {{name}}</h1>
+<h1 align="center">Hello : {{name}} {{request.session.user_id}}</h1>
 {% endif %}

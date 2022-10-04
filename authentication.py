@@ -1,4 +1,4 @@
-from mypassword import mypassword
+from local_mypassword import mypassword
 import ssl
 from ldap3 import Server, Connection, Tls, NTLM
 import json
@@ -27,4 +27,4 @@ data_dict = json.loads(data_json)
 # # for key, value in data_dict['attributes'].items():
 # #     print(key, ':', value)
 
-print(data_dict['attributes']['displayName'][0])
+print(data_dict['attributes'])

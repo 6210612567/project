@@ -2,9 +2,9 @@ import ssl
 from ldap3 import Server, Connection, Tls, NTLM
 import json
 
-def ldap3_authen(username,password):
+def ldap3_authen(user_id,password):
     host='10.1.2.37'
-    username = 'eng.tu\\' + f'{username}'
+    username = 'eng.tu\\' + f'{user_id}'
     password = password
     tls_config = Tls(validate=ssl.CERT_NONE, version=ssl.PROTOCOL_SSLv23)
     server = Server(host, use_ssl=True, tls=tls_config)
@@ -14,7 +14,7 @@ def ldap3_authen(username,password):
 
 
     if(result['result'] == 0):
-        conn.search('DC=eng,DC=tu', f'(&(name={username}))', attributes = ['*'])
+        conn.search('DC=eng,DC=tu', f'(&(name={user_id}))', attributes = ['*'])
         data_json = conn.entries[0].entry_to_json()
         data_dict = json.loads(data_json)
         # print(data_dict['attributes']['displayName'][0])
