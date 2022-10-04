@@ -1,7 +1,110 @@
-<title>INDEX Page</title>
-{% if not name %}
-<h1 align="center">INDEX</h1>
-<h3 align="center"><a href="{% url 'web:login' %}">Login</a></h3>
-{% else %}
-<h1 align="center">Hello : {{name}} {{request.session.user_id}}</h1>
-{% endif %}
+{% load static %}
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<link rel="stylesheet" href="{% static 'index/css/index.css' %}">
+
+<title>ENGR APIs Developers</title>
+<div class="row justify-content-md-center" style="background-color: #050A30;">
+    <div class="col-md-auto">
+        <div style="margin-top:8em;">
+            <h1 class="pw">ENGR TU
+            <br>API Developers</h1>
+            <h2 class="py" style="font-size: 40px;">Faculty of Engineering</h2>
+            <p class="card-text p1 pw">Connect with Office of Information and Communication <br>
+                Technology , Thammasat University Application<br>
+                Programing Interfaceby Data Center
+            </p>
+            <a href="{% url 'web:login' %}" class="btn btn-login" style="margin-bottom: 13em;">GO TO CONSOLE</a>
+        </div>
+    </div>
+    <div class="col-md-auto">
+        <img src="/static/images/datarestapi.png" class="img-fluid img1" alt="img-fluid">
+    </div>
+</div>
+
+
+<div class="card text-center">
+    <div class="card-body">
+        <div>
+            <br><br>
+            <h2><b class="p3">What's ENGR API's Developer</b></h2>
+            <img src="/static/images/web.jpg" class="img-fluid" alt="img-fluid" style="margin: 2em;">
+            <p class="card-text p1">It is a central information service system. Will enable developers of the science to create applications that connect to Office of <br>
+            Information and Communication Technology Technology Center via API (Application Programing Interface) in the
+            RESTFul API format.<br>
+            There are also suggestions and examples of how to use the basic API.
+            </p>
+            <a href="#services" class="btn btn-services" style="margin-bottom: 8em;">SERVICES</a>
+        </div>
+    </div>
+</div>
+
+<div class="grad1 text-center" style="margin-top: -2em;">
+    <br><br>
+    <h2 id="services" class="p3 pw" style="margin-top: 1em;"><b>SERVICES</b></h2>
+    <p class="pw">Connect Services with ICT-TU API's Developer</p>
+    <br><br>
+    <div class="row text-center justify-content-md-center">
+        <div class="col-md-auto">
+            <a href="{% url 'web:login' %}" class="card bg-services size-box border-card">
+                <div class="dot bg-center" style="background-image: url(/static/images/service2.png); background-size: 60px 60px;"></div>
+                <div class="card-body">
+                    <p class="card-text p2 pw"><b>Autentication<br>Service</b></p>
+                </div>
+            </a>
+        </div>
+        <div class="col-md-auto">
+            <a href="{% url 'web:login' %}" class="card bg-services size-box border-card">
+                <div class="dot bg-center" style="background-image: url(/static/images/service1.png); background-size: 60px 60px;"></div>
+                <div class="card-body">
+                    <p class="card-text p2 pw"><b>Student Service</b></p>
+                </div>
+            </a>
+        </div>
+        <div class="col-md-auto">
+            <a href="{% url 'web:login' %}" class="card bg-services size-box border-card">
+                <div class="dot bg-center" style="background-image: url(/static/images/service6.png); background-size: 60px 60px;"></div>
+                <div class="card-body">
+                    <p class="card-text p2 pw"><b>Employee Service</b></p>
+                </div>
+            </a>
+        </div>
+   
+        <div class="col-md-auto">
+            <a href="{% url 'web:login' %}" class="card bg-services size-box border-card">
+                <div class="dot bg-center" style="background-image: url(/static/images/service4.png); background-size: 60px 60px;"></div>
+                <div class="card-body">
+                    <p class="card-text p2 pw"><b>Log Service</b></p>
+                </div>
+            </a>
+        </div>
+        <div class="col-md-auto">
+            <a href="{% url 'web:login' %}" class="card bg-services size-box border-card">
+                <div class="dot bg-center" style="background-image: url(/static/images/service5.png); background-size: 60px 60px;"></div>
+                <div class="card-body">
+                    <p class="card-text p2 pw"><b>Master Data Service</b></p>
+                </div>
+            </a>
+        </div>
+        <div class="col-md-auto">
+            <a href="{% url 'web:login' %}" class="card bg-services size-box border-card">
+                <div class="dot bg-center" style="background-image: url(/static/images/service3.png); background-size: 60px 60px;"></div>
+                <div class="card-body">
+                    <p class="card-text p2 pw"><b>Org Chart Service</b></p>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <div class="row text-center">
+        <div class="col"></div>
+        <div class="col">
+            <a href="{% url 'web:login' %}" class="btn btn-login1" style="margin-top: 2em; margin-bottom: 3em;">LOGIN</a>
+        </div>
+        <div class="col"></div>
+    </div>
+</div>
+
+
+
+

@@ -1,0 +1,160 @@
+@import url('https://fonts.googleapis.com/css2?family=Sarabun:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Signika+Negative:wght@500&display=swap');
+
+.btn-login{
+    background-color: white;
+    margin-left: 1.3em;
+    margin-top: 2em;
+    margin-bottom: 2em;
+    color: black;
+    width: 150px;
+    transition-duration: 0.4s;
+}
+.btn-login:hover{
+    background-color: black;
+    color: white;
+    transition-duration: 0.4s;
+}
+.btn-login1 {
+    background-color: white;
+    margin-left: 1.3em;
+    margin-top: 2em;
+    margin-bottom: 2em;
+    color: black;
+    width: 150px;
+    transition-duration: 0.4s;
+}
+
+.btn-login1:hover {
+    background-color: #412b53;
+    color: white;
+    transition-duration: 0.4s;
+}
+.btn-services{
+    background-color: black;
+    margin-left: 1.3em;
+    margin-top: 2em;
+    margin-bottom: 2em;
+    color: white;
+    width: 150px;
+    height: 40px;
+    transition-duration: 0.3s;
+    transition-property: transform;
+    
+}
+.btn-services:hover{
+    color: white;
+    -webkit-transform: translateY(-10px);
+    transform: translateY(-10px);
+    bottom: 140px;
+    transition-duration: 0.5s;
+}
+.btn-services:hover:before{
+    background-color: black;
+    position: absolute;
+    content: "";
+    height: 15px;
+    width: 15px;
+    background: black;
+    bottom: -5px;
+    left: 43%;
+    transform: rotate(45deg);
+}
+h1{
+    font-size: 60px;
+    margin: 0.3em;
+    font-family: 'Sarabun', sans-serif;
+    font-family: 'Signika Negative', sans-serif;
+}
+h2{
+    margin:0.4em;
+    font-family: 'Sarabun', sans-serif;
+    font-family: 'Signika Negative', sans-serif;
+}
+a{
+    text-decoration: none;
+    color: black;
+    font-family: 'Sarabun', sans-serif;
+    font-family: 'Signika Negative', sans-serif;
+}
+p{
+    color: black;
+    font-family: 'Sarabun', sans-serif;
+    font-family: 'Signika Negative', sans-serif;
+}
+.p1 {
+    margin-left: 1.3em;
+    margin-top: 1.5em;
+    font-size: 18px;
+    font-family: 'Sarabun', sans-serif;
+    font-family: 'Signika Negative', sans-serif;
+}
+.p2{
+    margin-top: 1em;
+    font-size: 25px;
+    font-family: 'Sarabun', sans-serif;
+    font-family: 'Signika Negative', sans-serif;
+}
+.p3{
+    font-size: 45px;
+    font-family: 'Sarabun', sans-serif;
+    font-family: 'Signika Negative', sans-serif;
+}
+.pw{
+    color: white;
+}
+.py{
+    color: #FAD02C;
+}
+.bg-services{
+    background-color: rgba(128, 0, 128, 0);
+    transition-duration: 0.8s;
+}
+.bg-services:hover {
+    background-color: #412b53;
+    transition-duration: 0.8s;
+}
+.bg-center{
+    background-position: center;
+}
+
+.dot {
+    height: 100px;
+    width: 100px;
+    background-color: white;
+    border-radius: 50%;
+    display: inline-block;
+    background-size: 100px 100px;
+    background-repeat: no-repeat;
+    margin-left: 9em;
+    margin-top: 3em;
+    
+}
+.dot:hover{
+    background-color: rgb(226, 226, 226);
+}
+
+.size-box{
+    margin: 2em;
+    width: 400px;
+    height: 300px;
+}
+
+.border-card{
+    border-radius: 20px;
+    border-width: 2px;
+    border-color: white;
+}
+
+.img1{
+    width: 100%;
+    max-width: 600px;
+    min-width: 300px;
+    height: auto;
+    margin-top: 4em;
+    margin: 1em;
+}
+
+.grad1 {
+    background-image: linear-gradient(#5184cf, #050A30);
+}

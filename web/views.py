@@ -9,6 +9,7 @@ from rest_framework import status
 HOST = "http://127.0.0.1:8000"
 
 
+
 def index(request):
     return render(request, "web/index.html")
 
@@ -34,5 +35,4 @@ def login_view(request):
             else:
                 return render(request, "web/login.html")
         return render(request, "web/login.html")
-
 
