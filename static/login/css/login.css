@@ -12,6 +12,7 @@
     z-index: -2;
     background-color: #dbdbdb;
 }
+
 h1,h2,p,input,button{
     font-family: 'Prompt', sans-serif;
     font-family: 'Signika Negative', sans-serif;
@@ -37,4 +38,40 @@ a{
     background-color: #385e96ad;
     color: black;
     transition-duration: 0.4s;
+}
+
+.btn-agr {
+    background-color: #82ac82;
+    margin: 2em;
+    color: white;
+    width: 150px;
+    transition-duration: 0.4s;
+}
+
+.btn-agr:hover {
+    background-color: #529770;
+    color: black;
+    transition-duration: 0.4s;
+}
+.btn-dagr {
+    background-color: #CD5C5C;
+    margin: 2em;
+    color: white;
+    width: 150px;
+    transition-duration: 0.4s;
+}
+
+.btn-dagr:hover {
+    background-color: #b43636;
+    color: black;
+    transition-duration: 0.4s;
+}
+
+.thai-font{
+    font-family: 'Prompt', sans-serif;
+}
+.vl {
+    border-left: 6px solid green;
+    margin-top: 2em;
+    height: 35px;
 }
