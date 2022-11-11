@@ -1,0 +1,54 @@
+@import url('https://fonts.googleapis.com/css2?family=Prompt:wght@500&family=Signika+Negative:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Sarabun&display=swap');
+
+h1,
+h2,
+p,
+input,
+button,
+a {
+    font-family: 'Prompt', sans-serif;
+    font-family: 'Signika Negative', sans-serif;
+}
+
+.thai-font{
+    font-family: 'Sarabun', sans-serif;
+}
+.ul-rm{
+    text-decoration: none;
+}
+
+.size-17{
+    font-size: 17px;
+}
+
+.size-15 {
+    font-size: 15px;
+}
+
+.size-13 {
+    font-size: 13px;
+}
+
+.bg-hover:hover{
+    background-color: rgb(156, 156, 156);
+    height: 2.95em;
+    color: white;
+}
+
+.btn-read {
+    background-color: #050a30;
+    color: white;
+    border-radius: 4px;
+    width: 60px;
+    height: 25px;
+    padding-top: 0.3em;
+    transition-duration: 0.4s;
+    text-align: center;
+}
+
+.btn-read:hover {
+    background-color: #385e96ad;
+    color: black;
+    transition-duration: 0.4s;
+}
