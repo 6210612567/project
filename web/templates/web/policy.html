@@ -16,9 +16,9 @@
         width: auto;
         height: auto;
         margin-top: -100px;
-        margin-left: 25%;
-        margin-right: 25%;
-        background: hsla(0, 0%, 100%, 0.8);
+        margin-left: 28%;
+        margin-right: 28%;
+        background: hsla(0, 6%, 90%, 0.527);
         backdrop-filter: blur(30px);">
         <form action="{% url 'web:login' %}" method="POST">
             {% csrf_token %}
@@ -43,7 +43,7 @@
                         <br><hr><br>
                         <p class="thai-font" style="text-align: left; margin: 1.2em;">สำคัญ</p>
                         <ul class="thai-font" style="text-align: left; margin: 1.2em;">
-                            <li>ในการใช้บริการนี้ ผู้ใช้ต้องตรวจสอบว่าได้ดำเนินการผ่าน TU API Developer ผู้ให้บริการนี้ไม่
+                            <li>ในการใช้บริการนี้ ผู้ใช้ต้องตรวจสอบว่าได้ดำเนินการผ่าน ENGR API Developer ผู้ให้บริการนี้ไม่
                             ต้องรับผิดชอบต่อความเสียหายใดๆ ที่เกิดจากการใช้บริการจาก แหล่งอื่นที่ไม่ใช่ผู้ให้บริการอย่างเป็นทางการ</li>
                             <li>ข้อมูลส่วนบุคคลที่มอบให้แก่บริการนี้และข้อมูลส่วนบุคคลที่ รวบรวมใหม่จะถูกนำไปใช้ภายใต้ความรับผิดชอบของผู้ใช้บริการ นี้
                             โปรดตรวจสอบรายละเอียดในข้อกำหนดการใช้บริการและ นโยบายความเป็นส่วนตัวของผู้ให้บริการ</li>
@@ -57,6 +57,7 @@
                                 <input type="submit" value="Cancel" class="btn btn-dagr" style="margin-bottom: 2em;">
                                 </input>
                             </div>
+                           
                             <div class="col-md-auto">
                                 <input type="submit" value="Agree" class="btn btn-agr" style="margin-bottom: 2em;">
                                 </input>
