@@ -30,14 +30,18 @@ a {
     font-size: 13px;
 }
 
+.size-14 {
+    font-size: 14px;
+}
+
 .bg-hover:hover{
-    background-color: rgb(156, 156, 156);
-    height: 2.95em;
+    background-color: #2a4655;
+    height: 50px;
     color: white;
 }
 
 .btn-read {
-    background-color: #050a30;
+    background-color: #5289B5;
     color: white;
     border-radius: 4px;
     width: 60px;
@@ -47,8 +51,140 @@ a {
     text-align: center;
 }
 
-.btn-read:hover {
+.navy-blue {
     background-color: #385e96ad;
-    color: black;
+    color: white;
+}
+
+.navy-blue-h:hover {
+    background-color: #385e96ad;
+    color: white;
     transition-duration: 0.4s;
+}
+
+.baby-blue{
+    background-color: #AFD8F2;
+}
+
+.baby-blue-h:hover {
+    background-color: #AFD8F2;
+    transition-duration: 0.4s;
+}
+
+.tiffany-blue{
+    background-color: #5DBDD3;
+}
+
+.blue-grotto{
+    background-color: #5289B5;
+}
+
+.blue-grotto-h:hover {
+    background-color: #5289B5;
+    color: white;
+    transition-duration: 0.4s;
+}
+.tral{
+    background-color: #bfeef5;
+}
+.misty-blue-h:hover{
+    background-color: #BDC6D9;
+}
+
+.misty-blue {
+    background-color: #BDC6D9;
+}
+
+.midnight-blue{
+    background-color: #0C6170;
+}
+
+.baby-green{
+    background-color: #DBF5F0;
+}
+
+.light-green {
+    background-color: rgb(234, 255, 250)
+}
+
+.tiffany-green{
+    background-color: #A4E5E0;
+    transition-duration: 0.4s;
+}
+
+.blue-green-h:hover{
+    background-color: #58cfc3;
+    transition-duration: 0.4s;
+}
+
+.white{
+    background-color: white;
+}
+
+.cornflower{
+    background-color: #7391C8;
+}
+
+.cornflower-h:hover {
+    background-color: #7391C8;
+    transition-duration: 0.4s;
+}
+
+.font-white {
+    color: white;
+}
+
+.font-white-h:hover {
+    color: white;
+}
+
+.font-black {
+    color: black;
+}
+
+.font-black-h:hover {
+    color: black;
+}
+
+.font-misty-blue-h:hover{
+    color: #BDC6D9;
+}
+
+.font-red{
+    color: #d82c2f;
+}
+
+.font-red-h:hover {
+    color: #970C10;
+}
+
+.font-midnight-blue{
+    color: #0C6170;
+}
+
+.font-navy-blue{
+    color: #385e96;
+}
+
+.font-charcoal {
+    color: #384640;
+}
+
+.font-charcoal-h:hover {
+    color: #384640;
+}
+
+.font-green{
+    color: #019992;
+}
+
+.box-shadow-h:hover{
+    box-shadow: 0 0 5px rgba(33, 33, 33, .2);
+}
+
+.scroller {
+    width: 770px;
+    height: 310px;
+    overflow-y: scroll;
+    scrollbar-width: thin;
 }
