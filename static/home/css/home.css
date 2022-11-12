@@ -183,7 +183,8 @@ a {
 }
 
 .scroller {
-    width: 770px;
+    width: auto;
+    max-width: 770px;
     height: 310px;
     overflow-y: scroll;
     scrollbar-width: thin;
