@@ -11,13 +11,19 @@ HOST = "http://127.0.0.1:8000"
 
 
 def index(request):
-    return render(request, "web/index.html")
+    try:
+        if request.session['user_id']:
+            print(request.session['user_id'])
+            return render(request, "web/index2.html",{'name':request.session['user_id']})
+    except:
+        return render(request, "web/index.html")
 
 
 def login_view(request):
     try:
         if request.session['user_id']:
-            return HttpResponseRedirect(reverse("web:index"))
+            print(request.session['user_id'])
+            return render(request, "web/index2.html",{'name':response.json()['name']})
     except:
         if request.method == "POST":
             username = request.POST["username"]
@@ -31,8 +37,11 @@ def login_view(request):
             if response.status_code == status.HTTP_200_OK:
                 request.session['user_id'] = username
                 request.session['login_status'] = username
-                return render(request, "web/index.html",{'name':response.json()['name']})
+                return render(request, "web/index2.html",{'name':response.json()['name']})
             else:
                 return render(request, "web/login.html")
         return render(request, "web/login.html")
 
+def logout_view(request):
+    del request.session['user_id']
+    return HttpResponseRedirect(reverse("web:index"))
