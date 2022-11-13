@@ -9,6 +9,7 @@ urlpatterns = [
     path("", views.index, name="index"),
     path("login/", views.login_view, name="login"),
     path("logout", views.logout_view, name="logout"),
+    path("pdpa_page", views.pdpa_page, name="pdpa_page"),
     # path("register", views_fronts.register, name="register"),
     # path("test", views_fronts.test, name="test"),
 

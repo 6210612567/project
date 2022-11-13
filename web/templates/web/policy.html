@@ -20,7 +20,7 @@
         margin-right: 28%;
         background: hsla(0, 6%, 90%, 0.527);
         backdrop-filter: blur(30px);">
-        <form action="{% url 'web:login' %}" method="POST">
+        <form action="{% url 'web:index' %}" method="POST">
             {% csrf_token %}
             <div class="card-body py-5 px-md-5">
                 <div class="row d-flex justify-content-center">
@@ -54,7 +54,8 @@
                         <br><hr><br>
                         <div class="row justify-content-md-center">
                             <div class="col-md-auto">
-                                <input type="submit" value="Cancel" class="btn btn-dagr" style="margin-bottom: 2em;">
+                                <!-- <a href="./" class="btn btn-dagr" style="margin-bottom: 2em;">Cancel</a> -->
+                                <input type="button" value="Cancel" class="btn btn-dagr" style="margin-bottom: 2em;" onClick="javascript:history.go(-1);">
                                 </input>
                             </div>
                            
@@ -80,7 +81,7 @@
             <g opacity="0.1">
                 <path fill="#FFFFFF" d="M20.893,30.672c-0.006-0.014-0.013-0.026-0.019-0.04c-0.004,0.003-0.009,0.005-0.013,0.007
             C20.871,30.65,20.883,30.66,20.893,30.672z"></path>
-                <path fill="#FFFFFF"
+                <path fill="#FFFFFF" 
                     d="M25.251,24.514h-0.009c0,0.021,0,0.041,0,0.062C25.244,24.555,25.25,24.534,25.251,24.514z"></path>
                 <path fill="#FFFFFF" d="M22.508,26.766c0.229,0.683,0.398,1.385,0.518,2.093c0.012,0.07,0.012,0.143,0.022,0.213
             c1.243-1.224,2.045-2.781,2.194-4.496c0-0.021,0-0.041,0-0.062h-3.72c0.057,0.107,0.123,0.21,0.177,0.319
