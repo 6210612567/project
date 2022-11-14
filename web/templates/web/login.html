@@ -15,9 +15,9 @@
     <div class="card shadow-5-strong" style="
         width: auto;
         height: auto;
-        margin-top: -100px;
-        margin-left: 25%;
-        margin-right: 25%;
+        margin-top: -260px;
+        margin-left: 30%;
+        margin-right: 30%;
         background: hsla(0, 6%, 90%, 0.527);
         backdrop-filter: blur(30px);">
         <form action="{% url 'web:login' %}" method="POST">
@@ -25,7 +25,7 @@
             <div class="card-body py-5 px-md-5">
                 <div class="row d-flex justify-content-center">
                     <div class="col-lg-8">
-                        <a href="{% url 'web:index' %}"><img src="/static/images/engr_logo.png" style="width: 200px;"></a>
+                        <a href="{% url 'web:index' %}"><img src="/static/images/engr_logo.png" style="width: 100%; max-width: 200px; height: auto;"></a>
                         <h2 class="fw-bold mb-5" style="margin: 1em;">ENGR APIs Developers</h2>
                         <form>
                             <div class="form-outline">
@@ -39,7 +39,7 @@
                                 forgot username or password 
                                 <a href="#">Help</a>
                             </p>
-                            <input type="submit" value="SIGN IN" class="btn btn-sign" style="margin-bottom: 2em;">
+                            <input type="submit" value="SIGN IN" class="btn btn-sign" style="margin:auto; margin-bottom: 2em;">
                             </input>
                             <p style="color: #B22222; font-family: 'Prompt', sans-serif; margin-top: 2em;">
                                 กรณีการเข้าใช้งาน สามารถเข้าได้เฉพาะ *บุคลากร หรือ *นักศึกษา <br>
