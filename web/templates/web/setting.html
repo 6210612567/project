@@ -1,3 +1,308 @@
 {% extends "web/layout.html" %}
 {% block body %}
+<style>
+    /* The Modal (background) */
+    .modal {
+        display: none;
+        /* Hidden by default */
+        position: fixed;
+        /* Stay in place */
+        z-index: 1;
+        /* Sit on top */
+        padding-top: 2%;
+        /* Location of the box */
+        padding-left: 5%;
+        left: 0;
+        top: 0;
+        width: 100%;
+        /* Full width */
+        height: 100%;
+        /* Full height */
+        overflow: auto;
+        /* Enable scroll if needed */
+        background-color: rgb(0, 0, 0);
+        /* Fallback color */
+        background-color: rgba(0, 0, 0, 0.4);
+        /* Black w/ opacity */
+    }
+
+    /* Modal Content */
+    .modal-content {
+        background-color: #fefefe;
+        margin: auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 35%;
+    }
+
+    /* The Close Button */
+    .close {
+        color: #aaaaaa;
+        text-align: right;
+        font-size: 28px;
+        font-weight: bold;
+    }
+
+    .close:hover,
+    .close:focus {
+        color: #000;
+        text-decoration: none;
+        cursor: pointer;
+    }
+</style>
+<title>PDPA - ENGR APIs Developer</title>
+<div class="w3-col m7">
+    <!-- Middle Column -->
+
+    <!-- user info -->
+    <div class="w3-row-padding ">
+        <div class="w3-col m12 ">
+            <div class="w3-card w3-round">
+                <div class="w3-container white" style="height: 50px;">
+                    <h4 class="thai-font font-black" style="margin-left: 0.5em; margin-top: 0.6em;">
+                        ข้อมูลบัญชีของท่าน&nbsp;(Info)
+                        <i class="fa fa-user" style="font-size: 22px; margin-right: 0.5em; margin-left: 0.5em;"></i>
+                    </h4>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="w3-row-padding w3-container w3-card w3-round w3-margin baby-blue"><br>
+        <div class="row justify-content-md-center">
+            <div class="col-md-auto" style="margin-left: 3em; margin-bottom: 1.5em;">
+                <p class="thai-font size-16 font-black" style="text-align: left; margin-left: 1em;">
+                    สถานะ APIs:
+                </p>
+                <p class="thai-font size-16 font-black" style="text-align: left; margin-left: 1em;">
+                    ชื่อ:
+                </p>
+                <p class="thai-font size-16 font-black" style="text-align: left; margin-left: 1em;">
+                    อีเมลล์:
+                </p>
+                <p class="thai-font size-16 font-black" style="text-align: left; margin-left: 1em;">
+                    แผนก/งาน:
+                </p>
+                <p class="thai-font size-16 font-black" style="text-align: left; margin-left: 1em;">
+                    หน่วยงาน/คณะ:
+                </p>
+            </div>
+            <div class="col" style="margin-bottom: 1.5em;">
+                <p class="thai-font size-16 font-black" style="text-align: left; margin-left: 1em;">
+                    สถานะ APIs:
+                </p>
+                <p class="thai-font size-16 font-black" style="text-align: left; margin-left: 1em;">
+                    ชื่อ:
+                </p>
+                <p class="thai-font size-16 font-black" style="text-align: left; margin-left: 1em;">
+                    อีเมลล์:
+                </p>
+                <p class="thai-font size-16 font-black" style="text-align: left; margin-left: 1em;">
+                    แผนก/งาน:
+                </p>
+                <p class="thai-font size-16 font-black" style="text-align: left; margin-left: 1em;">
+                    หน่วยงาน/คณะ:
+                </p>
+            </div>
+        </div>
+    </div>
+    <br>
+    <!-- end user info -->
+    <!-- privacy -->
+    <div class="w3-row-padding w3-container w3-card w3-white w3-round w3-margin" style="height: 50px;"><br>
+        <h4 class="thai-font font-black" style="margin-top: -0.4em;margin-left: 0.5em;">
+            ตั้งค่าความปลอดภัยแบบสองขั้นตอน&nbsp;(Setting 2FA)<i class="fa fa-lock"
+                style="font-size: 22px; margin-right: 0.5em; margin-left: 0.5em;"></i>
+        </h4>
+    </div>
+
+    <div class="w3-container w3-card w3-round w3-margin text-center tral"><br>
+        <p class="thai-font size-15">เริ่มต้นใช้ระบบ : เพื่อความปลอดภัยของบัญชีผู้ใช้งาน
+            จำเป็นต้องมีการตรวจสอบรหัสแบบสองขั้นตอน<i class="fa fa-lock"
+                style="font-size: 16px; margin-right: 0.5em; margin-left: 0.5em;"></i>
+        </p>
+    </div>
+
+    <div class="w3-container w3-card w3-round w3-margin tral "><br>
+        <p id="myBtn" class="thai-font size-16 font-white-h font-navy-blue" style="margin-left: 1.2em;">
+            <b>CLICK : Enable Two-Factor Authentication</b>
+        </p>
+        <!-- The Modal -->
+        <div id="myModal" class="modal">
+            <!-- Modal content -->
+            <div class="modal-content">
+                <span class="close">&times;</span>
+
+                <h4 class="thai-font w3-round baby-blue2"
+                    style="margin-top: -2em; width: 90%; height: 50px; padding: 0.7em;">
+                    เริ่มต้นการตั้งค่าความปลอดภัย
+                </h4>
+                <hr>
+                <div style="margin-left: 0.7em;">
+                    <p class="thai-font size-16" style="padding-top: 0.2em;">
+                        การยืนยันแบบ 2 ขั้นตอนช่วยเสริมสร้างการรักษาความปลอดภัยในบัญชีของท่าน
+                    </p>
+                    <br>
+                    <p class="thai-font size-16">
+                        *กรุณา Download Application "Google Authenticator"
+                    </p>
+                    <br>
+                    <p class="thai-font size-16">
+                        บน Smart Phone ของท่านก่อนเริ่มใช้งาน
+                        เรียนรู้เพิ่มเติมเกี่ยวกับการยืนยันแบบ 2 ขั้นตอนได้ที่
+                        <a href="https://safety.google/authentication/">https://g.co/2step</a>
+                    </p>
+                    <p>
+                        <a href="#" class="ul-rm thai-font size-16">คู่มือการใช้งาน</a> |
+                        <a href="https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2&hl=th&pli=1"
+                            class="ul-rm thai-font size-16">Download Android</a> |
+                        <a href="https://apps.apple.com/th/app/google-authenticator/id388497605"
+                            class="ul-rm thai-font size-16">Download IOS</a>
+                    </p>
+                    <hr>
+                    <div id="2Fac" style="display:none;" class="answer_list text-center">
+                        <p class="thai-font size-16">Please Scan QR Code with Google Authenticator !!</p>
+                        <img src="/static/images/engr_logo.png" style="width: 250px; height:250px; margin: 2em;">
+                        <p class="thai-font size-16 font-red">*กรุณาตรวจสอบบน Authenticator ของท่านก่อนคลิกปุ่ม Save</p>
+                        <button class="btn-save thai-font" style="margin-bottom: 2em;" onclick="save_alert()">Save</button>
+                    </div>
+                    <button id="btn" class="btn-agr thai-font" onclick="showDiv()">
+                        Enable
+                    </button>
+                    <!-- <button id="btn" class="btn-agr thai-font">
+                        Save
+                    </button> -->
+                    <button class="btn-dagr thai-font btn_close">
+                        ยกเลิก
+                    </button>
+                </div>
+            </div>
+
+        </div>
+        <p class="thai-font size-16" style="margin-left: 1em; margin-top: 1.5em;">
+            กรณีลบ 2FA แล้ว ต้องลบ รหัสบน Application Google Authenticator ด้วย
+            ( After deleting 2FA on this system Must also delete the code on the Google Authenticator application)
+        </p>
+    </div>
+
+    <!-- end privacy -->
+    <br>
+    <!-- noti -->
+        <div class="w3-row-padding w3-container w3-card w3-white w3-round w3-margin" style="height: 50px;"><br>
+            <h4 class="thai-font font-black" style="margin-top: -0.4em;margin-left: 0.5em;">
+                ตั้งค่าการแจ้งเตือน&nbsp;(Setting notifications)<i class="fa fa-bell"
+                    style="font-size: 22px; margin-right: 0.5em; margin-left: 0.5em;"></i>
+            </h4>
+        </div>
+
+        <div class="w3-container w3-card w3-round w3-margin text-center w3-display-container baby-green">
+            <br>
+            <p class="thai-font size-15">เปิดใช้การแจ้งเตือนผ่าน LINE Notify ที่จะทำให้ท่านได้รู้ความเคลื่อนไหว Account
+                ของท่านสำหรับความปลอดภัย</p>
+        </div>
+
+        <div class="w3-row-padding w3-container w3-card w3-round w3-margin baby-green"><br>
+                <p class="thai-font size-19 font-black" style="text-align: left; margin-left: 1em;">
+                    <b>Notify Line </b><i class="fa fa-bell" style="font-size: 18px; margin-right: 0.5em; margin-left: 0.5em;"></i>
+                    <a href="https://notify-bot.line.me/th/" target="_blank" rel="noopener noreferrer" class="ul-rm thai-font size-17">
+                        Notify
+                    </a> | 
+                    <a href="#" class="ul-rm thai-font size-17">
+                        คู่มือ
+                    </a>
+                </p>
+                
+                <p class="thai-font size-19 font-black" style="text-align: left; margin-left: 1em;">
+                    LINE Notify :
+                </p>
+
+                <div style="text-align: right; margin-bottom: 1em;">
+                    <button class="btn-agr thai-font"><i class="fa fa-pencil-square-o"
+                            style="font-size: 18px; margin-right: 0.5em; margin-left: 0.5em;"></i>
+                        แก้ไข
+                    </button>
+                </div>
+        </div>
+
+        <!-- <div class="w3-container w3-card w3-round w3-margin text-center w3-display-container baby-green">
+            <br>
+            <p class="thai-font size-15">เพื่อให้เราได้ให้บริการท่านได้เต็มประสิทธิภาพ กรุณเพิ่มเพื่อน LINE Chatbot Monitoring
+                <i class="fa fa-user-plus" style="font-size: 18px; margin-right: 0.5em; margin-left: 0.5em;"></i>
+            </p>
+        </div>
+
+        <div class="w3-row-padding w3-container w3-card w3-round w3-margin white"><br>
+            <p class="thai-font size-19 font-black" style="text-align: left; margin-left: 1em;">
+                <b>LINE Chatbot</b><i class="fa fa-bell" style="font-size: 18px; margin-right: 0.5em; margin-left: 0.5em;"></i>
+            </p>
+        
+            <p class="thai-font size-19 font-black" style="text-align: left; margin-left: 1em;">
+                LINE Chatbot Monitoring
+            </p>
+            
+            <p class="red">
+                (สำหรับดูรายงานของท่านเท่านั้น)
+            </p>
+        </div> -->
+    <!-- end noti -->
+
+    <script>
+        // Get the modal
+        var modal = document.getElementById("myModal");
+
+        // Get the button that opens the modal
+        var btn = document.getElementById("myBtn");
+
+        // Get the <span> element that closes the modal
+        var span = document.getElementsByClassName("close")[0];
+
+        var btn_close = document.getElementsByClassName("btn_close")[0];
+
+        // When the user clicks the button, open the modal 
+        btn.onclick = function () {
+            modal.style.display = "block";
+        }
+
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function () {
+            modal.style.display = "none";
+        }
+
+        btn_close.onclick = function () {
+            modal.style.display = "none";
+        }
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+
+        function showDiv() {
+            var x = document.getElementById("2Fac");
+            if (x.style.display === "none") {
+                x.style.display = "block";
+            } else {
+                x.style.display = "none";
+            }
+        }
+        function change() // no ';' here
+            {
+                var elem = document.getElementById("btn");
+                if (elem.value == "Close Curtain"){ 
+                    elem.value = "Open Curtain";
+                }else{
+                    elem.value = "Close Curtain";
+                } 
+            }
+        
+        function save_alert(){
+            alert("เพิ่มข้อมูลเรียบร้อย")
+            window.close();
+        }
+    </script>
+
+
+</div>
 {% endblock %}

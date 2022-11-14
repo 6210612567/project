@@ -18,16 +18,17 @@
         margin-top: -260px;
         margin-left: 28%;
         margin-right: 28%;
-        background: hsla(0, 6%, 90%, 0.527);
+        background: #afd8f25e;
         backdrop-filter: blur(30px);">
         <form action="{% url 'web:index' %}" method="POST">
             {% csrf_token %}
             <div class="card-body py-5 px-md-5">
                 <div class="row d-flex justify-content-center">
-                    <div class="col-lg-8">
+                    <div class="col-lg-15">
                         <a href="{% url 'web:index' %}"><img src="/static/images/engr_logo.png"
-                                style="width: 200px;"></a>
+                                style="width: 100%; max-width: 100px; height: auto;"></a>
                         <h2 class="fw-bold mb-5 thai-font" >
+                            <br>
                                 โปรดคำนึงอย่างจริงจัง<br>
                                 เรื่อง นโยบายความเป็นส่วนตัว
                         </h2>
@@ -71,7 +72,7 @@
         </form>
     </div>
 
-    <div id="particles" style="height: 165%;"></div>
+    <div id="particles" style="height: 133%;"></div>
 
     <svg id="svg-source" height="0" version="1.1" xmlns="http://www.w3.org/2000/svg"
         style="position:absolute; margin-left: -100%" xmlns:xlink="http://www.w3.org/1999/xlink">

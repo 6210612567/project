@@ -16,6 +16,7 @@
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,1,-25" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+   
 
 </head>
 <style>
@@ -34,20 +35,24 @@
             <a href="#" class="w3-bar-item w3-padding-large size-18"></i><img src="/static/images/horizontal_Logo.png"
                                 style="height:30;width:200px; margin-right: 1em;"></a>
             <div style="padding-top: 0.5em;">
-                <a href="#" class="w3-bar-item w3-hide-small w3-padding-large thai-font ul-rm size-17 blue-grotto-h">
+                <a href="{% url 'web:home' %}" class="w3-bar-item w3-hide-small w3-padding-large thai-font ul-rm size-17 blue-grotto-h">
                     <i class="fa fa-home" style="font-size: 18px; margin-right: 1em;"></i>หน้าหลัก</a>
-                <a href="#" class="w3-bar-item w3-hide-small w3-padding-large thai-font ul-rm size-17 blue-grotto-h">
+
+                <a href="{% url 'web:channel_page' %}" class="w3-bar-item w3-hide-small w3-padding-large thai-font ul-rm size-17 blue-grotto-h">
                     <i class="fa fa-plus" style="font-size: 16px; margin-right: 1em;"></i>สร้างแชนแนล</a>
-                <a href="#" class="w3-bar-item w3-hide-small w3-padding-large thai-font ul-rm size-17 blue-grotto-h">
+
+                <a href="{% url 'web:document' %}" class="w3-bar-item w3-hide-small w3-padding-large thai-font ul-rm size-17 blue-grotto-h">
                     <i class="fa fa-book" style="font-size: 16px; margin-right: 1em;"></i>API Documents</a>
-                <a href="#" class="w3-bar-item w3-hide-small w3-padding-large thai-font ul-rm size-17 blue-grotto-h">
+
+                <a href="{% url 'web:report_page' %}" class="w3-bar-item w3-hide-small w3-padding-large thai-font ul-rm size-17 blue-grotto-h">
                     <i class="fa fa-bar-chart" style="font-size: 16px; margin-right: 1em;"></i>สถิติ</a>
-                <a href="#" class="w3-bar-item w3-hide-small w3-padding-large thai-font ul-rm size-17 blue-grotto-h">
+
+                <a href="{% url 'web:setting_page' %}" class="w3-bar-item w3-hide-small w3-padding-large thai-font ul-rm size-17 blue-grotto-h">
                     <i class="fa fa-cog" style="font-size: 16px; margin-right: 1em;"></i>ตั้งค่า
                 </a>
-                <a href="#" class="w3-bar-item w3-hide-small w3-padding-large thai-font ul-rm size-17 blue-grotto-h">
+                <a href="{% url 'web:help_page' %}" class="w3-bar-item w3-hide-small w3-padding-large thai-font ul-rm size-17 blue-grotto-h">
                     <i class="fa fa-question-circle" style="font-size: 16px; margin-right: 1em;"></i>ช่วยเหลือ</a>
-                <a href="#" class="w3-bar-item w3-hide-small w3-padding-large thai-font ul-rm size-17 blue-grotto-h">
+                <a href="{% url 'web:update_page' %}" class="w3-bar-item w3-hide-small w3-padding-large thai-font ul-rm size-17 blue-grotto-h">
                     <i class="fa fa-newspaper-o" style="font-size: 16px; margin-right: 1em;"></i>Update !</a>
 
             </div>
@@ -70,28 +75,28 @@
 
     <!-- Navbar on small screens -->
     <div id="navDemo" class="w3-bar-block w3-hide w3-hide-large w3-hide-medium w3-large blue-grotto font-white" style="margin-top: 3.8em;">
-        <a href="#" class="w3-bar-item baby-blue-h w3-padding-large thai-font ul-rm size-17 font-black-h">
+        <a href="{% url 'web:home' %}" class="w3-bar-item baby-blue-h w3-padding-large thai-font ul-rm size-17 font-black-h">
             <i class="fa fa-home" style="font-size: 18px; margin-right: 1em;"></i>หน้าหลัก
         </a>
-        <a href="#" class="w3-bar-item baby-blue-h w3-padding-large thai-font ul-rm size-17 font-black-h">
+        <a href="{% url 'web:channel_page' %}" class="w3-bar-item baby-blue-h w3-padding-large thai-font ul-rm size-17 font-black-h">
             <i class="fa fa-plus" style="font-size: 16px; margin-right: 1em;"></i>สร้างแชนแนล
         </a>
-        <a href="#" class="w3-bar-item baby-blue-h w3-padding-large thai-font ul-rm size-17 font-black-h">
+        <a href="{% url 'web:document' %}" class="w3-bar-item baby-blue-h w3-padding-large thai-font ul-rm size-17 font-black-h">
             <i class="fa fa-book" style="font-size: 16px; margin-right: 1em;"></i>API Documents
         </a>
-        <a href="#" class="w3-bar-item baby-blue-h w3-padding-large thai-font ul-rm size-17 font-black-h">
+        <a href="{% url 'web:report_page' %}" class="w3-bar-item baby-blue-h w3-padding-large thai-font ul-rm size-17 font-black-h">
             <i class="fa fa-bar-chart" style="font-size: 16px; margin-right: 1em;"></i>สถิติ
         </a>
-        <a href="#" class="w3-bar-item baby-blue-h w3-padding-large thai-font ul-rm size-17 font-black-h">
+        <a href="{% url 'web:setting_page' %}" class="w3-bar-item baby-blue-h w3-padding-large thai-font ul-rm size-17 font-black-h">
             <i class="fa fa-cog" style="font-size: 16px; margin-right: 1em;"></i>ตั้งค่า
         </a>
-        <a href="#" class="w3-bar-item baby-blue-h w3-padding-large thai-font ul-rm size-17 font-black-h">
+        <a href="{% url 'web:help_page' %}" class="w3-bar-item baby-blue-h w3-padding-large thai-font ul-rm size-17 font-black-h">
             <i class="fa fa-question-circle" style="font-size: 16px; margin-right: 1em;"></i>ช่วยเหลือ
         </a>
-        <a href="#" class="w3-bar-item baby-blue-h w3-padding-large thai-font ul-rm size-17 font-black-h">
+        <a href="{% url 'web:update_page' %}" class="w3-bar-item baby-blue-h w3-padding-large thai-font ul-rm size-17 font-black-h">
             <i class="fa fa-newspaper-o" style="font-size: 16px; margin-right: 1em;"></i>Update !
         </a>
-        <a href="#" class="w3-bar-item baby-blue-h w3-padding-large thai-font ul-rm size-17 font-black-h">
+        <a href="{% url 'web:logout' %}" class="w3-bar-item baby-blue-h w3-padding-large thai-font ul-rm size-17 font-black-h">
             <i class="fa fa-sign-out" style="font-size: 18px; margin-right: 0.5em;"></i> ออกจากระบบ
         </a>
     </div>
@@ -114,14 +119,14 @@
                         <p><i class="w3-margin-right w3-text-theme"></i> April 1, 1988</p>
                         <p>
                             <i class="w3-margin-right w3-text-theme w3-padding-small "></i>
-                            <a href="#" class="ul-rm thai-font size-15 font-misty-blue-h">
+                            <a href="{% url 'web:home' %}" class="ul-rm thai-font size-15 font-misty-blue-h">
                                 <i class="fa fa-home font-misty-blue-h" style="font-size: 18px; margin-right: 1em;"></i>
                                 หน้าหลัก
                             </a>
                         </p>
                         <p>
                             <i class="w3-margin-right w3-text-theme w3-padding-small"></i>
-                            <a href="#" class="ul-rm thai-font size-15 font-misty-blue-h">
+                            <a href="{% url 'web:channel_page' %}" class="ul-rm thai-font size-15 font-misty-blue-h">
                                 <i class="fa fa-plus font-misty-blue-h" style="font-size: 18px; margin-right: 1em;"></i>
                                 สร้างแชนแนล</a>
                         </p>
@@ -143,16 +148,19 @@
                             <p class="thai-font size-15 w3-padding-large" style="margin-bottom: -0.4em;">ทั่วไป</p>
                         </span>
                         <div class="baby-blue">
-                            <a class="w3-block w3-left-align thai-font size-15 navy-blue-h ul-rm"
+                            <a href="{% url 'web:home' %}" class="w3-block w3-left-align thai-font size-15 navy-blue-h ul-rm"
                                 style="padding-left: 3em; padding-top: 1em; padding-bottom: 1em;">
                                 <i class="fa fa-home" style="font-size: 18px; margin-right: 1em;"></i>หน้าหลัก</a>
-                            <a class="w3-block w3-left-align thai-font size-15 navy-blue-h ul-rm"
+
+                            <a href="{% url 'web:channel_page' %}"class="w3-block w3-left-align thai-font size-15 navy-blue-h ul-rm"
                                 style="padding-left: 3em; padding-top: 1em; padding-bottom: 1em;">
                                 <i class="fa fa-plus" style="font-size: 16px; margin-right: 1em;"></i>สร้างแชนแนล</a>
-                            <a class="w3-block w3-left-align thai-font size-15 navy-blue-h ul-rm"
+
+                            <a href="{% url 'web:document' %}" class="w3-block w3-left-align thai-font size-15 navy-blue-h ul-rm"
                                 style="padding-left: 3em; padding-top: 1em; padding-bottom: 1em;">
                                 <i class="fa fa-book" style="font-size: 16px; margin-right: 1em;"></i>API Documents</a>
-                            <a class="w3-block w3-left-align thai-font size-15 navy-blue-h ul-rm"
+
+                            <a href="{% url 'web:report_page' %}"class="w3-block w3-left-align thai-font size-15 navy-blue-h ul-rm"
                                 style="padding-left: 3em; padding-top: 1em; padding-bottom: 1em;">
                                 <i class="fa fa-bar-chart" style="font-size: 16px; margin-right: 1em;"></i>สถิติ</a>
                         </div>
@@ -171,14 +179,14 @@
                 <div class="w3-card w3-round navy-blue">
                     <div class="w3-container " style="margin-left: 1em;">
                         <p style="margin-top: 1em;">
-                            <a class="thai-font size-15 ul-rm font-black-h">
+                            <a href="{% url 'web:help_page' %}" class="thai-font size-15 ul-rm font-black-h">
                                 <i class="fa fa-question-circle font-black-h" style="font-size: 16px; margin-right: 1.5em;"></i>
                                 ช่วยเหลือ
                             </a>
                         </p>
 
                         <p>
-                            <a class="size-15 ul-rm font-black-h">
+                            <a href="{% url 'web:update_page' %}" class="size-15 ul-rm font-black-h">
                                 <i class="fa fa-newspaper-o font-black-h" style="font-size: 16px; margin-right: 1.5em; margin-left: -0.2em;"></i>
                                 Update !
                             </a>
@@ -190,19 +198,19 @@
                 <div class="w3-card w3-round baby-blue">
                     <div class="w3-container" style="margin-left: 1em;">
                         <p style="margin-top: 1em;">
-                            <a class="thai-font size-15 ul-rm font-white-h">
+                            <a href="{% url 'web:setting_page' %}" class="thai-font size-15 ul-rm font-white-h">
                                 <i class="fa fa-cog" style="font-size: 16px; margin-right: 1.5em;"></i>
                                 ตั้งค่า
                             </a>
                         </p>
                         <p>
-                            <a class="thai-font size-15 ul-rm font-white-h">
+                            <a href="{% url 'web:privacy_page' %}" class="thai-font size-15 ul-rm font-white-h">
                                 <i class="fa fa-lock" style="font-size: 16px; margin-right: 1.8em;"></i>
                                 ความเป็นส่วนตัว
                             </a>
                         </p>
                         <p>
-                            <a class="thai-font size-15 ul-rm font-white-h">
+                            <a href="{% url 'web:logout' %}" class="thai-font size-15 ul-rm font-white-h">
                                 <i class="fa fa-sign-out" style="font-size: 16px; margin-right: 1.5em;"></i>
                                 ออกจากระบบ
                             </a>
