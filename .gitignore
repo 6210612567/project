@@ -123,3 +123,6 @@ GitHub.sublime-settings
 .project/__pycache__/*
 .web/__pycache__/*
 .web/migrations/__pycache__/__init__.cpython-39.pyc
+.web/__pycache__/views.cpython-39.pyc
+.web/__pycache__/urls.cpython-39.pyc
+.project/settings.py
