@@ -1,0 +1,121 @@
+{% extends "web/layout.html" %}
+
+{% block body %}
+    <title>สถิติ - ENGR APIs Developer</title>
+    <div class="w3-col m7">
+        <!-- report -->
+        <div class="row" style="margin-left: 0.1em; margin-right: 0.1em; margin-top: -1em; margin-bottom: -1em;">
+            <div class="col w3-container w3-card w3-white w3-round w3-margin text-center box-shadow-h">
+                <a href="#" class="ul-rm">
+                    <h2 style="margin-top: 0.6em;" class="thai-font font-navy-blue"><strong>0/20</strong></h2>
+                    <h4 class=" thai-font font-charcoal">แชลแนล</h4>
+                </a>
+            </div>
+            <div class="col w3-container w3-card w3-white w3-round w3-margin text-center box-shadow-h">
+                <a href="#" class="ul-rm">
+                    <h2 class="thai-font font-green"><strong>0</strong></h2>
+                    <h4 class="thai-font font-navy-blue">ทั่วไป<br>
+                        เปิดการทำงาน</h4>
+                </a>
+            </div>
+            <div class="col w3-container w3-card w3-white w3-round w3-margin text-center box-shadow-h">
+                <a href="#" class="ul-rm">
+                    <h2 class="thai-font font-red"><strong>0</strong></h2>
+                    <h4 class="thai-font font-navy-blue">ทั่วไป<br>
+                        ปิดการทำงาน</h4>
+                </a>
+            </div>
+        </div>
+        <!-- end report -->
+        <br>
+        <!-- search -->
+
+        <div class="row justify-content-md-center">
+            <div class="col-md-auto">
+                <div class="w3-container w3-card w3-round baby-green w3-margin"><br>
+                    <p class="thai-font size-17 font-black" style="margin-top: -0.4em;margin-left: 0.5em;">
+                        ค้นหา แชลแนล
+                    </p>              
+                    <form class="form-inline d-flex ">
+                        <input class="form-control thai-font" id="serchChannel" type="text" placeholder="ค้นหาแชนแนล ..." style="width: 270px;">
+                        <button class="btn-circle" style="margin-left: 1em;">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </form>
+                    <br>
+                </div>
+            </div>
+
+            <div class="col-md-auto">
+                <div class="w3-container w3-card w3-round baby-green w3-margin"><br>
+                    <p class="thai-font size-17 font-black" style="margin-top: -0.4em;margin-left: 0.5em;">
+                        ค้นหา ปี (คศ.)
+                    </p>
+                    <form class="form-inline d-flex ">
+                        <input class="form-control thai-font" id="serchYear" type="text" placeholder="ค้นหาแชนแนล ..." style="width: 270px;">
+                        <button class="btn-circle" style="margin-left: 1em;">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </form>
+                    <br>
+                </div>
+            </div>
+        </div>
+        <!-- end serch -->
+        <!-- ถ้ายังไม่สร้าง channel -->
+        <div class="w3-row-padding w3-container w3-card w3-round w3-margin red box-shadow-h" style="height: 60px;"><br>
+            <p class="thai-font size-15 font-white" style="margin-left: 0.5em;">
+                ไม่พบข้อมูลของท่าน
+            </p>
+        </div>
+        <!-- document -->
+        <div class="w3-container w3-card w3-white w3-round w3-margin scroller"><br>
+            <h4 class="thai-font" style="margin-left: 0.5em;">เอกสาร</h4>
+            <hr class="w3-clear">
+            <a href="#" class="thai-font size-15 ul-rm font-midnight-blue-h" >
+                <p class="thai-font size-15" style="margin-bottom: -0.5em;">
+                    <i class="fa fa-book" style="font-size: 16px; margin-right: 2em;"></i>บริการข้อมูลอาจารย์ :
+                    แสดงข้อมูลพื้นฐานอาจารย์
+                    <a href="#" class="btn-read pull-right ul-rm size-13 font-charcoal-h">Read</a>
+                </p>
+            </a>
+            <hr>
+            <a href="#" class="thai-font size-15 ul-rm font-midnight-blue-h" >
+                <p class="thai-font size-15" style="margin-bottom: -0.5em;">
+                    <i class="fa fa-book" style="font-size: 16px; margin-right: 2em;"></i>บริการข้อมูลอาจารย์ :
+                    แสดงข้อมูลพื้นฐานอาจารย์
+                    <a href="#" class="btn-read pull-right ul-rm size-13 font-charcoal-h">Read</a>
+                </p>
+            </a>
+            <hr>
+            <a href="#" class="thai-font size-15 ul-rm font-midnight-blue-h" >
+                <p class="thai-font size-15" style="margin-bottom: -0.5em;">
+                    <i class="fa fa-book" style="font-size: 16px; margin-right: 2em;"></i>บริการข้อมูลอาจารย์ :
+                    แสดงข้อมูลพื้นฐานอาจารย์
+                    <a href="#" class="btn-read pull-right ul-rm size-13 font-charcoal-h">Read</a>
+                </p>
+            </a>
+            <hr>
+            <a href="#" class="thai-font size-15 ul-rm font-midnight-blue-h" >
+                <p class="thai-font size-15" style="margin-bottom: -0.5em;">
+                    <i class="fa fa-book" style="font-size: 16px; margin-right: 2em;"></i>บริการข้อมูลอาจารย์ :
+                    แสดงข้อมูลพื้นฐานอาจารย์
+                    <a href="#" class="btn-read pull-right ul-rm size-13 font-charcoal-h">Read</a>
+                </p>
+            </a>
+            <hr>
+            <a href="#" class="thai-font size-15 ul-rm font-midnight-blue-h" >
+                <p style="margin-bottom: -0.5em;">
+                    <i class="fa fa-book" style="font-size: 16px; margin-right: 2em;"></i>บริการข้อมูลอาจารย์ :
+                    แสดงข้อมูลพื้นฐานอาจารย์
+                    <a href="#" class="btn-read pull-right ul-rm size-13 font-charcoal-h">Read</a>
+                </p>
+            </a>
+            <hr>
+        </div>
+        <!-- end document -->
+    </div>
+    <script>
+        document.getElementById("serchYear").placeholder = new Date().getFullYear();
+    </script>
+{% endblock%}

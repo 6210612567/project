@@ -1,0 +1,60 @@
+{% extends "web/layout.html" %}
+{% block body %}
+
+    <title>เอกสาร - ENGR APIs Developer</title>
+    
+    <div class="w3-col m7">
+        <!-- api -->
+        <div class="w3-row-padding w3-margin">
+            <p class="thai-font size-15"> 
+                <a href="{% url 'web:home' %}" class="ul-rm font-misty-blue-h font-midnight-blue thai-font size-15">หน้าหลัก</a> 
+                &ensp;/ เอกสาร</p>
+        </div>
+       
+        <div class="w3-margin w3-container w3-card w3-white w3-round w3-margin" style="height: 50px;"><br>
+            <h4 class="thai-font font-black" style="margin-top: -0.4em;margin-left: 0.5em;">
+                APIs
+            </h4>
+        </div>
+        
+        <a href="#" class="font-midnight-blue-h ">
+            <div class="w3-card w3-round w3-margin tiffany-green box-shadow-h" style="height: 80px;"><br>
+                <div class="w3-container light-green" style="margin-left: 0.5em; margin-top: -1.5em; height: 80px;">
+                    <p style="margin-top: 2em; margin-left: 1em;" class="thai-font size-15">
+                        APIs Doucuments สำหรับเริ่มต้นสำหรับนักพัฒนาระบบ
+                    </p>
+                </div>
+            </div>
+        </a>
+        <!-- end api -->
+        <br>
+        <!-- manual -->
+        <div class="w3-margin w3-container w3-card w3-white w3-round w3-margin" style="height: 50px;"><br>
+            <h4 class="thai-font font-black" style="margin-top: -0.4em;margin-left: 0.5em;">
+                คู่มือขั้นตอนการใช้งานและตั้งค่าระบบ<i class="fa fa fa-book" style="margin-left: 0.5em;"></i>
+            </h4>
+        </div>
+        
+        <a href="#" class="font-midnight-blue-h ">
+            <div class="w3-card w3-round w3-margin tiffany-green box-shadow-h" style="height: 80px;"><br>
+                <div class="w3-container light-green" style="margin-left: 0.5em; margin-top: -1.5em; height: 80px;">
+                    <p style="margin-top: 2em; margin-left: 1em;" class="thai-font size-15">
+                        การสร้างแชนแนล
+                    </p>
+                </div>
+            </div>
+        </a>
+
+        <a href="#" class="font-midnight-blue-h ">
+            <div class="w3-card w3-round w3-margin tiffany-green box-shadow-h" style="height: 80px;"><br>
+                <div class="w3-container light-green" style="margin-left: 0.5em; margin-top: -1.5em; height: 80px;">
+                    <p style="margin-top: 2em; margin-left: 1em; " class="thai-font size-15">
+                         การตั้งค่าความปลอดภัยแบบสองขั้นตอน
+                    </p>
+                </div>
+            </div>
+        </a>
+        <!-- end manual -->
+    </div>
+
+{% endblock %}

@@ -9,12 +9,11 @@ from rest_framework import status
 HOST = "http://127.0.0.1:8000"
 
 
-
 def index(request):
     try:
         if request.session['user_id']:
             # print(request.session['user_id'])
-            return render(request, "web/home.html",{'name':request.session['user_id']})
+            return render(request, "web/home.html", {'name': request.session['user_id']})
     except Exception as e:
         print(e)
         return render(request, "web/index.html")
@@ -24,17 +23,18 @@ def login_view(request):
     try:
         if request.session['user_id']:
             # print(request.session['user_id'])
-            return render(request, "web/index2.html",{'name':response.json()['name']})
+            return render(request, "web/index2.html", {'name': response.json()['name']})
     except:
         if request.method == "POST":
             username = request.POST["username"]
             password = request.POST["password"]
             # response = ldap3_authen(username,password)
             data = {
-                'username' : username,
-                'password' : password
+                'username': username,
+                'password': password
             }
-            response = requests.post('http://127.0.0.1:8000/api/v1/authentication/', data=data)
+            response = requests.post(
+                'http://127.0.0.1:8000/api/v1/authentication/', data=data)
             if response.status_code == status.HTTP_200_OK:
                 request.session['user_id'] = username
                 print(request.session['user_id'])
@@ -47,9 +47,11 @@ def login_view(request):
                 return render(request, "web/login.html")
         return render(request, "web/login.html")
 
+
 def logout_view(request):
     del request.session['user_id']
     return HttpResponseRedirect(reverse("web:index"))
+
 
 def pdpa_page(request):
     try:
@@ -59,3 +61,35 @@ def pdpa_page(request):
         print(request.session['user_id'])
         print(e)
         return render(request, "web/index.html")
+
+
+def setting_page(request):
+    return render(request, "web/setting.html")
+
+
+def privacy_page(request):
+    return render(request, "web/privacy.html")
+
+
+def home(request):
+    return render(request, "web/home.html")
+
+
+def channel_page(request):
+    return render(request, "web/channel.html")
+
+
+def document(request):
+    return render(request, "web/document.html")
+
+
+def report_page(request):
+    return render(request, "web/report.html")
+
+
+def help_page(request):
+    return render(request, "web/help.html")
+
+
+def update_page(request):
+    return render(request, "web/update.html")
