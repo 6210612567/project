@@ -11,12 +11,15 @@ a {
     font-family: 'Signika Negative', sans-serif;
 }
 
-.thai-font{
+.thai-font {
     font-family: 'Sarabun', sans-serif;
 }
-.ul-rm{
+
+.ul-rm {
     text-decoration: none;
 }
+
+/* font size*/
 
 .size-13 {
     font-size: 13px;
@@ -42,25 +45,16 @@ a {
     font-size: 18px;
 }
 
-.size-19{
+.size-19 {
     font-size: 19px;
 }
+/* font size*/
 
-.bg-hover:hover{
+/* background color*/
+.bg-hover:hover {
     background-color: #2a4655;
     height: 50px;
     color: white;
-}
-
-.btn-read {
-    background-color: #5289B5;
-    color: white;
-    border-radius: 4px;
-    width: 60px;
-    height: 25px;
-    padding-top: 0.3em;
-    transition-duration: 0.4s;
-    text-align: center;
 }
 
 .navy-blue {
@@ -74,8 +68,12 @@ a {
     transition-duration: 0.4s;
 }
 
-.baby-blue{
+.baby-blue {
     background-color: #AFD8F2;
+}
+
+.baby-blue2 {
+    background-color: #afd8f27a;
 }
 
 .baby-blue-h:hover {
@@ -83,11 +81,11 @@ a {
     transition-duration: 0.4s;
 }
 
-.tiffany-blue{
+.tiffany-blue {
     background-color: #5DBDD3;
 }
 
-.blue-grotto{
+.blue-grotto {
     background-color: #5289B5;
 }
 
@@ -96,10 +94,12 @@ a {
     color: white;
     transition-duration: 0.4s;
 }
-.tral{
+
+.tral {
     background-color: #bfeef5;
 }
-.misty-blue-h:hover{
+
+.misty-blue-h:hover {
     background-color: #BDC6D9;
 }
 
@@ -107,11 +107,11 @@ a {
     background-color: #BDC6D9;
 }
 
-.midnight-blue{
+.midnight-blue {
     background-color: #0C6170;
 }
 
-.baby-green{
+.baby-green {
     background-color: #DBF5F0;
 }
 
@@ -119,21 +119,21 @@ a {
     background-color: rgb(234, 255, 250)
 }
 
-.tiffany-green{
+.tiffany-green {
     background-color: #A4E5E0;
     transition-duration: 0.4s;
 }
 
-.blue-green-h:hover{
+.blue-green-h:hover {
     background-color: #58cfc3;
     transition-duration: 0.4s;
 }
 
-.white{
+.white {
     background-color: white;
 }
 
-.cornflower{
+.cornflower {
     background-color: #7391C8;
 }
 
@@ -142,6 +142,13 @@ a {
     transition-duration: 0.4s;
 }
 
+.red {
+    background-color: #be4141;
+}
+
+/* background color*/
+
+/* font color */
 .font-white {
     color: white;
 }
@@ -158,11 +165,11 @@ a {
     color: black;
 }
 
-.font-misty-blue-h:hover{
+.font-misty-blue-h:hover {
     color: #BDC6D9;
 }
 
-.font-red{
+.font-red {
     color: #d82c2f;
 }
 
@@ -170,11 +177,15 @@ a {
     color: #970C10;
 }
 
-.font-midnight-blue{
+.font-midnight-blue {
     color: #0C6170;
 }
 
-.font-navy-blue{
+.font-midnight-blue-h:hover {
+    color: #0C6170;
+}
+
+.font-navy-blue {
     color: #385e96;
 }
 
@@ -186,11 +197,12 @@ a {
     color: #384640;
 }
 
-.font-green{
+.font-green {
     color: #019992;
 }
+/* font color */
 
-.box-shadow-h:hover{
+.box-shadow-h:hover {
     box-shadow: 0 0 5px rgba(33, 33, 33, .2);
 }
 
@@ -201,3 +213,93 @@ a {
     overflow-y: scroll;
     scrollbar-width: thin;
 }
+
+/* button */
+
+.btn-agr {
+    background-color: #82ac82;
+    color: white;
+    width: 150px;
+    height: 35px;
+    transition-duration: 0.4s;
+    border-radius: 5px;
+    border: none;
+
+}
+
+.btn-agr:hover {
+    background-color: #529770;
+    color: black;
+    transition-duration: 0.4s;
+}
+
+.btn-dagr {
+    background-color: #CD5C5C;
+    margin: 1em;
+    color: white;
+    width: 150px;
+    height: 35px;
+    transition-duration: 0.4s;
+    border-radius: 5px;
+    border: none;
+}
+
+.btn-dagr:hover {
+    background-color: #b43636;
+    color: black;
+    transition-duration: 0.4s;
+}
+
+.btn-read {
+    background-color: #5289B5;
+    color: white;
+    border-radius: 4px;
+    width: 60px;
+    height: 25px;
+    padding-top: 0.3em;
+    transition-duration: 0.4s;
+    text-align: center;
+}
+
+.btn-save {
+    background-color: #AFD8F2;
+    color: black;
+    width: 150px;
+    height: 35px;
+    transition-duration: 0.4s;
+    border-radius: 5px;
+    border: none;
+    text-align: center;
+}
+
+.btn-save:hover {
+    background-color: #385e96ad;
+    color: black;
+    width: 150px;
+    height: 35px;
+    transition-duration: 0.4s;
+    border-radius: 5px;
+    text-align: center;
+    border: 2px, black;
+}
+
+.btn-circle{
+    background-color: #AFD8F2;
+    color: black;
+    width: 35px;
+    height: 35px;
+    transition-duration: 0.4s;
+    border-radius: 20px;
+    border: none
+}
+
+.btn-circle:hover {
+    background-color: #5289B5;
+    color: white;
+    width: 35px;
+    height: 35px;
+    transition-duration: 0.4s;
+    border-radius: 20px;
+    border: none
+}
+/* button */
