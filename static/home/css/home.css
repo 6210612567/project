@@ -244,9 +244,59 @@ a {
     border: none;
 }
 
+.btn-normal {
+    background-color: #ffffff;
+    color: black;
+    width: 150px;
+    height: 35px;
+    transition-duration: 0.4s;
+    border-radius: 5px;
+    border: 0.5px, #DBF5F0;
+
+}
+
+.btn-normal:hover {
+    background-color: #DBF5F0;
+    color: black;
+    transition-duration: 0.4s;
+    border: none;
+}
+
 .btn-dagr:hover {
     background-color: #b43636;
     color: black;
+    transition-duration: 0.4s;
+}
+
+.btn-add {
+    background-color: #019992;
+    color: white;
+    width: 150px;
+    height: 35px;
+    transition-duration: 0.4s;
+    border-radius: 5px;
+    border: none;
+}
+
+.btn-add:hover {
+    background-color: #82ac82;
+    color: black;
+    transition-duration: 0.4s;
+}
+
+.btn-add2 {
+    background-color: #DBF5F0;
+    color: black;
+    width: 150px;
+    height: 35px;
+    transition-duration: 0.4s;
+    border-radius: 5px;
+    border: none;
+}
+
+.btn-add2:hover {
+    background-color: #9dd39d;
+    color: white;
     transition-duration: 0.4s;
 }
 

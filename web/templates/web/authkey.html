@@ -1,0 +1,194 @@
+{% extends "web/layout.html" %}
+
+{% block body %}
+<title>Create APIs - ENGR APIs Developer</title>
+
+<style>
+    /* The Modal (background) */
+    .modal {
+        display: none;
+        /* Hidden by default */
+        position: fixed;
+        /* Stay in place */
+        z-index: 1;
+        /* Sit on top */
+        padding-top: 2%;
+        /* Location of the box */
+        padding-left: 5%;
+        left: 0;
+        top: 0;
+        width: 100%;
+        /* Full width */
+        height: 100%;
+        /* Full height */
+        overflow: auto;
+        /* Enable scroll if needed */
+        background-color: rgb(0, 0, 0);
+        /* Fallback color */
+        background-color: rgba(0, 0, 0, 0.4);
+        /* Black w/ opacity */
+    }
+
+    /* Modal Content */
+    .modal-content {
+        background-color: #fefefe;
+        margin: auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 35%;
+    }
+
+    /* The Close Button */
+    .close {
+        color: #aaaaaa;
+        text-align: right;
+        font-size: 28px;
+        font-weight: bold;
+    }
+
+    .close:hover,
+    .close:focus {
+        color: #000;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+</style>
+
+<div class="w3-col m7">
+    <!-- <div class="w3-row-padding w3-container w3-card w3-white w3-round w3-margin" style="height: 50px;"><br>
+        <h4 class="thai-font font-black" style="margin-top: -0.4em;margin-left: 0.5em;">
+            สร้างแชนแนล<i class="fa fa-plus-circle"
+                style="font-size: 22px; margin-right: 0.5em; margin-left: 0.5em;"></i>
+        </h4>
+    </div> -->
+
+
+    <div class="w3-card w3-round w3-margin tiffany-green box-shadow-h"><br>
+        <div class="w3-container light-green" style="margin-left: 0.5em; margin-top: -1.5em;">
+            <p class="thai-font size-16" style="margin-top: 1em; margin-left: 1em;">
+                ยินดีต้อนรับ () เพื่อความปลอดภัยในการทำงาน กรุณา รักษาข้อมูลของท่าน เนื่องจากมีข้อมูลสำคัญ !
+            </p>
+        </div>
+    </div>
+
+    <div class="w3-card w3-round w3-margin box-shadow-h w3-container white"><br>
+        <p class="thai-font size-17" style="margin-left: 1em;">
+            <b><u>คำแนะนำ</u></b>
+        </p>
+        <p class="thai-font size-17" style="margin-left: 1em;margin-right: 1em;">
+            กรณีใช้ Google Authenticator ไม่ผ่าน : ให้ทำ การตั้งค่า -> การแก้ไขเวลาให้ถูกต้องเพื่อรับรหัส -> ซิงค์<br>
+            กรณีซิงค์แต่ไม่ผ่าน : โปรดตัวสอบโทรศัพท์ของท่านให้เป็น version ปัจจุบันเสมอ
+        </p>
+    </div>
+
+    <div class="row justify-content-md-center ">
+        <div class="col-md-auto ">
+            <div class="w3-container w3-card w3-round white box-shadow-h" style="height: 80px;"><br>
+                <button id="myBtn" class="btn-add2 thai-font" style="margin-left: 1em; width: 305px; ">
+                    <i class="fa fa-plus " style="margin-right: 1em;"></i>เริ่มสร้างแชนแนลของท่าน
+                </button>
+                <br>
+            </div>
+            <br>
+        </div>
+        
+        <div class="col-md-auto">
+            <div class="w3-container w3-card w3-round baby-green box-shadow-h"><br>
+                <form class="form-inline d-flex ">
+                    <input class="form-control thai-font" id="serchYear" type="text" placeholder="ค้นหา ..."
+                        style="width: 305px;">
+                    <button type="submit" class="btn-circle" style="margin-left: 1em;">
+                        <i class="fa fa-search"></i>
+                    </button>
+                </form>
+                <br>
+            </div>
+            <br>
+        </div>
+
+        <div id="myModal" class="modal">
+            <!-- Modal content -->
+            <div class="modal-content">
+                <span class="close">&times;</span>
+
+                <div class=" w3-round baby-blue2" style="margin-top: -2em; width: 90%; height: 80px; padding: 0.7em;">
+                    <h4 class="thai-font" style="text-align: center;">
+                        เริ่มสร้างแชนแนลของท่าน<br>
+                        Let's start create channel
+                    </h4>
+                </div>
+                <hr>
+                <div style="margin-left: 0.7em;">
+                    <form action="{% url 'web:createChannel_page' %}" method="POST">
+                        <div class="mb-3">
+                            <label for="sysName" class="form-label thai-font size-17"><span class="font-red" style="margin-right: 0.5em;"
+                                    ;>*</span>ชื่อระบบ</label>
+                            <input type="text" class="form-control thai-font size-15" id="sysName" placeholder="กรุณากรอกชื่อระบบ" maxlength="20" required >
+                            <p class="thai-font size-13" style="margin-top: 0.5em; margin-left: 0.5em;">ไม่เกิน 20 ตัวอักษร</p>
+                        </div>
+                        <div class="mb-3">
+                            <p>
+                                <label for="description" class="form-label thai-font size-17"><span class="font-red" style="margin-right: 0.5em;";>*</span>รายละเอียด</label>
+                            </p>
+                            <textarea id="description" name="description" rows="5" cols="80" style="margin-top: -1em;" class="thai-font" placeholder="กรุณากรอกรายละเอียด" maxlength="250" required></textarea>
+                            <p class="thai-font size-13" style="margin-left: 0.5em;">ไม่เกิน 255 ตัวอักษร</p>
+                        </div>
+                        <div class="mb-3">
+                            <label for="description" class="form-label thai-font size-17">
+                                <span class="font-red" style="margin-right: 0.5em;";>*</span>
+                                Two-Factor Authentication 
+                                <a href="{% url 'web:setting_page' %}" class="thai-font size-16 font-black font-midnight-blue-h ul-rm" style="margin-left: 0.5em;">[ตั้งค่า]</a>
+                            </label>
+                            <input type="text" class="form-control thai-font size-15" id="sysName" placeholder="Please Check google-authenticator" maxlength="20"
+                                required>
+                        </div>
+                    
+                        <hr>
+                        <input type="submit" class="btn-agr thai-font" value="เพิ่ม"></input>
+                        <button class="btn-dagr thai-font btn_close">
+                            ยกเลิก
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Get the modal
+        var modal = document.getElementById("myModal");
+        
+        // Get the button that opens the modal
+        var btn = document.getElementById("myBtn");
+
+        // Get the <span> element that closes the modal
+        var span = document.getElementsByClassName("close")[0];
+    
+        var btn_close = document.getElementsByClassName("btn_close")[0];
+
+        // When the user clicks the button, open the modal 
+        btn.onclick = function () {
+            modal.style.display = "block";
+        }
+
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function () {
+            modal.style.display = "none";
+        }
+
+        btn_close.onclick = function () {
+            modal.style.display = "none";
+        }
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+
+    </script>
+
+</div>
+{% endblock%}
