@@ -18,6 +18,11 @@ urlpatterns = [
     path("Report", views.report_page, name="report_page"),
     path("Helpdesk", views.help_page, name="help_page"),
     path("update", views.update_page, name="update_page"),
+    path("Authkey", views.createChannel_page, name="createChannel_page"),
+    path("DocumentsGettingStart", views.getStart_page,
+         name="getStart_page"),
+    path("DocumentsTwoFactor", views.twoFactor_page,
+         name="twoFactor_page"),
     # path("register", views_fronts.register, name="register"),
     # path("test", views_fronts.test, name="test"),
 

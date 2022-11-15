@@ -1,0 +1,118 @@
+{% extends "web/layout.html" %}
+
+{% block body %}
+<title>เอกสาร เริ่มต้นสร้างแชนแนล - ENGR APIs Developer</title>
+<div class="w3-col m7">
+    <div class="w3-row-padding w3-margin">
+        <p class="thai-font size-15">
+            <a href="{% url 'web:home' %}" class="ul-rm font-misty-blue-h font-midnight-blue thai-font">หน้าหลัก</a>
+            &ensp;/
+            <a href="{% url 'web:document' %}" class="ul-rm font-misty-blue-h font-midnight-blue thai-font">
+                เอกสาร</a>&ensp;/
+            Create Channel
+        </p>
+    </div>
+
+    <div class="w3-row-padding w3-container w3-card w3-white w3-round w3-margin" style="height: 50px;"><br>
+        <h4 class="thai-font font-black" style="margin-top: -0.4em;margin-left: 0.5em;">
+            เริ่มต้นสร้างแชนแนล<i class="fa fa-plus-circle"
+                style="font-size: 22px; margin-right: 0.5em; margin-left: 0.5em;"></i>
+        </h4>
+    </div>
+
+    <div class="w3-card w3-round w3-margin tiffany-green box-shadow-h" style="height: 80px;"><br>
+        <div class="w3-container light-green" style="margin-left: 0.5em; margin-top: -1.5em; height: 80px;">
+            <p class="thai-font size-15 ul-rm" style="margin-top: 1em; margin-left: 1em;">
+                ท่านสามารถสร้างแชนแนลของท่านเพื่อสร้าง Token Key และเริ่มต้นใช้บริการ APIs
+                ที่ทางสำนักงานศูนย์เทคโนโลยีสารสนเทศและการสื่อสารให้บริการได้เพียงกด
+                <a href="{% url 'web:createChannel_page' %}"
+                    class="font-midnight-blue-h thai-font size-15">สร้างแชนแนล</a>
+            </p>
+        </div>
+    </div>
+    <br>
+    <div class="w3-row-padding w3-container w3-card w3-white w3-round w3-margin" style="height: 50px;"><br>
+        <h4 class="thai-font font-black" style="margin-top: -0.4em;margin-left: 0.5em;">
+            เริ่มใช้งาน
+        </h4>
+    </div>
+    <div class="w3-card w3-round w3-margin tiffany-green box-shadow-h"><br>
+        <div class="w3-container light-green" style="margin-left: 0.5em; margin-top: -1.5em;">
+            <p class="thai-font size-15 ul-rm" style="margin-top: 1em; margin-left: 1em;">
+                1.คลิกปุ่ม Go To Console
+            </p>
+        </div>
+    </div>
+    <div class="w3-container w3-white w3-round w3-margin-left w3-margin-right"
+        style="margin-top: -1.03em; height: 320px;"><br>
+        <img src="/static/images/starting/1.jpg" style="width: 730px; height:auto; margin-top: -0.5em;">
+    </div>
+
+    <div class="w3-card w3-round w3-margin tiffany-green box-shadow-h"><br>
+        <div class="w3-container light-green" style="margin-left: 0.5em; margin-top: -1.5em;">
+            <p class="thai-font size-15 ul-rm" style="margin-top: 1em; margin-left: 1em;">
+                2.กรอก Username Password บัญชีที่ทาง คณะวิศวกรรมศาสตร์ ออกให้เท่านั้น
+            </p>
+        </div>
+    </div>
+    <div class="w3-container w3-white w3-round w3-margin-left w3-margin-right"
+        style="margin-top: -1.1em; height: 400px;">
+        <br>
+        <img src="/static/images/starting/2.png" style="width: 730px; height:auto; margin-top: -0.5em;">
+    </div>
+
+    <div class="w3-card w3-round w3-margin tiffany-green box-shadow-h"><br>
+        <div class="w3-container light-green" style="margin-left: 0.5em; margin-top: -1.5em;">
+            <p class="thai-font size-15 ul-rm" style="margin-top: 1em; margin-left: 1em;">
+                3.อ่านนโยบายความเป็นส่วนตัวแล้วกด Agree
+            </p>
+        </div>
+    </div>
+    <div class="w3-container w3-white w3-round w3-margin-left w3-margin-right"
+        style="margin-top: -1.03em; height: 400px;">
+        <br>
+        <img src="/static/images/starting/3.jpg" style="width: 730px; height:auto; margin-top: -0.5em;">
+    </div>
+
+    <div class="w3-card w3-round w3-margin tiffany-green box-shadow-h"><br>
+        <div class="w3-container light-green" style="margin-left: 0.5em; margin-top: -1.5em;">
+            <p class="thai-font size-15 ul-rm" style="margin-top: 1em; margin-left: 1em;">
+                4.คลิกเลือกเมนู <a href="{% url 'web:setting_page' %}"
+                    class="ul-rm font-navy-blue font-midnight-blue-h thai-font size-15">"ตั้งค่า"</a>
+            </p>
+        </div>
+    </div>
+    <div class="w3-container w3-white w3-round w3-margin-left w3-margin-right"
+        style="margin-top: -1.03em; height: 380px;">
+        <br>
+        <img src="/static/images/starting/4.1.jpg" style="width: 730px; height:auto; margin-top: -0.5em;">
+    </div>
+
+    <div class="w3-card w3-round w3-margin tiffany-green box-shadow-h"><br>
+        <div class="w3-container light-green" style="margin-left: 0.5em; margin-top: -1.5em;">
+            <p class="thai-font size-15 ul-rm" style="margin-top: 1em; margin-left: 1em;">
+                5.ไปที่เมนู "ตั้งค่าความปลอดภัยแบบสองขั้นตอน" คลิกปุ่ม "Enable Two-Factor Authentication"
+            </p>
+        </div>
+    </div>
+    <div class="w3-container w3-white w3-round w3-margin-left w3-margin-right"
+        style="margin-top: -1.03em; height: 170px;">
+        <br>
+        <img src="/static/images/starting/5.1.jpg" style="width: 730px; height:auto; margin-top: -0.5em;">
+    </div>
+
+    <div class="w3-card w3-round w3-margin tiffany-green box-shadow-h"><br>
+        <div class="w3-container light-green" style="margin-left: 0.5em; margin-top: -1.5em;">
+            <p class="thai-font size-15 ul-rm" style="margin-top: 1em; margin-left: 1em;">
+                6.คลิกปุ่ม Enable 
+            </p>
+        </div>
+    </div>
+    <div class="w3-container w3-white w3-round w3-margin-left w3-margin-right"
+        style="margin-top: -1.03em; height: 430px;">
+        <br>
+        <img src="/static/images/starting/6.1.jpg"
+            style="width: auto; height:400px; margin-top: -0.5em; margin-left: 13%;">
+    </div>
+</div>
+{% endblock%}
