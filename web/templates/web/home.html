@@ -10,21 +10,25 @@
                 <div class="w3-card w3-round">
                     <div class="w3-container w3-padding text-center tral">
                         <h1 class="thai-font font-black" style="margin-top:1.5em;">ยินดีต้อนรับ ({{request.session.user_id}})</strong></h1>
-                        <p class="thai-font size-19 font-black" style="text-align: left; margin-left: 10%; margin-right: 10%; margin-top: 2em; margin-bottom: 3em;"> 
-                            ENGR Developer ช่วยให้นักพัฒนาระบบของธรรมศาสตร์สามารถสร้างแอพที่เชื่อมต่อกับ สำนักงานศูนย์เทคโนโลยีสารสนเทศและการสื่อสาร
+                        <p class="thai-font size-19 font-black" style="text-align: left; margin-left: 10%; margin-right: 10%; margin-top: 2em; "> 
+                            ENGR Developer ช่วยให้นักพัฒนาระบบของธรรมศาสตร์สามารถสร้างแอพที่เชื่อมต่อกับ สำนักงานศูนย์เทคโนโลยีสารสนเทศและการสื่อสาร 
+                        </p>
+                        <p class="size-19" style="margin-bottom: 3em; text-align: left;margin-left: 10%;">
+                            <a class="thai-font font-midnight-blue-h ul-rm" href="{% url 'web:createChannel_page' %}">[คลิกเพื่อเริ่มต้น]</a>
                         </p>
                     </div>
                 </div>
             </div>
         </div>
         <br>
-        
+        <!-- if sfac disable -->
         <div class="w3-container w3-card w3-white w3-round w3-margin text-center"><br>
             <p class="thai-font size-15">เริ่มต้นใช้ระบบ : เพื่อความปลอดภัยของบัญชีผู้ใช้งาน จำเป็นต้องมีการตรวจสอบรหัสแบบสองขั้นตอน
-                <a href="#" class="ul-rm thai-font size-15 font-red font-red-h"><i class="fa fa-lock" style="font-size: 16px; margin-right: 0.5em; margin-left: 0.5em;"></i>
+                <a href="{% url 'web:setting_page' %}" class="ul-rm thai-font size-15 font-red font-red-h"><i class="fa fa-lock" style="font-size: 16px; margin-right: 0.5em; margin-left: 0.5em;"></i>
                     <u>ตั้งค่า</u></a>
             </p>
         </div>
+        <!-- if 2fac disable -->
 
         <div class="w3-container w3-card w3-round w3-margin text-center w3-display-container baby-green">
             <span onclick="this.parentElement.style.display='none'" class="w3-display-topright tiffany-green blue-green-h" style="width: 30px; height:30px; border-radius: 2px;">
@@ -68,8 +72,8 @@
             <div class="w3-container light-green" style="margin-left: 0.5em; margin-top: -1.5em;">
                 <p class="thai-font size-15" style="margin-top: 1em; margin-left: 1em;">ENGR APIs Developers APIs Helper มัดรวมเกือบทุกเส้นที่ไม่ควรพลาด
                     สามารถ Download ได้แล้ว
-                    <p style="margin-top:-0.5em; margin-left: 1em; " class="thai-font">Json (Import) : <a href="https://github.com/thepnatee/tu_apis_developers">https://github.com/thepnatee/tu_apis_developers</a></p>
-                    <p style="margin-top:-0.5em; margin-left: 1em;" class="thai-font">เครื่องมือที่ต้องใช้ Postman: <a href="https://www.postman.com/downloads/">https://www.postman.com/downloads/</a></p>
+                    <p style="margin-top:-0.5em; margin-left: 1em; " class="thai-font">Json (Import) : <a href="https://github.com/thepnatee/tu_apis_developers" target="_blank" rel="noopener noreferrer">https://github.com/thepnatee/tu_apis_developers</a></p>
+                    <p style="margin-top:-0.5em; margin-left: 1em;" class="thai-font">เครื่องมือที่ต้องใช้ Postman: <a href="https://www.postman.com/downloads/" target="_blank" rel="noopener noreferrer">https://www.postman.com/downloads/</a></p>
                 </p>
             </div>
         </div>

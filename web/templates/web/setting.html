@@ -49,8 +49,22 @@
         text-decoration: none;
         cursor: pointer;
     }
+
+    .close2 {
+        color: #aaaaaa;
+        text-align: right;
+        font-size: 28px;
+        font-weight: bold;
+    }
+
+    .close2:hover,
+    .close2:focus {
+        color: #000;
+        text-decoration: none;
+        cursor: pointer;
+    }
 </style>
-<title>PDPA - ENGR APIs Developer</title>
+<title>ตั้งค่า - ENGR APIs Developer</title>
 <div class="w3-col m7">
     <!-- Middle Column -->
 
@@ -127,6 +141,50 @@
         <p id="myBtn" class="thai-font size-16 font-white-h font-navy-blue" style="margin-left: 1.2em;">
             <b>CLICK : Enable Two-Factor Authentication</b>
         </p>
+
+        <!-- if enable 2factor -->
+        <button id="myBtn2" class="btn-dagr thai-font size-16" style="width: 300px;">
+            Remove Two-Factor Authentication
+        </button>
+
+        <!-- The Modal -->
+        <div id="myModal2" class="modal">
+            <!-- Modal content -->
+            <div class="modal-content">
+                <span class="close2">&times;</span>
+        
+                <h4 class="thai-font w3-round baby-blue2" style="margin-top: -2em; width: 90%; height: 50px; padding: 0.7em;">
+                    Remove Two-Factor Authentication
+                </h4>
+                <hr>
+                <div style="margin-left: 0.7em;">
+                    <form  action="{% url 'web:setting_page' %}" method="POST">
+                        <div class="mb-3">
+                            <label for="rm2fac" class="form-label"><span class="font-red" style="margin-right: 0.5em;";>*</span>การกระทำนี้อาจนำไปสู่การสูญเสียข้อมูล เพื่อป้องกันการกระทำที่ไม่ตั้งใจเราขอให้คุณยืนยันความตั้งใจของคุณ กรุณากรอก
+                            <span class="font-red" style="margin-right: 0.5em;" ;>"Remove2Factor"</span></label>
+                            <input type="text" class="form-control" id="rm2fac" placeholder="Enter Remove2Factor" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="2factor" class="form-label"><span class="font-red" style="margin-right: 0.5em;" ;>*</span>Two-Factor Authentication</label>
+                            <input type="text" class="form-control" id="2factor" placeholder="Please Check google-authenticator" required>
+                        </div>
+                    
+                        <hr>
+                        <button type="submit" class="btn-dagr thai-font" >
+                            ลบ 2FA
+                        </button>
+                        <!-- <button id="btn" class="btn-agr thai-font">
+                                    Save
+                                </button> -->
+                        <button class="btn-normal thai-font btn_close2">
+                            ยกเลิก
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- if enable 2factor -->
+
         <!-- The Modal -->
         <div id="myModal" class="modal">
             <!-- Modal content -->
@@ -164,7 +222,7 @@
                         <p class="thai-font size-16">Please Scan QR Code with Google Authenticator !!</p>
                         <img src="/static/images/engr_logo.png" style="width: 250px; height:250px; margin: 2em;">
                         <p class="thai-font size-16 font-red">*กรุณาตรวจสอบบน Authenticator ของท่านก่อนคลิกปุ่ม Save</p>
-                        <button class="btn-save thai-font" style="margin-bottom: 2em;" onclick="save_alert()">Save</button>
+                        <button class="btn-normal thai-font" style="margin-bottom: 2em;" onclick="save_alert()">Save</button>
                     </div>
                     <button id="btn" class="btn-agr thai-font" onclick="showDiv()">
                         Enable
@@ -173,22 +231,23 @@
                         Save
                     </button> -->
                     <button class="btn-dagr thai-font btn_close">
-                        ยกเลิก
+                        ปิด
                     </button>
                 </div>
             </div>
-
         </div>
+
         <p class="thai-font size-16" style="margin-left: 1em; margin-top: 1.5em;">
             กรณีลบ 2FA แล้ว ต้องลบ รหัสบน Application Google Authenticator ด้วย
             ( After deleting 2FA on this system Must also delete the code on the Google Authenticator application)
         </p>
+
     </div>
 
     <!-- end privacy -->
     <br>
     <!-- noti -->
-        <div class="w3-row-padding w3-container w3-card w3-white w3-round w3-margin" style="height: 50px;"><br>
+        <!-- <div class="w3-row-padding w3-container w3-card w3-white w3-round w3-margin" style="height: 50px;"><br>
             <h4 class="thai-font font-black" style="margin-top: -0.4em;margin-left: 0.5em;">
                 ตั้งค่าการแจ้งเตือน&nbsp;(Setting notifications)<i class="fa fa-bell"
                     style="font-size: 22px; margin-right: 0.5em; margin-left: 0.5em;"></i>
@@ -222,7 +281,7 @@
                         แก้ไข
                     </button>
                 </div>
-        </div>
+        </div> -->
 
         <!-- <div class="w3-container w3-card w3-round w3-margin text-center w3-display-container baby-green">
             <br>
@@ -249,18 +308,26 @@
     <script>
         // Get the modal
         var modal = document.getElementById("myModal");
+        var modal2 = document.getElementById("myModal2");
 
         // Get the button that opens the modal
         var btn = document.getElementById("myBtn");
+        var btn2 = document.getElementById("myBtn2");
 
         // Get the <span> element that closes the modal
         var span = document.getElementsByClassName("close")[0];
+        var span2 = document.getElementsByClassName("close2")[0];
 
         var btn_close = document.getElementsByClassName("btn_close")[0];
+        var btn_close2 = document.getElementsByClassName("btn_close2")[0];
 
         // When the user clicks the button, open the modal 
         btn.onclick = function () {
             modal.style.display = "block";
+        }
+
+        btn2.onclick = function () {
+            modal2.style.display = "block";
         }
 
         // When the user clicks on <span> (x), close the modal
@@ -268,14 +335,25 @@
             modal.style.display = "none";
         }
 
+        span2.onclick = function () {
+            modal2.style.display = "none";
+        }
+
         btn_close.onclick = function () {
             modal.style.display = "none";
+        }
+
+        btn_close2.onclick = function () {
+            modal2.style.display = "none";
         }
 
         // When the user clicks anywhere outside of the modal, close it
         window.onclick = function (event) {
             if (event.target == modal) {
                 modal.style.display = "none";
+            }
+            if (event.target == modal2) {
+                modal2.style.display = "none";
             }
         }
 
@@ -287,8 +365,8 @@
                 x.style.display = "none";
             }
         }
-        function change() // no ';' here
-            {
+
+        function change(){
                 var elem = document.getElementById("btn");
                 if (elem.value == "Close Curtain"){ 
                     elem.value = "Open Curtain";

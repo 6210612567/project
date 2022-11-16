@@ -93,3 +93,15 @@ def help_page(request):
 
 def update_page(request):
     return render(request, "web/update.html")
+
+
+def createChannel_page(request):
+    return render(request, "web/authkey.html")
+
+
+def getStart_page(request):
+    return render(request, "web/documentsGettingStart.html")
+
+
+def twoFactor_page(request):
+    return render(request, "web/documentsTwoFactor.html")
