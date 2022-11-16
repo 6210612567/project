@@ -3,6 +3,9 @@
 *.pot
 *.pyc
 __pycache__
+**/temp
+**/__pycache__
+ project/__pycache__
 db.sqlite3
 media
 static/dormitorys

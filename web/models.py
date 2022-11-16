@@ -7,6 +7,15 @@ from django.contrib.auth.models import User
 class major(models.Model):
     mname_th = models.CharField(max_length=50)
     mname_en = models.CharField(max_length=50)
+
+    @property
+    def context_data(self):
+        return {
+            'id': self.id,
+            'mname_th': self.mname_th,
+            'mname_en': self.mname_en
+        }
+
     def __str__(self):
         return f"[{self.id}] : {self.mname_th} ({self.mname_en})"
 
@@ -49,3 +58,40 @@ class student(models.Model):
 
     class Meta:
         ordering = ['student_code']
+
+class StudentShowdetail3(models.Model):
+    std_code = models.CharField(primary_key=True, max_length=15)
+    tittle_name_lth = models.CharField(max_length=20, blank=True, null=True)
+    title_name_len = models.CharField(max_length=20, blank=True, null=True)
+    fname_th = models.CharField(max_length=255, blank=True, null=True)
+    lname_th = models.CharField(max_length=255, blank=True, null=True)
+    fname_en = models.CharField(max_length=255, blank=True, null=True)
+    lname_en = models.CharField(max_length=255, blank=True, null=True)
+    major_th = models.CharField(max_length=100, blank=True, null=True)
+    major_en = models.CharField(max_length=100, blank=True, null=True)
+    department_th = models.CharField(max_length=100, blank=True, null=True)
+    department_en = models.CharField(max_length=100, blank=True, null=True)
+    advisor_id = models.CharField(max_length=10, blank=True, null=True)
+    email = models.CharField(max_length=255, blank=True, null=True)
+
+    @property
+    def context_data(self):
+        return {
+            'std_code': self.std_code,
+            'tittle_name_lth': self.tittle_name_lth,
+            'title_name_len': self.title_name_len,
+            'fname_th': self.fname_th,
+            'lname_th': self.lname_th,
+            'fname_en': self.fname_en,
+            'lname_en': self.lname_en,
+            'major_th': self.major_th,
+            'major_en': self.major_en,
+            'department_th': self.department_th,
+            'department_en': self.department_en,
+            'advisor_id': self.advisor_id,
+            'email': self.email,
+        }
+
+    class Meta:
+        managed = False
+        db_table = 'student_showdetail3'
