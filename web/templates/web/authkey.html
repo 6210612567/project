@@ -1,6 +1,78 @@
 {% extends "web/layout.html" %}
 
 {% block body %}
+
+
+
+<script language="javascript">
+    const HOST = "http://127.0.0.1:8000"
+    function getCookie(name) {
+        let cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            const cookies = document.cookie.split(';');
+            for (let i = 0; i < cookies.length; i++) {
+                const cookie = cookies[i].trim();
+                // Does this cookie string begin with the name we want?
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
+    function check_2fa(){
+        input_2fa_auth = document.getElementById("2fa_auth");
+        sysName = document.getElementById("sysName_input");
+        description = document.getElementById("description_input");
+        const csrftoken = getCookie('csrftoken');
+        // alert({{request.session.user_id}});
+        let data = { 
+            pin: input_2fa_auth.value, 
+            user_id:{{request.session.user_id}},
+            chname: sysName.value,
+            chdesc: description.value
+        };
+
+        fetch(HOST+"/check2fa", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "X-CSRFToken": csrftoken,
+            },
+            body: JSON.stringify(data)
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log(data['status']); 
+            if(data['status'] == 'True'){
+                alert('เพิ่ม Channel ใหม่แล้ว');
+                location.reload(true);
+            }
+            else{
+                alert('รหัส Two-Factor Authentication ผิด');
+            }
+        })
+
+        // let xhr = new XMLHttpRequest();
+        // xhr.open("POST", HOST+"/check2fa", true);
+        // xhr.setRequestHeader("Content-Type", "application/json");
+        // xhr.setRequestHeader("X-CSRFToken", csrftoken);
+        // xhr.onreadystatechange = function() {
+        //     if (xhr.readyState === 4 && xhr.status === 200) {
+        //         let response = JSON.parse(xhr.responseText);
+        //         console.log(response);
+        //     }
+        // };
+
+        // xhr.send(JSON.stringify(data));
+
+        return false;
+    }
+</script>
+
+
+
 <title>Create APIs - ENGR APIs Developer</title>
 
 <style>
@@ -55,6 +127,7 @@
 
 </style>
 
+
 <div class="w3-col m7">
     <!-- <div class="w3-row-padding w3-container w3-card w3-white w3-round w3-margin" style="height: 50px;"><br>
         <h4 class="thai-font font-black" style="margin-top: -0.4em;margin-left: 0.5em;">
@@ -62,6 +135,7 @@
                 style="font-size: 22px; margin-right: 0.5em; margin-left: 0.5em;"></i>
         </h4>
     </div> -->
+
 
 
     <div class="w3-card w3-round w3-margin tiffany-green box-shadow-h"><br>
@@ -120,18 +194,18 @@
                 </div>
                 <hr>
                 <div style="margin-left: 0.7em;">
-                    <form action="{% url 'web:createChannel_page' %}" method="POST">
+                    <!-- <form action="{% url 'web:createChannel_page' %}" method="POST"> -->
                         <div class="mb-3">
                             <label for="sysName" class="form-label thai-font size-17"><span class="font-red" style="margin-right: 0.5em;"
                                     ;>*</span>ชื่อระบบ</label>
-                            <input type="text" class="form-control thai-font size-15" id="sysName" placeholder="กรุณากรอกชื่อระบบ" maxlength="20" required >
+                            <input type="text" class="form-control thai-font size-15" id="sysName_input" placeholder="กรุณากรอกชื่อระบบ" maxlength="20" required >
                             <p class="thai-font size-13" style="margin-top: 0.5em; margin-left: 0.5em;">ไม่เกิน 20 ตัวอักษร</p>
                         </div>
                         <div class="mb-3">
                             <p>
                                 <label for="description" class="form-label thai-font size-17"><span class="font-red" style="margin-right: 0.5em;";>*</span>รายละเอียด</label>
                             </p>
-                            <textarea id="description" name="description" rows="5" cols="80" style="margin-top: -1em;" class="thai-font" placeholder="กรุณากรอกรายละเอียด" maxlength="250" required></textarea>
+                            <textarea id="description_input" name="description" rows="5" cols="80" style="margin-top: -1em;" class="thai-font" placeholder="กรุณากรอกรายละเอียด" maxlength="250" required></textarea>
                             <p class="thai-font size-13" style="margin-left: 0.5em;">ไม่เกิน 255 ตัวอักษร</p>
                         </div>
                         <div class="mb-3">
@@ -140,20 +214,25 @@
                                 Two-Factor Authentication 
                                 <a href="{% url 'web:setting_page' %}" class="thai-font size-16 font-black font-midnight-blue-h ul-rm" style="margin-left: 0.5em;">[ตั้งค่า]</a>
                             </label>
-                            <input type="text" class="form-control thai-font size-15" id="sysName" placeholder="Please Check google-authenticator" maxlength="20"
+                            <input type="text" class="form-control thai-font size-15" id="2fa_auth" placeholder="Please Check google-authenticator" maxlength="20"
                                 required>
                         </div>
                     
                         <hr>
-                        <input type="submit" class="btn-agr thai-font" value="เพิ่ม"></input>
+                        <button class="btn-agr thai-font" onclick="return check_2fa()" value="เพิ่ม"></button>
                         <button class="btn-dagr thai-font btn_close">
                             ยกเลิก
                         </button>
-                    </form>
+                    <!-- </form> -->
                 </div>
             </div>
         </div>
     </div>
+
+
+
+
+
 
     <script>
         // Get the modal
@@ -187,6 +266,7 @@
                 modal.style.display = "none";
             }
         }
+
 
     </script>
 

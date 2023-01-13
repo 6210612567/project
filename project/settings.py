@@ -58,7 +58,7 @@ ROOT_URLCONF = 'project.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ["web/template_tags",],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -67,7 +67,12 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
             ],
+            'libraries':{
+            'my_tags': 'web.template_tags.my_tags',
+            
+            },
         },
+        
     },
 ]
 
@@ -92,6 +97,9 @@ DATABASES = {
         'PASSWORD': 'toor',
         'HOST': '127.0.0.1',
         'PORT': '3307',
+        'OPTIONS': {
+                    'charset': 'utf8',
+                    'use_unicode': True, },
     }
 }
 
@@ -133,7 +141,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [BASE_DIR / "static", ]
+STATICFILES_DIRS = [BASE_DIR / "static",BASE_DIR / "web/template_tags" ]
 
 
 # Default primary key field type

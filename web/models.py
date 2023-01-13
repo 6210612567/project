@@ -22,6 +22,15 @@ class major(models.Model):
 class department(models.Model):
     dname_th = models.CharField(max_length=50)
     dname_en = models.CharField(max_length=50)
+    
+    @property
+    def context_data(self):
+        return {
+            'id': self.id,
+            'dname_th': self.dname_th,
+            'dname_en': self.dname_en
+        }
+
     def __str__(self):
         return f"[{self.id}] : {self.dname_th} ({self.dname_en})"   
 
@@ -33,6 +42,21 @@ class instructor(models.Model):
     lname_en = models.CharField(max_length=50)
     department = models.ForeignKey(department, on_delete=models.CASCADE)
     email = models.CharField(max_length=50)
+
+    @property
+    def context_data(self):
+        return {
+            'id': self.id,
+            'fname_th': self.fname_th,
+            'lname_th': self.lname_th,
+            'fname_en': self.fname_en,
+            'lname_en': self.lname_en,
+            'department': self.department,
+            'email': self.email,
+
+        }
+
+
     def __str__(self):
         return f"[{self.id}] : {self.fname_th} {self.lname_th} ({self.fname_en} {self.lname_en}) at {self.department.dname_th} @ {self.email}"
 
@@ -95,3 +119,23 @@ class StudentShowdetail3(models.Model):
     class Meta:
         managed = False
         db_table = 'student_showdetail3'
+
+
+############## Model For Web ##############
+
+class AuthInfo(models.Model):
+    secret_key = models.CharField(max_length=255)
+    user = models.CharField(max_length=255)
+
+    def __str__(self):
+        return f"AuthInfo : {self.user}"
+
+
+class ChannelForAPI(models.Model):
+    name = models.CharField(max_length=100 ,blank=False, null=False)
+    desc = models.TextField(blank=True, null=True)
+    auth_key = models.CharField(max_length=100, blank=True, null=True)
+    status = models.BooleanField(default=False)
+    user = models.CharField(max_length=255)
+    def __str__(self):
+        return f"Channel : {self.name}({self.user}) status : {self.status}"

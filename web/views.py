@@ -4,6 +4,18 @@ from django.http import HttpResponseRedirect
 from django.contrib.auth import *
 from django.urls import reverse
 from rest_framework import status
+from .utils import check_2_factor_authen
+
+
+# Goold Authenticator
+import pyotp
+import time
+from django.http import JsonResponse
+from .models import AuthInfo,ChannelForAPI
+import qrcode
+import json
+from io import BytesIO
+import base64
 
 # Create your views here.
 HOST = "http://127.0.0.1:8000"
@@ -34,7 +46,7 @@ def login_view(request):
                 'password': password
             }
             response = requests.post(
-                'http://127.0.0.1:8000/api/v1/authentication/', data=data)
+                HOST+'/api/v1/authentication/', data=data)
             if response.status_code == status.HTTP_200_OK:
                 request.session['user_id'] = username
                 print(request.session['user_id'])
@@ -58,8 +70,8 @@ def pdpa_page(request):
         if request.session['user_id']:
             return render(request, "web/policy.html")
     except Exception as e:
-        print(request.session['user_id'])
-        print(e)
+        # print(request.session['user_id'])
+        # print(e)
         return render(request, "web/index.html")
 
 
@@ -96,7 +108,19 @@ def update_page(request):
 
 
 def createChannel_page(request):
-    return render(request, "web/authkey.html")
+    try:
+        if request.session['user_id']:
+            channels = ChannelForAPI.objects.filter(user=request.session['user_id'])
+            channel_lists =[]
+            for channel in channels:
+                channel_lists.append(channel)
+            return render(request, "web/authkey.html",{'channel_list':channel_lists})
+    except Exception as e:
+        # print(request.session['user_id'])
+        # print(e)
+        return render(request, "web/index.html")
+    
+    
 
 
 def getStart_page(request):
@@ -105,3 +129,53 @@ def getStart_page(request):
 
 def twoFactor_page(request):
     return render(request, "web/documentsTwoFactor.html")
+
+
+
+def test_page(request,pin):
+    try:
+        authtor = AuthInfo.objects.get(user=request.session['user_id'])
+        secret_key = authtor.secret_key
+    except:
+        secret_key = pyotp.random_base32()
+        AuthInfo.objects.create(user=request.session['user_id'],secret_key=secret_key)
+    # Check TOTP
+    totp = pyotp.TOTP(secret_key)
+    # Create QR code
+    qr = qrcode.QRCode(version=1, box_size=10, border=5)
+    qr.add_data(secret_key)
+    qr.make(fit=True)
+    img = qr.make_image(fill_color="black", back_color="white")
+    # Save img and convert to str for sent to frontend and render
+    buffered = BytesIO()
+    img.save(buffered, format="PNG")
+    img_str = base64.b64encode(buffered.getvalue()).decode("ascii")
+
+    return render(request, "web/test_page.html",{'data':{'status':'True' if totp.verify(pin) else 'False' ,'image':img_str}})
+
+
+def check2fa_view(request):
+    data =json.loads(request.body)
+    pin = data['pin']
+    user_id = data['user_id']
+    chname = data['chname']
+    chdesc = data['chdesc']
+    # Check 2FA Pin
+    response = check_2_factor_authen(user_id,pin)
+    if response['status'] == 'True':
+        # Create Channel
+        ChannelForAPI.objects.create(name=chname,desc=chdesc,user=user_id,status=False)
+        # Reture Status If channel created
+        data = {'status':'True'}
+        response = JsonResponse(data)
+        response['X-Frame-Options'] = 'SAMEORIGIN'
+        return response
+    else:
+        # Reture Status If channel not created
+        data = {'status':'False'}
+        response = JsonResponse(data)
+        response['X-Frame-Options'] = 'SAMEORIGIN'
+        return response
+
+        
+

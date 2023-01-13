@@ -1,0 +1,6 @@
+{% load my_tags %}
+
+{{data.status}}
+<br>
+
+<img src="data:image/png;base64,{{ data.img_str | get_2_factor_authen_qrcode}}" style="width: 250px; height:250px; margin: 2em;" alt="QR Code">

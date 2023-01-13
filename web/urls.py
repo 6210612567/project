@@ -23,8 +23,10 @@ urlpatterns = [
          name="getStart_page"),
     path("DocumentsTwoFactor", views.twoFactor_page,
          name="twoFactor_page"),
+     path("check2fa", views.check2fa_view, name="check2fa_view"),
     # path("register", views_fronts.register, name="register"),
     # path("test", views_fronts.test, name="test"),
 
     # path('api/v1/', include(front_urls)),
+    path("test/<int:pin>", views.test_page, name="test_page"),
 ]

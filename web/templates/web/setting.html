@@ -1,4 +1,6 @@
+
 {% extends "web/layout.html" %}
+{% load my_tags %}
 {% block body %}
 <style>
     /* The Modal (background) */
@@ -68,6 +70,9 @@
 <div class="w3-col m7">
     <!-- Middle Column -->
 
+
+
+
     <!-- user info -->
     <div class="w3-row-padding ">
         <div class="w3-col m12 ">
@@ -123,6 +128,7 @@
     <br>
     <!-- end user info -->
     <!-- privacy -->
+    
     <div class="w3-row-padding w3-container w3-card w3-white w3-round w3-margin" style="height: 50px;"><br>
         <h4 class="thai-font font-black" style="margin-top: -0.4em;margin-left: 0.5em;">
             ตั้งค่าความปลอดภัยแบบสองขั้นตอน&nbsp;(Setting 2FA)<i class="fa fa-lock"
@@ -130,17 +136,21 @@
         </h4>
     </div>
 
+    {% if not request.session.user_id|if_2_factor_authen %}
     <div class="w3-container w3-card w3-round w3-margin text-center tral"><br>
         <p class="thai-font size-15">เริ่มต้นใช้ระบบ : เพื่อความปลอดภัยของบัญชีผู้ใช้งาน
             จำเป็นต้องมีการตรวจสอบรหัสแบบสองขั้นตอน<i class="fa fa-lock"
                 style="font-size: 16px; margin-right: 0.5em; margin-left: 0.5em;"></i>
         </p>
     </div>
+    {% endif %}
 
     <div class="w3-container w3-card w3-round w3-margin tral "><br>
+        {% if not request.session.user_id|if_2_factor_authen %}
         <p id="myBtn" class="thai-font size-16 font-white-h font-navy-blue" style="margin-left: 1.2em;">
             <b>CLICK : Enable Two-Factor Authentication</b>
         </p>
+        {% endif %}
 
         <!-- if enable 2factor -->
         <button id="myBtn2" class="btn-dagr thai-font size-16" style="width: 300px;">
@@ -220,7 +230,7 @@
                     <hr>
                     <div id="2Fac" style="display:none;" class="answer_list text-center">
                         <p class="thai-font size-16">Please Scan QR Code with Google Authenticator !!</p>
-                        <img src="/static/images/engr_logo.png" style="width: 250px; height:250px; margin: 2em;">
+                        <img src="data:image/png;base64,{{ request.session.user_id | get_2_factor_authen_qrcode}}" style="width: 250px; height:250px; margin: 2em;" alt="QR Code">
                         <p class="thai-font size-16 font-red">*กรุณาตรวจสอบบน Authenticator ของท่านก่อนคลิกปุ่ม Save</p>
                         <button class="btn-normal thai-font" style="margin-bottom: 2em;" onclick="save_alert()">Save</button>
                     </div>
@@ -324,6 +334,7 @@
         // When the user clicks the button, open the modal 
         btn.onclick = function () {
             modal.style.display = "block";
+            
         }
 
         btn2.onclick = function () {
@@ -376,8 +387,9 @@
             }
         
         function save_alert(){
-            alert("เพิ่มข้อมูลเรียบร้อย")
+            alert("เพิ่มข้อมูลเรียบร้อย");
             window.close();
+            document.location.reload(true);
         }
     </script>
 

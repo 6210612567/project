@@ -1,11 +1,11 @@
 import django_filters
-from web.models import major as Major ,  StudentShowdetail3
+from web.models import major as Major ,  StudentShowdetail3 , department as Department ,instructor as Instructor
 
 
 
 class MajorFilter(django_filters.FilterSet):
 
-    id = django_filters.CharFilter(method="filter_by_task_id")
+    id = django_filters.CharFilter(method="filter_by_id")
     mname_th = django_filters.CharFilter(field_name="mname_th" , lookup_expr="icontains")
     mname_en = django_filters.CharFilter(field_name="mname_en" , lookup_expr="icontains")
 
@@ -14,9 +14,9 @@ class MajorFilter(django_filters.FilterSet):
         model = Major
         fields = '__all__'
 
-    def filter_by_task_id(self,queryset,name,value):
-        task_ids = value.strip().split(",")
-        return queryset.filter(id__in=task_ids)
+    def filter_by_id(self,queryset,name,value):
+        ids = value.strip().split(",")
+        return queryset.filter(id__in=ids)
 
 
 class StudentShowdetail3Filter(django_filters.FilterSet):
@@ -42,3 +42,38 @@ class StudentShowdetail3Filter(django_filters.FilterSet):
     # def filter_by_task_id(self,queryset,name,value):
     #     task_ids = value.strip().split(",")
     #     return queryset.filter(id__in=task_ids)
+
+
+class DepartmentFilter(django_filters.FilterSet):
+
+    id = django_filters.CharFilter(method="filter_by_id")
+    dname_th = django_filters.CharFilter(field_name="dname_th" , lookup_expr="icontains")
+    dname_en = django_filters.CharFilter(field_name="dname_en" , lookup_expr="icontains")
+
+
+    class Meta:
+        model = Department
+        fields = '__all__'
+
+    def filter_by_id(self,queryset,name,value):
+        ids = value.strip().split(",")
+        return queryset.filter(id__in=ids)
+
+
+class InstructorFilter(django_filters.FilterSet):
+
+    id = django_filters.CharFilter(method="filter_by_id")
+    fname_th = django_filters.CharFilter(field_name="fname_th" , lookup_expr="icontains")
+    lname_th = django_filters.CharFilter(field_name="lname_th" , lookup_expr="icontains")
+    fname_en = django_filters.CharFilter(field_name="fname_en" , lookup_expr="icontains")
+    lname_en = django_filters.CharFilter(field_name="lname_en" , lookup_expr="icontains")
+    department = django_filters.CharFilter(field_name="department" , lookup_expr="icontains")
+    email = django_filters.CharFilter(field_name="email" , lookup_expr="icontains")
+
+    class Meta:
+        model = Instructor
+        fields = '__all__'
+
+    def filter_by_id(self,queryset,name,value):
+        ids = value.strip().split(",")
+        return queryset.filter(id__in=ids)
