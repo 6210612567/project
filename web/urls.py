@@ -23,11 +23,10 @@ urlpatterns = [
          name="getStart_page"),
     path("DocumentsTwoFactor", views.twoFactor_page,
          name="twoFactor_page"),
-     path("check2fa", views.check2fa_view, name="check2fa_view"),
-    path("check2fa_editChannel", views.check2fa_editChannel_view, name="check2fa_editChannel_view"),
-    # path("register", views_fronts.register, name="register"),
-    # path("test", views_fronts.test, name="test"),
+    path("insert_channel", views.insert_channel_view, name="insert_channel_view"),
+    path("edit_channel", views.edit_channel_view, name="edit_channel_view"),
+    path("delete_channel/<str:channel_id>", views.delete_channel_view, name="delete_channel"),
 
-    # path('api/v1/', include(front_urls)),
+
     path("test/<int:pin>", views.test_page, name="test_page"),
 ]

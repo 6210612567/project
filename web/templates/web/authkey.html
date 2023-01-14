@@ -70,6 +70,14 @@
 
 <script language="javascript">
     const HOST = "http://127.0.0.1:8000"
+    // Confirm Delete function
+    function confirm_delete()
+    {
+        var answer = window.confirm("ยืนยันการลบแชนแชน");
+        return answer;
+    }
+
+    // Function สำหรับ getCookie ไว้หา csrftoken
     function getCookie(name) {
         let cookieValue = null;
         if (document.cookie && document.cookie !== '') {
@@ -85,7 +93,10 @@
         }
         return cookieValue;
     }
-    function check_2fa(){
+
+
+    // Function สำหรับเพิ่ม Channel
+    function insert_channel(){
         input_2fa_auth = document.getElementById("2fa_auth");
         sysName = document.getElementById("sysName_input");
         description = document.getElementById("description_input");
@@ -97,8 +108,9 @@
             chname: sysName.value,
             chdesc: description.value
         };
-
-        fetch(HOST+"/check2fa", {
+        
+        // สร้าง Request ไป Backend
+        fetch(HOST+"/insert_channel", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -122,6 +134,7 @@
     }
 
 
+    // Function สำหรับแสดงหน้า แก้ไขข้อมูล Channel
     function edit_channel(channel_id) {
 
         // Get the editChannel
@@ -166,6 +179,7 @@
         return true;
     }
 
+    // Function สำหรับแก้ไขข้อมูล Channel
     function confirm_edit_channel(){
         // Get the readonly field to sent data to backend
         var edit_channel_name = document.getElementById("edit_channel_name");
@@ -174,7 +188,6 @@
         var edit_channel_status = document.getElementById("edit_channel_status");
         var edit_channel_2fa = document.getElementById("edit_channel_2fa");
         const csrftoken = getCookie('csrftoken');
-        // alert({{request.session.user_id}});
         let data = { 
             pin: edit_channel_2fa.value, 
             user_id:{{request.session.user_id}},
@@ -183,7 +196,9 @@
             chdesc: edit_channel_desc.value,
             chstatus: edit_channel_status.value 
         };
-        fetch(HOST+"/check2fa_editChannel", {
+
+        // สร้าง Request ไป Backend
+        fetch(HOST+"/edit_channel", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -207,6 +222,7 @@
         return false;
     }
 
+    // Function สำหรับค้นหา Channel
     function searchChannel() {
         // Get the searchChannel_input
         var searchChannel_input = document.getElementById("searchChannel_input");
@@ -222,12 +238,6 @@
 
 
 <div class="w3-col m7">
-    <!-- <div class="w3-row-padding w3-container w3-card w3-white w3-round w3-margin" style="height: 50px;"><br>
-        <h4 class="thai-font font-black" style="margin-top: -0.4em;margin-left: 0.5em;">
-            สร้างแชนแนล<i class="fa fa-plus-circle"
-                style="font-size: 22px; margin-right: 0.5em; margin-left: 0.5em;"></i>
-        </h4>
-    </div> -->
 
 
 
@@ -315,7 +325,7 @@
                         </div>
                     
                         <hr>
-                        <button class="btn-agr thai-font" onclick="return check_2fa()" value="เพิ่ม"></button>
+                        <button class="btn-agr thai-font" onclick="return insert_channel()" value="เพิ่ม"></button>
                         <button class="btn-dagr thai-font btn_close">
                             ยกเลิก
                         </button>
@@ -333,9 +343,11 @@
                     <b id="channel_{{channel.id}}_desc">{{channel.desc}}</b>  
                     <b id="channel_{{channel.id}}_status">{{channel.status}}</b>  
                     <b id="channel_{{channel.id}}_user">{{channel.user}}</b>  
+                    
                     <b >{{channel.auth_key}}</b>  
                 </div> 
             </button>
+            <a href="{% url 'web:delete_channel' channel.id %}" onclick="return confirm_delete()">Delete</a>
         </div>
         {% endfor %}
 

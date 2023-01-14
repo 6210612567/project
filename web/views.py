@@ -16,6 +16,8 @@ import qrcode
 import json
 from io import BytesIO
 import base64
+from django.http import HttpResponseRedirect
+
 
 # Create your views here.
 HOST = "http://127.0.0.1:8000"
@@ -160,7 +162,7 @@ def createChannel_page(request):
     return render(request, "web/authkey.html",{'channel_list':channel_lists})
 
 
-def check2fa_view(request):
+def insert_channel_view(request):
     data =json.loads(request.body)
     pin = data['pin']
     user_id = data['user_id']
@@ -185,7 +187,7 @@ def check2fa_view(request):
 
         
 
-def check2fa_editChannel_view(request):
+def edit_channel_view(request):
     data =json.loads(request.body)
     pin = data['pin']
     user_id = data['user_id']
@@ -205,10 +207,10 @@ def check2fa_editChannel_view(request):
         if chstatus == 'True':
             auth_key = "TU//ENGR//"+pyotp.random_base32()
             channel.auth_key = auth_key
-            data_res = {'status':'เปิดการทำงานแชนแนลสำเร็จ'}
+            data_res = {'status':'แก้ไขข้อมูลแชนแนลแล้ว'}
         else :
             channel.auth_key = ""
-            data_res = {'status':'ปิดการทำงานแชนแนลแล้ว'}
+            data_res = {'status':'แก้ไขข้อมูลแชนแนลแล้ว'}
         channel.save()
         
         response = JsonResponse(data_res)
@@ -221,3 +223,13 @@ def check2fa_editChannel_view(request):
         response['X-Frame-Options'] = 'SAMEORIGIN'
         return response
 
+
+def delete_channel_view(request,channel_id):
+    try:
+        channel = ChannelForAPI.objects.get(id=channel_id,user=request.session['user_id'])
+        channel.delete()
+        return HttpResponseRedirect(reverse("web:createChannel_page"))
+    except:
+        return HttpResponseRedirect(reverse("web:createChannel_page"))
+    
+    
