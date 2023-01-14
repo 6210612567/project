@@ -137,5 +137,16 @@ class ChannelForAPI(models.Model):
     auth_key = models.CharField(max_length=100, blank=True, null=True)
     status = models.BooleanField(default=False)
     user = models.CharField(max_length=255)
+
+    @property
+    def context_data(self):
+        return {
+            'name': self.name,
+            'desc': self.desc,
+            'status': self.status,
+            'user': self.user,
+
+        }
+
     def __str__(self):
-        return f"Channel : {self.name}({self.user}) status : {self.status}"
+        return f"Channels : {self.name}({self.user}) status : {self.status}"

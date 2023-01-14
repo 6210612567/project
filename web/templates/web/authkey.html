@@ -1,7 +1,71 @@
 {% extends "web/layout.html" %}
 
 {% block body %}
+<style>
+    /* The Modal (background) */
+    .modal {
+        display: none;
+        /* Hidden by default */
+        position: fixed;
+        /* Stay in place */
+        z-index: 1;
+        /* Sit on top */
+        padding-top: 2%;
+        /* Location of the box */
+        padding-left: 5%;
+        left: 0;
+        top: 0;
+        width: 100%;
+        /* Full width */
+        height: 100%;
+        /* Full height */
+        overflow: auto;
+        /* Enable scroll if needed */
+        background-color: rgb(0, 0, 0);
+        /* Fallback color */
+        background-color: rgba(0, 0, 0, 0.4);
+        /* Black w/ opacity */
+    }
 
+    /* Modal Content */
+    .modal-content {
+        background-color: #fefefe;
+        margin: auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 35%;
+    }
+
+    /* The Close Button */
+    .close {
+        color: #aaaaaa;
+        text-align: right;
+        font-size: 28px;
+        font-weight: bold;
+    }
+
+    .close:hover,
+    .close:focus {
+        color: #000;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+    .close_editChannel {
+        color: #aaaaaa;
+        text-align: right;
+        font-size: 28px;
+        font-weight: bold;
+    }
+
+    .close_editChannel:hover,
+    .close_editChannel:focus {
+        color: #000;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+</style>
 
 
 <script language="javascript">
@@ -54,78 +118,103 @@
             }
         })
 
-        // let xhr = new XMLHttpRequest();
-        // xhr.open("POST", HOST+"/check2fa", true);
-        // xhr.setRequestHeader("Content-Type", "application/json");
-        // xhr.setRequestHeader("X-CSRFToken", csrftoken);
-        // xhr.onreadystatechange = function() {
-        //     if (xhr.readyState === 4 && xhr.status === 200) {
-        //         let response = JSON.parse(xhr.responseText);
-        //         console.log(response);
-        //     }
-        // };
+        return false;
+    }
 
-        // xhr.send(JSON.stringify(data));
+
+    function edit_channel(channel_id) {
+
+        // Get the editChannel
+        var editChannel = document.getElementById("editChannel");
+
+        // Get the close editChannel Button
+        var closeEditChannel = document.getElementsByClassName("close_editChannel")[0];
+
+        // Get the readonly field to show to user
+        var edit_channel_name = document.getElementById("edit_channel_name");
+        var edit_channel_id = document.getElementById("edit_channel_id");
+        var edit_channel_desc = document.getElementById("edit_channel_desc");
+        var edit_channel_user = document.getElementById("edit_channel_user");
+        var edit_channel_status = document.getElementById("edit_channel_status");
+
+        // Get the data to show user
+        var data_channel_name = document.getElementById("channel_"+channel_id+"_name").innerHTML;
+        var data_channel_desc = document.getElementById("channel_"+channel_id+"_desc").innerHTML;
+        var data_channel_status = document.getElementById("channel_"+channel_id+"_status").innerHTML;
+        var data_channel_user = document.getElementById("channel_"+channel_id+"_user").innerHTML;
+
+
+        closeEditChannel.onclick = function () {
+            editChannel.style.display = "none";
+        }
+        editChannel.style.display = "block";
+        
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function (event) {
+            if (event.target == editChannel) {
+                editChannel.style.display = "none";
+            }
+        }
+
+        // Show readonly data
+        edit_channel_name.value = data_channel_name;
+        edit_channel_desc.value = data_channel_desc;
+        edit_channel_user.value = data_channel_user;
+        edit_channel_status.value = data_channel_status;
+        edit_channel_id.value = channel_id
+        
+        return true;
+    }
+
+    function confirm_edit_channel(){
+        // Get the readonly field to sent data to backend
+        var edit_channel_name = document.getElementById("edit_channel_name");
+        var edit_channel_id = document.getElementById("edit_channel_id");
+        var edit_channel_desc = document.getElementById("edit_channel_desc");
+        var edit_channel_status = document.getElementById("edit_channel_status");
+        var edit_channel_2fa = document.getElementById("edit_channel_2fa");
+        const csrftoken = getCookie('csrftoken');
+        // alert({{request.session.user_id}});
+        let data = { 
+            pin: edit_channel_2fa.value, 
+            user_id:{{request.session.user_id}},
+            chid:edit_channel_id.value,
+            chname: edit_channel_name.value,
+            chdesc: edit_channel_desc.value,
+            chstatus: edit_channel_status.value 
+        };
+        fetch(HOST+"/check2fa_editChannel", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "X-CSRFToken": csrftoken,
+            },
+            body: JSON.stringify(data)
+        })
+        .then(response => response.json())
+        .then(data => {
+            // console.log(data['status']); 
+            if(data['status'] == 'False'){
+                alert('รหัส Two-Factor Authentication ผิด');
+                
+            }
+            else{
+                alert(data['status']);
+                location.reload(true);
+            }
+        })
 
         return false;
     }
+
+    
 </script>
 
 
 
 <title>Create APIs - ENGR APIs Developer</title>
 
-<style>
-    /* The Modal (background) */
-    .modal {
-        display: none;
-        /* Hidden by default */
-        position: fixed;
-        /* Stay in place */
-        z-index: 1;
-        /* Sit on top */
-        padding-top: 2%;
-        /* Location of the box */
-        padding-left: 5%;
-        left: 0;
-        top: 0;
-        width: 100%;
-        /* Full width */
-        height: 100%;
-        /* Full height */
-        overflow: auto;
-        /* Enable scroll if needed */
-        background-color: rgb(0, 0, 0);
-        /* Fallback color */
-        background-color: rgba(0, 0, 0, 0.4);
-        /* Black w/ opacity */
-    }
 
-    /* Modal Content */
-    .modal-content {
-        background-color: #fefefe;
-        margin: auto;
-        padding: 20px;
-        border: 1px solid #888;
-        width: 35%;
-    }
-
-    /* The Close Button */
-    .close {
-        color: #aaaaaa;
-        text-align: right;
-        font-size: 28px;
-        font-weight: bold;
-    }
-
-    .close:hover,
-    .close:focus {
-        color: #000;
-        text-decoration: none;
-        cursor: pointer;
-    }
-
-</style>
 
 
 <div class="w3-col m7">
@@ -157,6 +246,7 @@
     </div>
 
     <div class="row justify-content-md-center ">
+        <!-- เริ่มสร้างแชนแนลของท่าน -->
         <div class="col-md-auto ">
             <div class="w3-container w3-card w3-round white box-shadow-h" style="height: 80px;"><br>
                 <button id="myBtn" class="btn-add2 thai-font" style="margin-left: 1em; width: 305px; ">
@@ -166,7 +256,8 @@
             </div>
             <br>
         </div>
-        
+
+        <!-- ค้นหา -->
         <div class="col-md-auto">
             <div class="w3-container w3-card w3-round baby-green box-shadow-h"><br>
                 <form class="form-inline d-flex ">
@@ -181,6 +272,7 @@
             <br>
         </div>
 
+        <!-- สร้างแชนแนล -->
         <div id="myModal" class="modal">
             <!-- Modal content -->
             <div class="modal-content">
@@ -227,6 +319,90 @@
                 </div>
             </div>
         </div>
+
+        <!-- แชนแนล -->
+        {% for channel in channel_list %}
+        <div class="row-md-auto ">
+            <button id="channel_{{channel.id}}" class="btn thai-font" style="margin-left: 1em; width: 305px;" onclick="return edit_channel('{{channel.id}}')">
+                <div class="w3-container w3-card w3-round white box-shadow-h" style="height: 80px;"><br>
+                    <b id="channel_{{channel.id}}_name">{{channel.name}}</b>  
+                    <b id="channel_{{channel.id}}_desc">{{channel.desc}}</b>  
+                    <b id="channel_{{channel.id}}_status">{{channel.status}}</b>  
+                    <b id="channel_{{channel.id}}_user">{{channel.user}}</b>  
+                    <b >{{channel.auth_key}}</b>  
+                </div> 
+            </button>
+        </div>
+        {% endfor %}
+
+        <!-- แก้ไขแชนแนล -->
+        <div id="editChannel" class="modal">
+            <!-- Modal content -->
+            <div class="modal-content">
+                <span class="close_editChannel">&times;</span>
+
+                <div class=" w3-round baby-blue2" style="margin-top: -2em; width: 90%; height: 80px; padding: 0.7em;">
+                    <h4 class="thai-font" style="text-align: center;">
+                        แก้ไขแชนแนลของท่าน<br>
+                        Let's edit your channel
+                    </h4>
+                </div>
+                <hr>
+                <div style="margin-left: 0.7em;">
+                    <!-- <form action="{% url 'web:createChannel_page' %}" method="POST"> -->
+                        <div class="mb-3">
+                            <label for="sysName" class="form-label thai-font size-17"><span class="font-red" style="margin-right: 0.5em;"
+                                    ;>*</span>ชื่อระบบ</label>
+                            <input type="text" class="form-control thai-font size-15" id="edit_channel_name"  maxlength="20"  >
+                            <!-- <p class="thai-font size-13" style="margin-top: 0.5em; margin-left: 0.5em;">ไม่เกิน 20 ตัวอักษร</p> -->
+                        </div>
+                        <div class="mb-3">
+                            <p>
+                                <label for="description" class="form-label thai-font size-17"><span class="font-red" style="margin-right: 0.5em;";>*</span>รายละเอียด</label>
+                            </p>
+                            <textarea  id="edit_channel_desc" rows="5" cols="80" style="margin-top: -1em;" class="thai-font"  maxlength="250" ></textarea>
+                            <!-- <p class="thai-font size-13" style="margin-left: 0.5em;">ไม่เกิน 255 ตัวอักษร</p> -->
+                        </div>
+                        
+                            <input type="text" class="form-control thai-font size-15" id="edit_channel_user"  maxlength="100" hidden >
+
+                            <input type="text" class="form-control thai-font size-15" id="edit_channel_id"   maxlength="100" hidden >
+
+                        <div class="mb-3">
+                            <p>
+                                <label for="edit_channel_status" class="form-label thai-font size-17"><span class="font-red" style="margin-right: 0.5em;";>*</span>รายละเอียด</label>
+                            </p>
+                            <select id="edit_channel_status">
+                                <option value=True>เปิดการทำงาน</option>
+                                <option value=False>ปิดการใช้บริการ</option>
+                            </select> 
+                        </div>
+
+
+
+
+                           
+                        <div class="mb-3">
+                            <label for="description" class="form-label thai-font size-17">
+                                <span class="font-red" style="margin-right: 0.5em;";>*</span>
+                                Two-Factor Authentication 
+                                <a href="{% url 'web:setting_page' %}" class="thai-font size-16 font-black font-midnight-blue-h ul-rm" style="margin-left: 0.5em;">[ตั้งค่า]</a>
+                            </label>
+                            <input type="text" class="form-control thai-font size-15" id="edit_channel_2fa" placeholder="Please Check google-authenticator" maxlength="20"
+                                required>
+                        </div>
+                    
+                        <hr>
+                        <button class="btn-agr thai-font" onclick="return confirm_edit_channel()" value="เพิ่ม"></button>
+                        <button class="btn-dagr thai-font btn_close">
+                            ยกเลิก
+                        </button>
+                    <!-- </form> -->
+                </div>
+            </div>
+        </div>
+
+
     </div>
 
 
@@ -246,6 +422,7 @@
     
         var btn_close = document.getElementsByClassName("btn_close")[0];
 
+        
         // When the user clicks the button, open the modal 
         btn.onclick = function () {
             modal.style.display = "block";

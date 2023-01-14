@@ -24,6 +24,7 @@ urlpatterns = [
     path("DocumentsTwoFactor", views.twoFactor_page,
          name="twoFactor_page"),
      path("check2fa", views.check2fa_view, name="check2fa_view"),
+    path("check2fa_editChannel", views.check2fa_editChannel_view, name="check2fa_editChannel_view"),
     # path("register", views_fronts.register, name="register"),
     # path("test", views_fronts.test, name="test"),
 

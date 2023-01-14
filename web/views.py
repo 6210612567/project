@@ -110,16 +110,16 @@ def update_page(request):
 def createChannel_page(request):
     try:
         if request.session['user_id']:
-            channels = ChannelForAPI.objects.filter(user=request.session['user_id'])
-            channel_lists =[]
-            for channel in channels:
-                channel_lists.append(channel)
-            return render(request, "web/authkey.html",{'channel_list':channel_lists})
+            pass
     except Exception as e:
         # print(request.session['user_id'])
         # print(e)
         return render(request, "web/index.html")
-    
+    channels = ChannelForAPI.objects.filter(user=request.session['user_id'])
+    channel_lists =[]
+    for channel in channels:
+        channel_lists.append(channel)
+    return render(request, "web/authkey.html",{'channel_list':channel_lists})
     
 
 
@@ -178,4 +178,41 @@ def check2fa_view(request):
         return response
 
         
+
+def check2fa_editChannel_view(request):
+    data =json.loads(request.body)
+    pin = data['pin']
+    user_id = data['user_id']
+    chid = data['chid']
+    chname = data['chname']
+    chdesc = data['chdesc']
+    chstatus = data['chstatus']
+    # Check 2FA Pin
+    response = check_2_factor_authen(user_id,pin)
+    if response['status'] == 'True':
+        # Create Channel
+        channel = ChannelForAPI.objects.get(id=chid)
+        # Reture Status If channel created
+        channel.name = chname
+        channel.desc = chdesc
+        channel.status = chstatus
+        if chstatus == 'True':
+            auth_key = "TU//ENGR//"+pyotp.random_base32()
+            channel.auth_key = auth_key
+            data_res = {'status':'เปิดการทำงานแชนแนลสำเร็จ'}
+        else :
+            channel.auth_key = ""
+            data_res = {'status':'ปิดการทำงานแชนแนลแล้ว'}
+        channel.save()
+
+        
+        response = JsonResponse(data_res)
+        response['X-Frame-Options'] = 'SAMEORIGIN'
+        return response
+    else:
+        # Reture Status If channel not created
+        data = {'status':'False'}
+        response = JsonResponse(data)
+        response['X-Frame-Options'] = 'SAMEORIGIN'
+        return response
 
