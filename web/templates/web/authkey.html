@@ -207,14 +207,18 @@
         return false;
     }
 
+    function searchChannel() {
+        // Get the searchChannel_input
+        var searchChannel_input = document.getElementById("searchChannel_input");
+        // Redirect window to search output
+        window.location.replace(HOST+'/Authkey?search_keyword='+searchChannel_input.value)
+        return true;
+        }
     
 </script>
 
 
-
 <title>Create APIs - ENGR APIs Developer</title>
-
-
 
 
 <div class="w3-col m7">
@@ -260,13 +264,13 @@
         <!-- ค้นหา -->
         <div class="col-md-auto">
             <div class="w3-container w3-card w3-round baby-green box-shadow-h"><br>
-                <form class="form-inline d-flex ">
-                    <input class="form-control thai-font" id="serchYear" type="text" placeholder="ค้นหา ..."
+                <div class="form-inline d-flex ">
+                    <input class="form-control thai-font" id="searchChannel_input" type="text" placeholder="ค้นหา ..."
                         style="width: 305px;">
-                    <button type="submit" class="btn-circle" style="margin-left: 1em;">
+                    <button type="submit" class="btn-circle" style="margin-left: 1em;" onclick="return searchChannel()">
                         <i class="fa fa-search"></i>
                     </button>
-                </form>
+                </div>
                 <br>
             </div>
             <br>

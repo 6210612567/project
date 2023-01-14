@@ -107,22 +107,6 @@ def update_page(request):
     return render(request, "web/update.html")
 
 
-def createChannel_page(request):
-    try:
-        if request.session['user_id']:
-            pass
-    except Exception as e:
-        # print(request.session['user_id'])
-        # print(e)
-        return render(request, "web/index.html")
-    channels = ChannelForAPI.objects.filter(user=request.session['user_id'])
-    channel_lists =[]
-    for channel in channels:
-        channel_lists.append(channel)
-    return render(request, "web/authkey.html",{'channel_list':channel_lists})
-    
-
-
 def getStart_page(request):
     return render(request, "web/documentsGettingStart.html")
 
@@ -152,6 +136,28 @@ def test_page(request,pin):
     img_str = base64.b64encode(buffered.getvalue()).decode("ascii")
 
     return render(request, "web/test_page.html",{'data':{'status':'True' if totp.verify(pin) else 'False' ,'image':img_str}})
+
+
+def createChannel_page(request):
+    try:
+        if request.session['user_id']:
+            pass
+    except Exception as e:
+        # print(request.session['user_id'])
+        # print(e)
+        return render(request, "web/index.html")
+    try:
+        # data =json.loads(request.body)
+        search_keyword = request.GET.get('search_keyword')
+        # search_keyword = data["search_keyword"]
+        channels = ChannelForAPI.objects.filter(user=request.session['user_id'],name__icontains=search_keyword)
+    except:
+        channels = ChannelForAPI.objects.filter(user=request.session['user_id'])
+    channel_lists =[]
+    for channel in channels:
+        channel_lists.append(channel)
+    print(channel_lists)
+    return render(request, "web/authkey.html",{'channel_list':channel_lists})
 
 
 def check2fa_view(request):
