@@ -3,6 +3,9 @@ import json
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
+from apis.custom.apis import Is2FAAuthenticated
+
+
 from .authentication import ldap3_authen
 # from rest_framework import permissions
 
@@ -17,6 +20,8 @@ from web.models import major as Major , StudentShowdetail3 , department as Depar
 from .filter import MajorFilter,StudentShowdetail3Filter,DepartmentFilter,InstructorFilter
 
 
+
+
 class AuthenticationApiView(APIView):
     permission_classes = []
 
@@ -28,42 +33,9 @@ class AuthenticationApiView(APIView):
             return Response('Unauthorized', status=status.HTTP_401_UNAUTHORIZED)
         
 
-############### OLD FIND STUDENT DATA ###############
-# class StudentDataApiView(APIView):
-#     permission_classes = []
-
-#     def get(self, request, *args, **kwargs):
-#         # Connect to MariaDB Platform
-#         std_code = request.query_params['std_code']
-#         txt = ""
-#         try:
-#             conn = mariadb.connect(
-#                 user="root",
-#                 password="toor",
-#                 host="127.0.0.1",
-#                 port=3307,
-#                 database="maraidb_project"
-#             )
-#             txt = "Connect Complete"
-#         except mariadb.Error as e:
-#             print(f"Error connecting to MariaDB Platform: {e}")
-#             txt = f"Error connecting to MariaDB Platform: {e}"
-#             sys.exit(1)
-
-#         # Get Cursor
-#         cur = conn.cursor()
-#         cur.execute(f"SELECT * FROM student_showdetail3 WHERE std_code={std_code}")
-#         fetch_data = cur.fetchone()
-#         num_fields = len(fetch_data)
-#         output = []
-#         for index in range (0,num_fields):
-#             output.append({cur.description[index][0]:fetch_data[index]})
-#         return Response({'output':output}, status=status.HTTP_200_OK)
-
-
 ############### NEW FIND STUDENT DATA BY USING DJANGO FILTER ###############
 class StudentDataApiView(APIView):
-    permission_classes = []
+    permission_classes = [Is2FAAuthenticated]
 
     def get(self, request, *args, **kwargs):
         student_data_all = StudentShowdetail3.objects.all()
@@ -77,7 +49,7 @@ class StudentDataApiView(APIView):
 
 
 class MajorApiView(APIView):
-    permission_classes = []
+    permission_classes = [Is2FAAuthenticated]
 
     def get(self, request, *args, **kwargs):
         major_data_all = Major.objects.all()
@@ -91,7 +63,7 @@ class MajorApiView(APIView):
 
 
 class DepartmentApiView(APIView):
-    permission_classes = []
+    permission_classes = [Is2FAAuthenticated]
 
     def get(self, request, *args, **kwargs):
         department_data_all = Department.objects.all()
@@ -105,7 +77,7 @@ class DepartmentApiView(APIView):
 
 
 class InstructorApiView(APIView):
-    permission_classes = []
+    permission_classes = [Is2FAAuthenticated]
 
     def get(self, request, *args, **kwargs):
         instructor_data_all = Instructor.objects.all()
@@ -117,5 +89,6 @@ class InstructorApiView(APIView):
             instructor_context_list.append(instructor.context_data)
         
         for instructor_data in instructor_context_list:
-            instructor['department'] = instructor['department'].dname_th
+            instructor_data['department'] = instructor_data['department'].dname_th
+        print('1')
         return Response({'output':instructor_context_list}, status=status.HTTP_200_OK)

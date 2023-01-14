@@ -204,7 +204,6 @@ def check2fa_editChannel_view(request):
             channel.auth_key = ""
             data_res = {'status':'ปิดการทำงานแชนแนลแล้ว'}
         channel.save()
-
         
         response = JsonResponse(data_res)
         response['X-Frame-Options'] = 'SAMEORIGIN'
