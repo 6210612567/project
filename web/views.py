@@ -27,7 +27,7 @@ def index(request):
     try:
         if request.session['user_id']:
             # print(request.session['user_id'])
-            return render(request, "web/home.html", {'name': request.session['user_id']})
+            return HttpResponseRedirect(reverse("web:home"))
     except Exception as e:
         print(e)
         return render(request, "web/index.html")
@@ -86,7 +86,14 @@ def privacy_page(request):
 
 
 def home(request):
-    return render(request, "web/home.html")
+    channels = ChannelForAPI.objects.filter(user=request.session['user_id'])
+    channels_open = ChannelForAPI.objects.filter(user=request.session['user_id'],status=True)
+    channels_close = ChannelForAPI.objects.filter(user=request.session['user_id'],status=False)
+    return render(request, "web/home.html", {
+                'num_channel':len(channels),
+                'num_open_channel':len(channels_open),
+                'num_close_channel':len(channels_close),
+                                })
 
 
 def channel_page(request):
@@ -98,7 +105,14 @@ def document(request):
 
 
 def report_page(request):
-    return render(request, "web/report.html")
+    channels = ChannelForAPI.objects.filter(user=request.session['user_id'])
+    channels_open = ChannelForAPI.objects.filter(user=request.session['user_id'],status=True)
+    channels_close = ChannelForAPI.objects.filter(user=request.session['user_id'],status=False)
+    return render(request, "web/report.html", {
+                'num_channel':len(channels),
+                'num_open_channel':len(channels_open),
+                'num_close_channel':len(channels_close),
+                                })
 
 
 def help_page(request):
@@ -171,10 +185,15 @@ def insert_channel_view(request):
     # Check 2FA Pin
     response = check_2_factor_authen(user_id,pin)
     if response['status'] == 'True':
+        # Check if user's channel < 20 channel
+        channels = ChannelForAPI.objects.filter(user=user_id)
+        if len(channels) < 20:
         # Create Channel
-        ChannelForAPI.objects.create(name=chname,desc=chdesc,user=user_id,status=False)
-        # Reture Status If channel created
-        data = {'status':'True'}
+            ChannelForAPI.objects.create(name=chname,desc=chdesc,user=user_id,status=False)
+            data = {'status':'True'}
+        else:
+            data = {'status':'Full'}
+        # Reture Status If channel created        
         response = JsonResponse(data)
         response['X-Frame-Options'] = 'SAMEORIGIN'
         return response

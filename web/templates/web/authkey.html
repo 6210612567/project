@@ -125,6 +125,10 @@
                 alert('เพิ่ม Channel ใหม่แล้ว');
                 location.reload(true);
             }
+            else if(data['status'] == 'Full'){
+                alert('Channel เต็ม');
+                location.reload(true);
+            }
             else{
                 alert('รหัส Two-Factor Authentication ผิด');
             }
