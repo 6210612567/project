@@ -1,0 +1,25 @@
+{% load my_tags %}
+
+<form method="post" action="{% url 'grade:index' %}" enctype="multipart/form-data">
+  {% csrf_token %}
+    <input type="file" id="file" name="file"/>
+    <input type="submit" value="Upload" />
+  </form>
+
+
+{% for table in output%}
+  <table>
+    <tr>
+      {% for header in table.header_list %}
+      <th>{{ header }}</th>
+      {% endfor %}
+    </tr>
+    {% for grade in table.grade_list %}
+    <tr>
+      {% for header in table.header_list %}
+      <td>{{ grade|load_grade:header }}</td>
+      {% endfor %}
+    </tr>
+    {% endfor %}
+  </table>
+{% endfor %}
