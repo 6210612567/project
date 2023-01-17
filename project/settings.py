@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     'web',
     'rest_framework',
     'django_filters',
-    'grade',
+    # 'grade',
 ]
 
 MIDDLEWARE = [
