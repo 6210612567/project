@@ -30,22 +30,21 @@ def get_2_factor_authen_qrcode(user_id):
 
     return img_str
 
+
 @register.filter
 def if_2_factor_authen(user_id):
     try:
-        AuthInfo.objects.get(user=user_id)
+        AuthInfo.objects.get(user=user_id,status=True)
         return True
     except:
         return False
 
 
-# @register.filter
-# def load_grade(data,header):
-#     try:
-#         return getattr(data, header)
-#     except Exception as e:
-#         grade_list = Grade.objects.filter(id=data.id)
-#         for grade in grade_list:
-#             for custom_field in grade.customfield.all():
-#                 if custom_field.name == header:
-#                     return custom_field.value
+@register.filter
+def delete_2_factor_authen(user_id):
+    try:
+        authtor = AuthInfo.objects.get(user=user_id)
+        authtor.delete()
+        return True
+    except:
+        return False

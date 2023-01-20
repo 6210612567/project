@@ -26,7 +26,8 @@ urlpatterns = [
     path("insert_channel", views.insert_channel_view, name="insert_channel_view"),
     path("edit_channel", views.edit_channel_view, name="edit_channel_view"),
     path("delete_channel/<str:channel_id>", views.delete_channel_view, name="delete_channel"),
-
+    path("activate_2fac", views.activate_2fac_view, name="activate_2fac"),
+    path("delete_2fac", views.delete_2fac_view, name="delete_2fac"),
 
     path("test/<int:pin>", views.test_page, name="test_page"),
 ]
