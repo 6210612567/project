@@ -36,20 +36,20 @@
             </p>
         </div>
         
-        <div id="googleMap" style="width:100%;height:400px;"></div>
+        <div id="map" style="width:100%;height:400px;"></div>
     </div>
-    
-    <script>
-        function myMap() {
-            const uluru = { lat: 14.069726179121487, lng: 100.60715149899502 };
-            var mapProp = {
-                center: uluru,
-                zoom: 15,
-            };
-            var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
-        }
-    </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDjAuOEDHtVIQVRVpysaFiPJFXqf0RWdlA&callback=myMap"></script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDjAuOEDHtVIQVRVpysaFiPJFXqf0RWdlA"></script>
+        <script>
+
+            var map;
+            function initMap() {
+                map = new google.maps.Map(document.getElementById('map'), {
+                    center: { lat: 14.069726179121487, lng: 100.60715149899502 },
+                    zoom: 17
+                });
+            }
+            window.onload = initMap;
+        </script>
 
 
 </div>
