@@ -16,6 +16,7 @@
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,1,-25" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
    
 
 </head>
@@ -114,9 +115,15 @@
                         <p class="w3-center" style="margin-top: 1em;"><img src="/static/images/profile.png"
                                 class="w3-circle" style="width: 100%; max-width: 200px; height: auto;"></p>
                         <hr>
-                        <p><i class="w3-margin-right w3-text-theme"></i> ENGR APIs Developer</p>
-                        <p><i class="w3-margin-right w3-text-theme"></i> London, UK</p>
-                        <p><i class="w3-margin-right w3-text-theme"></i> April 1, 1988</p>
+                        <div style="margin-left: 1em;" class="size-14">
+                            <p class="font-misty-blue">TSE APIS DEVELOPERS</p>
+                            <p class="thai-font">
+                                <span id="title"></span>
+                                <span id="firstname"></span>
+                                <span id="lastname"></span>
+                                <span id="user_id" style="margin-left: 0.5em;">{{request.session.user_id}}</span>
+                            </p>
+                        </div>
                         <p>
                             <i class="w3-margin-right w3-text-theme w3-padding-small "></i>
                             <a href="{% url 'web:home' %}" class="ul-rm thai-font size-15 font-misty-blue-h">
@@ -218,6 +225,37 @@
     </footer>
 
     <script>
+        var value = document.getElementById("user_id").innerHTML
+            console.log(value);
+
+            fetch('http://127.0.0.1:8000/api/v1/student?std_code=' + value, {
+                headers: {
+                    'Application-Key':'rootroot'
+                }
+            })
+                .then(res => {
+                    return res.json();
+                })
+                .then(data => {
+                    console.log(data)
+                    const title_th = data['output'][0]['tittle_name_lth']
+                    const fname_th = data['output'][0]['fname_th'];
+                    const lname_th = data['output'][0]['lname_th'];
+                    const major_th = data['output'][0]['major_th'];
+                    const department_th = data['output'][0]['department_th'];
+                    const email = data['output'][0]['email'];
+                    document.querySelector('#title').insertAdjacentHTML('beforeend', title_th);
+                    document.querySelector('#firstname').insertAdjacentHTML('beforeend', fname_th);
+                    document.querySelector('#lastname').insertAdjacentHTML('beforeend', lname_th);
+                    document.querySelector('#title1').insertAdjacentHTML('beforeend', title_th);
+                    document.querySelector('#firstname1').insertAdjacentHTML('beforeend', fname_th);
+                    document.querySelector('#lastname1').insertAdjacentHTML('beforeend', lname_th);
+                    document.querySelector('#major').insertAdjacentHTML('beforeend', major_th);
+                    document.querySelector('#email').insertAdjacentHTML('beforeend', email);
+                    document.querySelector('#depart').insertAdjacentHTML('beforeend', department_th);
+                })
+                .catch(error => console.log(error));
+                
         // Accordion
         function myFunction(id) {
             var x = document.getElementById(id);

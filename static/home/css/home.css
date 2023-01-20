@@ -48,6 +48,7 @@ a {
 .size-19 {
     font-size: 19px;
 }
+
 /* font size*/
 
 /* background color*/
@@ -169,6 +170,10 @@ a {
     color: #BDC6D9;
 }
 
+.font-misty-blue {
+    color: #BDC6D9;
+}
+
 .font-red {
     color: #d82c2f;
 }
@@ -200,6 +205,7 @@ a {
 .font-green {
     color: #019992;
 }
+
 /* font color */
 
 .box-shadow-h:hover {
@@ -333,7 +339,7 @@ a {
     border: 2px, black;
 }
 
-.btn-circle{
+.btn-circle {
     background-color: #AFD8F2;
     color: black;
     width: 35px;
@@ -352,4 +358,5 @@ a {
     border-radius: 20px;
     border: none
 }
+
 /* button */
