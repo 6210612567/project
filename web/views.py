@@ -37,7 +37,7 @@ def login_view(request):
     try:
         if request.session['user_id']:
             # print(request.session['user_id'])
-            return render(request, "web/index2.html", {'name': response.json()['name']})
+            return render(request, "web/index2.html")
     except:
         if request.method == "POST":
             username = request.POST["username"]
@@ -277,3 +277,14 @@ def delete_channel_view(request, channel_id):
         return HttpResponseRedirect(reverse("web:createChannel_page"))
     except:
         return HttpResponseRedirect(reverse("web:createChannel_page"))
+ 
+def activate_2fac_view(request):
+    auth = AuthInfo.objects.get(user=request.session['user_id'])
+    auth.status = True
+    auth.save()
+    return HttpResponseRedirect(reverse("web:setting_page"))
+
+def delete_2fac_view(request):
+    auth = AuthInfo.objects.get(user=request.session['user_id'])
+    auth.delete()
+    return HttpResponseRedirect(reverse("web:setting_page"))

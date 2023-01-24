@@ -126,9 +126,10 @@ class StudentShowdetail3(models.Model):
 class AuthInfo(models.Model):
     secret_key = models.CharField(max_length=255)
     user = models.CharField(max_length=255)
+    status = status = models.BooleanField(default=False)
 
     def __str__(self):
-        return f"AuthInfo : {self.user}"
+        return f"AuthInfo : {self.user} status : {self.status}"
 
 
 class ChannelForAPI(models.Model):

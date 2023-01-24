@@ -33,6 +33,9 @@ urlpatterns = [
     path("docs/student", views.student, name="student"),
     path("docs/GettingStudentinfo",
          views.gettingStudentinfo, name="gettingStudentinfo"),
+    path("delete_channel/<str:channel_id>", views.delete_channel_view, name="delete_channel"),
+    path("activate_2fac", views.activate_2fac_view, name="activate_2fac"),
+    path("delete_2fac", views.delete_2fac_view, name="delete_2fac"),
 
 
     path("test/<int:pin>", views.test_page, name="test_page"),
