@@ -1,0 +1,147 @@
+{% extends "web/layout.html" %}
+
+{% block body %}
+<style>
+    table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 95.5%;
+        margin-top: 0.5em;
+        margin-left: 1.25em;
+    }
+
+    td,
+    th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding-left: 1em;
+        padding-top: 8px;
+        padding-bottom: 8px;
+    }
+
+    tr:nth-child(even) {
+        background-color: #f0f0f0;
+    }
+</style>
+
+<title>Getting Authentication - ENGR APIs Developer</title>
+
+<div class="w3-col m7">
+    <div class="w3-row-padding w3-margin">
+        <p class="thai-font size-15">
+            <a href="{% url 'web:home' %}"
+                class="ul-rm font-misty-blue-h font-midnight-blue thai-font">หน้าหลัก</a>&ensp;/
+            <a href="{% url 'web:document' %}"
+                class="ul-rm font-misty-blue-h font-midnight-blue thai-font">เอกสาร</a>&ensp;/
+            <a href="{% url 'web:documents' %}" class="ul-rm font-misty-blue-h font-midnight-blue thai-font">APIs
+                Documents</a>&ensp;/
+            <a href="{% url 'web:general' %}" class="ul-rm font-misty-blue-h font-midnight-blue thai-font">เอกสาร การเข้าใช้ระบบ</a>&ensp;/
+            Getting Authentication
+        </p>
+    </div>
+
+    <!-- HTTP request : POST -->
+    <div class="w3-margin">
+        <h3><b>HTTP request</b></h3>
+        <hr>
+    </div>
+    
+    <div class="w3-card w3-round baby-blue  w3-margin-left w3-margin-right"><br>
+        <div class="w3-container white" style="margin-left: 0.5em; margin-top: -1.5em;">
+            <h5 class="thai-font">
+                <b>HTTP request : POST</b>
+            </h5>
+        </div>
+    </div>
+    <table class="w3-card w3-round white">
+        <tr>
+            <td class="thai-font size-17">example</td>
+        </tr>
+        <tr>
+            <td class="thai-font size-17">example</td>
+        </tr>
+    </table>
+
+    <br>
+
+    <!-- Rate limits -->
+    <div class="w3-margin">
+        <h3><b>Rate limits</b></h3>
+        <hr>
+    </div>
+
+    <div class="w3-card w3-round baby-blue  w3-margin-left w3-margin-right"><br>
+        <div class="w3-container white" style="margin-left: 0.5em; margin-top: -1.5em;">
+            <h5 class="thai-font">
+                <b>API call</b>
+            </h5>
+        </div>
+    </div>
+    <table class="w3-card w3-round white">
+        <tr>
+            <td class="thai-font size-17">example</td>
+        </tr>
+    </table>
+    <br>
+
+    <!-- Request header -->
+    <div class="w3-margin">
+        <h3><b>Request headers : <a href="{% url 'web:createChannel_page' %}" class="thai-font font-midnight-blue font-black-h">Application-Key</a></b></h3>
+        <hr>
+    </div>
+    
+    <table class="w3-card w3-round white">
+        <tr>
+            <th class="thai-font size-18">Header</th>
+            <th class="thai-font size-18">Http request</th>
+        </tr>
+        <tr>
+            <td class="thai-font size-17">example</td>
+            <td class="thai-font size-17">example</td>
+        </tr>
+    </table>
+    <br>
+
+    <!-- Request body -->
+    <div class="w3-margin">
+        <h3><b>Request body</b></h3>
+        <hr>
+    </div>
+    
+    <table class="w3-card w3-round white">
+        <tr>
+            <th class="thai-font size-18">Property</th>
+            <th class="thai-font size-18">Type</th>
+            <th class="thai-font size-18">Value</th>
+        </tr>
+        <tr>
+            <td class="thai-font size-17">example</td>
+            <td class="thai-font size-17">example</td>
+            <td class="thai-font size-17">example</td>
+        </tr>
+        
+    </table>
+    <br>
+    <div class="w3-card w3-round navy-blue w3-margin-left w3-margin-right"><br>
+        <div class="w3-container navy-blue" style="margin-left: 0.5em; margin-top: -1.5em;">
+            <code class="font-white">
+                {"UserName" : "username","PassWord" : "password"}
+            </code>
+        </div>
+    </div>
+    <br>
+    <div class="w3-row-padding w3-margin">
+        <p class="thai-font size-15">
+            <a href="{% url 'web:home' %}" class="ul-rm font-misty-blue-h font-midnight-blue thai-font">หน้าหลัก</a>&ensp;/
+            <a href="{% url 'web:document' %}"
+                class="ul-rm font-misty-blue-h font-midnight-blue thai-font">เอกสาร</a>&ensp;/
+            <a href="{% url 'web:documents' %}" class="ul-rm font-misty-blue-h font-midnight-blue thai-font">APIs
+                Documents</a>&ensp;/
+            <a href="{% url 'web:general' %}" class="ul-rm font-misty-blue-h font-midnight-blue thai-font">เอกสาร
+                การเข้าใช้ระบบ</a>&ensp;/
+            Getting Authentication
+        </p>
+    </div>
+
+</div>
+{% endblock%}

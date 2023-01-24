@@ -1,0 +1,27 @@
+{% extends "web/layout.html" %}
+
+{% block body %}
+<title>เอกสาร การเข้าใช้ระบบ - ENGR APIs Developer</title>
+
+<div class="w3-col m7">
+    <div class="w3-row-padding w3-margin">
+        <p class="thai-font size-15">
+            <a href="{% url 'web:home' %}" class="ul-rm font-misty-blue-h font-midnight-blue thai-font">หน้าหลัก</a>&ensp;/
+            <a href="{% url 'web:document' %}" class="ul-rm font-misty-blue-h font-midnight-blue thai-font">เอกสาร</a>&ensp;/
+            <a href="{% url 'web:documents' %}" class="ul-rm font-misty-blue-h font-midnight-blue thai-font">APIs Documents</a>&ensp;/
+            เอกสาร การเข้าใช้ระบบ
+        </p>
+    </div>
+
+    <a href="{% url 'web:getting_auth' %}" class="font-midnight-blue-h ">
+        <div class="w3-card w3-round w3-margin tiffany-green box-shadow-h" style="height: 80px;"><br>
+            <div class="w3-container light-green" style="margin-left: 0.5em; margin-top: -1.5em; height: 80px;">
+                <p class="thai-font size-15" style="margin-top: 2em; margin-left: 1em;">
+                    Authentication : การยืนยันตัวตน User Account ของคณะวิศวกรรมศาสตร์
+                </p>
+            </div>
+        </div>
+    </a>
+
+</div>
+{% endblock%}

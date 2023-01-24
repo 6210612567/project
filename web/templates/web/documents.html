@@ -1,0 +1,40 @@
+{% extends "web/layout.html" %}
+
+{% block body %}
+<title>เอกสาร APIs - ENGR APIs Developer</title>
+
+<div class="w3-col m7">
+    <div class="w3-row-padding w3-margin">
+        <p class="thai-font size-15">
+            <a href="{% url 'web:home' %}" class="ul-rm font-misty-blue-h font-midnight-blue thai-font">หน้าหลัก</a>
+            &ensp;/
+            <a href="{% url 'web:document' %}" class="ul-rm font-misty-blue-h font-midnight-blue thai-font">
+                เอกสาร</a>&ensp;/
+            APIs Documents
+        </p>
+    </div>
+
+    <a href="{% url 'web:general' %}" class="font-midnight-blue-h ">
+        <div class="w3-card w3-round w3-margin tiffany-green box-shadow-h" style="height: 80px;"><br>
+            <div class="w3-container light-green" style="margin-left: 0.5em; margin-top: -1.5em; height: 80px;">
+                <p class="thai-font size-15" style="margin-top: 2em; margin-left: 1em;">
+                    การเข้าใช้งานระบบ (Authentication)
+                </p>
+            </div>
+        </div>
+    </a>
+
+    <a href="{% url 'web:student' %}" class="font-midnight-blue-h ">
+        <div class="w3-card w3-round w3-margin tiffany-green box-shadow-h" style="height: 100px;"><br>
+            <div class="w3-container light-green" style="margin-left: 0.5em; margin-top: -1.5em; height: 100px;">
+                <p class="thai-font size-15" style="margin-top: 2em; margin-left: 1em;">
+                    ข้อมูลนักศึกษา รายงานนักศึกษา คณะ สาขา
+                    <br>
+                    (Student Basic Info , Report ,Faculty Dapartment)
+                </p>
+            </div>
+            
+        </div>
+    </a>
+</div>
+{% endblock%}

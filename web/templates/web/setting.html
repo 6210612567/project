@@ -144,7 +144,7 @@
     {% endif %}
 
     <div class="w3-container w3-card w3-round w3-margin tral "><br>
-        {% if not request.session.user_id|if_2_factor_authen %}
+        {% if request.session.user_id|if_2_factor_authen %}
         <p id="myBtn" class="thai-font size-16 font-white-h font-navy-blue" style="margin-left: 1.2em;">
             <b>CLICK : Enable Two-Factor Authentication</b>
         </p>
