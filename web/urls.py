@@ -15,6 +15,7 @@ urlpatterns = [
     path("home", views.home, name="home"),
     path("channel", views.channel_page, name="channel_page"),
     path("Document", views.document, name="document"),
+    path("Documents", views.documents, name="documents"),
     path("Report", views.report_page, name="report_page"),
     path("Helpdesk", views.help_page, name="help_page"),
     path("update", views.update_page, name="update_page"),
@@ -25,9 +26,17 @@ urlpatterns = [
          name="twoFactor_page"),
     path("insert_channel", views.insert_channel_view, name="insert_channel_view"),
     path("edit_channel", views.edit_channel_view, name="edit_channel_view"),
+    path("delete_channel/<str:channel_id>",
+         views.delete_channel_view, name="delete_channel"),
+    path("docs/General", views.general, name="general"),
+    path("docs/GettingAuth", views.getting_auth, name="getting_auth"),
+    path("docs/student", views.student, name="student"),
+    path("docs/GettingStudentinfo",
+         views.gettingStudentinfo, name="gettingStudentinfo"),
     path("delete_channel/<str:channel_id>", views.delete_channel_view, name="delete_channel"),
     path("activate_2fac", views.activate_2fac_view, name="activate_2fac"),
     path("delete_2fac", views.delete_2fac_view, name="delete_2fac"),
+
 
     path("test/<int:pin>", views.test_page, name="test_page"),
 ]

@@ -11,7 +11,7 @@ from .utils import check_2_factor_authen
 import pyotp
 import time
 from django.http import JsonResponse
-from .models import AuthInfo,ChannelForAPI
+from .models import AuthInfo, ChannelForAPI
 import qrcode
 import json
 from io import BytesIO
@@ -87,17 +87,23 @@ def privacy_page(request):
 
 def home(request):
     channels = ChannelForAPI.objects.filter(user=request.session['user_id'])
-    channels_open = ChannelForAPI.objects.filter(user=request.session['user_id'],status=True)
-    channels_close = ChannelForAPI.objects.filter(user=request.session['user_id'],status=False)
+    channels_open = ChannelForAPI.objects.filter(
+        user=request.session['user_id'], status=True)
+    channels_close = ChannelForAPI.objects.filter(
+        user=request.session['user_id'], status=False)
     return render(request, "web/home.html", {
-                'num_channel':len(channels),
-                'num_open_channel':len(channels_open),
-                'num_close_channel':len(channels_close),
-                                })
+        'num_channel': len(channels),
+        'num_open_channel': len(channels_open),
+        'num_close_channel': len(channels_close),
+    })
 
 
 def channel_page(request):
     return render(request, "web/channel.html")
+
+
+def documents(request):
+    return render(request, "web/documents.html")
 
 
 def document(request):
@@ -106,13 +112,15 @@ def document(request):
 
 def report_page(request):
     channels = ChannelForAPI.objects.filter(user=request.session['user_id'])
-    channels_open = ChannelForAPI.objects.filter(user=request.session['user_id'],status=True)
-    channels_close = ChannelForAPI.objects.filter(user=request.session['user_id'],status=False)
+    channels_open = ChannelForAPI.objects.filter(
+        user=request.session['user_id'], status=True)
+    channels_close = ChannelForAPI.objects.filter(
+        user=request.session['user_id'], status=False)
     return render(request, "web/report.html", {
-                'num_channel':len(channels),
-                'num_open_channel':len(channels_open),
-                'num_close_channel':len(channels_close),
-                                })
+        'num_channel': len(channels),
+        'num_open_channel': len(channels_open),
+        'num_close_channel': len(channels_close),
+    })
 
 
 def help_page(request):
@@ -131,14 +139,30 @@ def twoFactor_page(request):
     return render(request, "web/documentsTwoFactor.html")
 
 
+def general(request):
+    return render(request, "web/documentsGeneral.html")
 
-def test_page(request,pin):
+
+def getting_auth(request):
+    return render(request, "web/documentsGettingAuth.html")
+
+
+def student(request):
+    return render(request, "web/student.html")
+
+
+def gettingStudentinfo(request):
+    return render(request, "web/gettingStudentinfo.html")
+
+
+def test_page(request, pin):
     try:
         authtor = AuthInfo.objects.get(user=request.session['user_id'])
         secret_key = authtor.secret_key
     except:
         secret_key = pyotp.random_base32()
-        AuthInfo.objects.create(user=request.session['user_id'],secret_key=secret_key)
+        AuthInfo.objects.create(
+            user=request.session['user_id'], secret_key=secret_key)
     # Check TOTP
     totp = pyotp.TOTP(secret_key)
     # Create QR code
@@ -151,7 +175,7 @@ def test_page(request,pin):
     img.save(buffered, format="PNG")
     img_str = base64.b64encode(buffered.getvalue()).decode("ascii")
 
-    return render(request, "web/test_page.html",{'data':{'status':'True' if totp.verify(pin) else 'False' ,'image':img_str}})
+    return render(request, "web/test_page.html", {'data': {'status': 'True' if totp.verify(pin) else 'False', 'image': img_str}})
 
 
 def createChannel_page(request):
@@ -166,48 +190,50 @@ def createChannel_page(request):
         # data =json.loads(request.body)
         search_keyword = request.GET.get('search_keyword')
         # search_keyword = data["search_keyword"]
-        channels = ChannelForAPI.objects.filter(user=request.session['user_id'],name__icontains=search_keyword)
+        channels = ChannelForAPI.objects.filter(
+            user=request.session['user_id'], name__icontains=search_keyword)
     except:
-        channels = ChannelForAPI.objects.filter(user=request.session['user_id'])
-    channel_lists =[]
+        channels = ChannelForAPI.objects.filter(
+            user=request.session['user_id'])
+    channel_lists = []
     for channel in channels:
         channel_lists.append(channel)
     print(channel_lists)
-    return render(request, "web/authkey.html",{'channel_list':channel_lists})
+    return render(request, "web/authkey.html", {'channel_list': channel_lists})
 
 
 def insert_channel_view(request):
-    data =json.loads(request.body)
+    data = json.loads(request.body)
     pin = data['pin']
     user_id = data['user_id']
     chname = data['chname']
     chdesc = data['chdesc']
     # Check 2FA Pin
-    response = check_2_factor_authen(user_id,pin)
+    response = check_2_factor_authen(user_id, pin)
     if response['status'] == 'True':
         # Check if user's channel < 20 channel
         channels = ChannelForAPI.objects.filter(user=user_id)
         if len(channels) < 20:
-        # Create Channel
-            ChannelForAPI.objects.create(name=chname,desc=chdesc,user=user_id,status=False)
-            data = {'status':'True'}
+            # Create Channel
+            ChannelForAPI.objects.create(
+                name=chname, desc=chdesc, user=user_id, status=False)
+            data = {'status': 'True'}
         else:
-            data = {'status':'Full'}
-        # Reture Status If channel created        
+            data = {'status': 'Full'}
+        # Reture Status If channel created
         response = JsonResponse(data)
         response['X-Frame-Options'] = 'SAMEORIGIN'
         return response
     else:
         # Reture Status If channel not created
-        data = {'status':'False'}
+        data = {'status': 'False'}
         response = JsonResponse(data)
         response['X-Frame-Options'] = 'SAMEORIGIN'
         return response
 
-        
 
 def edit_channel_view(request):
-    data =json.loads(request.body)
+    data = json.loads(request.body)
     pin = data['pin']
     user_id = data['user_id']
     chid = data['chid']
@@ -215,7 +241,7 @@ def edit_channel_view(request):
     chdesc = data['chdesc']
     chstatus = data['chstatus']
     # Check 2FA Pin
-    response = check_2_factor_authen(user_id,pin)
+    response = check_2_factor_authen(user_id, pin)
     if response['status'] == 'True':
         # Create Channel
         channel = ChannelForAPI.objects.get(id=chid)
@@ -226,38 +252,37 @@ def edit_channel_view(request):
         if chstatus == 'True':
             auth_key = "TU//ENGR//"+pyotp.random_base32()
             channel.auth_key = auth_key
-            data_res = {'status':'แก้ไขข้อมูลแชนแนลแล้ว'}
-        else :
+            data_res = {'status': 'แก้ไขข้อมูลแชนแนลแล้ว'}
+        else:
             channel.auth_key = ""
-            data_res = {'status':'แก้ไขข้อมูลแชนแนลแล้ว'}
+            data_res = {'status': 'แก้ไขข้อมูลแชนแนลแล้ว'}
         channel.save()
-        
+
         response = JsonResponse(data_res)
         response['X-Frame-Options'] = 'SAMEORIGIN'
         return response
     else:
         # Reture Status If channel not created
-        data = {'status':'False'}
+        data = {'status': 'False'}
         response = JsonResponse(data)
         response['X-Frame-Options'] = 'SAMEORIGIN'
         return response
 
 
-def delete_channel_view(request,channel_id):
+def delete_channel_view(request, channel_id):
     try:
-        channel = ChannelForAPI.objects.get(id=channel_id,user=request.session['user_id'])
+        channel = ChannelForAPI.objects.get(
+            id=channel_id, user=request.session['user_id'])
         channel.delete()
         return HttpResponseRedirect(reverse("web:createChannel_page"))
     except:
         return HttpResponseRedirect(reverse("web:createChannel_page"))
-    
-
+ 
 def activate_2fac_view(request):
     auth = AuthInfo.objects.get(user=request.session['user_id'])
     auth.status = True
     auth.save()
     return HttpResponseRedirect(reverse("web:setting_page"))
-
 
 def delete_2fac_view(request):
     auth = AuthInfo.objects.get(user=request.session['user_id'])
