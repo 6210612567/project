@@ -21,7 +21,7 @@ def get_2_factor_authen_qrcode(user_id):
         secret_key = pyotp.random_base32()
         AuthInfo.objects.create(user=user_id,secret_key=secret_key)
     qr = qrcode.QRCode(version=1, box_size=10, border=5)
-    qr.add_data(secret_key)
+    qr.add_data(f"otpauth://totp/{user_id}?secret={secret_key}")
     qr.make(fit=True)
     img = qr.make_image(fill_color="black", back_color="white")
     buffered = BytesIO()
