@@ -366,10 +366,10 @@
                         onclick="return edit_channel('{{channel.id}}')">
                         <p style="margin: 0.4em;" class="thai-font ">แก้ไข</p>
                     </button>
-                    <button class="btn-dagr" href="{% url 'web:delete_channel' channel.id %}" class="ul-rm "
+                    <a class="btn btn-dagr" href="{% url 'web:delete_channel' channel.id %}" class="ul-rm "
                         onclick="return confirm_delete()">
                         <p class="thai-font" style="margin-top:0.3em">ลบแชนแนล</p>
-                    </button>
+                    </a>
                 </div>
             </div>
         </div>
