@@ -55,10 +55,7 @@
     </div>
     <table class="w3-card w3-round white">
         <tr>
-            <td class="thai-font size-17">example</td>
-        </tr>
-        <tr>
-            <td class="thai-font size-17">example</td>
+            <td class="thai-font size-17">http://127.0.0.1:8000/api/v1/authentication/</td>
         </tr>
     </table>
 
@@ -96,8 +93,12 @@
             <th class="thai-font size-18">Http request</th>
         </tr>
         <tr>
-            <td class="thai-font size-17">example</td>
-            <td class="thai-font size-17">example</td>
+            <td class="thai-font size-17">Content-Type</td>
+            <td class="thai-font size-17">application/json</td>
+        </tr>
+        <tr>
+            <td class="thai-font size-17">Application-Key</td>
+            <td class="thai-font size-17">Access token</td>
         </tr>
     </table>
     <br>
@@ -115,9 +116,14 @@
             <th class="thai-font size-18">Value</th>
         </tr>
         <tr>
-            <td class="thai-font size-17">example</td>
-            <td class="thai-font size-17">example</td>
-            <td class="thai-font size-17">example</td>
+            <td class="thai-font size-17">username</td>
+            <td class="thai-font size-17">String</td>
+            <td class="thai-font size-17">Student ID create by administration engr</td>
+        </tr>
+        <tr>
+            <td class="thai-font size-17">password</td>
+            <td class="thai-font size-17">String</td>
+            <td class="thai-font size-17">Password create by administration engr</td>
         </tr>
         
     </table>
@@ -125,8 +131,27 @@
     <div class="w3-card w3-round navy-blue w3-margin-left w3-margin-right"><br>
         <div class="w3-container navy-blue" style="margin-left: 0.5em; margin-top: -1.5em;">
             <code class="font-white">
-                {"UserName" : "username","PassWord" : "password"}
+                <br>
+                {"userName" : "username","password" : "password"}
+                <br><br>
             </code>
+        </div>
+    </div>
+    <br>
+    <!-- Example response (Student) -->
+    <div class="w3-margin">
+        <h3><b>Example response (Student)</b></h3>
+        <hr>
+    </div>
+    <div class="w3-card w3-round navy-blue w3-margin-left w3-margin-right"><br>
+        <div class="w3-container navy-blue" style="margin-left: 0.5em; margin-top: -1.5em;">
+            <code class="font-white">
+                    <br>
+                    {<br>
+                    &emsp;&emsp;"name": "name surname"<br>
+                    }<br>
+                    <br>
+                </code>
         </div>
     </div>
     <br>

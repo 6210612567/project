@@ -74,46 +74,46 @@
         <div class="w3-container w3-card w3-white w3-round w3-margin scroller"><br>
             <h4 class="thai-font" style="margin-left: 0.5em;">เอกสาร</h4>
             <hr class="w3-clear">
-            <a href="#" class="thai-font size-15 ul-rm font-midnight-blue-h" >
-                <p class="thai-font size-15" style="margin-bottom: -0.5em;">
-                    <i class="fa fa-book" style="font-size: 16px; margin-right: 2em;"></i>บริการข้อมูลอาจารย์ :
-                    แสดงข้อมูลพื้นฐานอาจารย์
-                    <a href="#" class="btn-read pull-right ul-rm size-13 font-charcoal-h">Read</a>
-                </p>
-            </a>
+            <p class="thai-font size-15" style="margin-bottom: -0.5em;">
+                <i class="fa fa-book" style="font-size: 16px; margin-right: 2em;"></i>บริการข้อมูลนักศึกษา: ข้อมูลคณะ
+                <a href="{% url 'web:gettingStudentMajor' %}" class="btn-read pull-right ul-rm size-13 font-charcoal-h">Read</a>
+            </p>
             <hr>
-            <a href="#" class="thai-font size-15 ul-rm font-midnight-blue-h" >
-                <p class="thai-font size-15" style="margin-bottom: -0.5em;">
-                    <i class="fa fa-book" style="font-size: 16px; margin-right: 2em;"></i>บริการข้อมูลอาจารย์ :
-                    แสดงข้อมูลพื้นฐานอาจารย์
-                    <a href="#" class="btn-read pull-right ul-rm size-13 font-charcoal-h">Read</a>
-                </p>
-            </a>
+            <p class="thai-font size-15" style="margin-bottom: -0.5em;">
+                <i class="fa fa-book" style="font-size: 16px; margin-right: 2em;"></i>บริการข้อมูลนักศึกษา : ข้อมูลสาขา
+                <a href="{% url 'web:gettingStudentDepartment' %}"
+                    class="btn-read pull-right ul-rm size-13 font-charcoal-h">Read</a>
+            </p>
             <hr>
-            <a href="#" class="thai-font size-15 ul-rm font-midnight-blue-h" >
-                <p class="thai-font size-15" style="margin-bottom: -0.5em;">
-                    <i class="fa fa-book" style="font-size: 16px; margin-right: 2em;"></i>บริการข้อมูลอาจารย์ :
-                    แสดงข้อมูลพื้นฐานอาจารย์
-                    <a href="#" class="btn-read pull-right ul-rm size-13 font-charcoal-h">Read</a>
-                </p>
-            </a>
+            <p class="thai-font size-15" style="margin-bottom: -0.5em;">
+                <i class="fa fa-book" style="font-size: 16px; margin-right: 2em;"></i>บริการข้อมูลนักศึกษา :
+                แสดงข้อมูลพื้นฐานนักศึกษา
+                <a href="{% url 'web:gettingStudentinfo' %}"
+                    class="btn-read pull-right ul-rm text-center size-13 font-charcoal-h">Read</a>
+            </p>
             <hr>
-            <a href="#" class="thai-font size-15 ul-rm font-midnight-blue-h" >
-                <p class="thai-font size-15" style="margin-bottom: -0.5em;">
-                    <i class="fa fa-book" style="font-size: 16px; margin-right: 2em;"></i>บริการข้อมูลอาจารย์ :
-                    แสดงข้อมูลพื้นฐานอาจารย์
-                    <a href="#" class="btn-read pull-right ul-rm size-13 font-charcoal-h">Read</a>
-                </p>
-            </a>
+            <p class="thai-font size-15">
+                <i class="fa fa-book" style="font-size: 16px; margin-right: 2em;"></i>บริการการเข้าใช้งานระบบ : การยืนยันตัวตน
+                <a href="{% url 'web:getting_auth' %}" class="btn-read pull-right ul-rm size-13 font-charcoal-h">Read</a>
+            </p>
             <hr>
-            <a href="#" class="thai-font size-15 ul-rm font-midnight-blue-h" >
-                <p style="margin-bottom: -0.5em;">
-                    <i class="fa fa-book" style="font-size: 16px; margin-right: 2em;"></i>บริการข้อมูลอาจารย์ :
-                    แสดงข้อมูลพื้นฐานอาจารย์
-                    <a href="#" class="btn-read pull-right ul-rm size-13 font-charcoal-h">Read</a>
-                </p>
-            </a>
+            <p class="thai-font size-15">
+                <i class="fa fa-book" style="font-size: 16px; margin-right: 2em;"></i>ขั้นตอนการตั้งค่าความปลอดภัยแบบสองขั้นตอน
+                <a href="{% url 'web:twoFactor_page' %}" class="btn-read pull-right ul-rm size-13 font-charcoal-h">Read</a>
+            </p>
             <hr>
+            <p class="thai-font size-15">
+                <i class="fa fa-book" style="font-size: 16px; margin-right: 2em;"></i>ขั้นตอนการสร้างแชนแนล
+                <a href="{% url 'web:getStart_page' %}" class="btn-read pull-right ul-rm size-13 font-charcoal-h">Read</a>
+            </p>
+            <hr>
+            <p class="thai-font size-15">
+                <i class="fa fa-book" style="font-size: 16px; margin-right: 2em;"></i>บริการข้อมูลอาจารย์ :
+                แสดงข้อมูลพื้นฐานอาจารย์
+                <a href="{% url 'web:gettingInstructorsInfo' %}"
+                    class="btn-read pull-right ul-rm size-13 font-charcoal-h">Read</a>
+            </p>
+        
         </div>
         <!-- end document -->
     </div>

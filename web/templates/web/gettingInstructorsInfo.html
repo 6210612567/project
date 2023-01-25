@@ -35,9 +35,9 @@
                 class="ul-rm font-misty-blue-h font-midnight-blue thai-font">เอกสาร</a>&ensp;/
             <a href="{% url 'web:documents' %}" class="ul-rm font-misty-blue-h font-midnight-blue thai-font">APIs
                 Documents</a>&ensp;/
-            <a href="{% url 'web:student' %}"
-                class="ul-rm font-misty-blue-h font-midnight-blue thai-font">บริการข้อมูลนักศึกษา</a>&ensp;/
-            Getting Student Dapartment
+            <a href="{% url 'web:instructors' %}"
+                class="ul-rm font-misty-blue-h font-midnight-blue thai-font">บริการข้อมูลอาจารย์</a>&ensp;/
+            Getting Instructors info
         </p>
     </div>
 
@@ -56,16 +56,29 @@
     </div>
     <table class="w3-card w3-round white">
         <tr>
-            <td class="thai-font size-17">https://restapi.engr.tu.ac.th/api/v1/department</td>
+            <td class="thai-font size-17">https://restapi.engr.tu.ac.th/api/v1/instructor</td>
         </tr>
         <tr>
-            <td class="thai-font size-17">https://restapi.engr.tu.ac.th/api/v1/department?id=6210xxxxxx</td>
+            <td class="thai-font size-17">https://restapi.engr.tu.ac.th/api/v1/instructor?id=6210xxxxxx</td>
         </tr>
         <tr>
-            <td class="thai-font size-17">https://restapi.engr.tu.ac.th/api/v1/department?dname_th=ภาควิชาวิศวกรรมไฟฟ้าและคอมพิวเตอร์</td>
+            <td class="thai-font size-17">
+                https://restapi.engr.tu.ac.th/api/v1/instructor?fname_th=โชคดี</td>
         </tr>
         <tr>
-            <td class="thai-font size-17">https://restapi.engr.tu.ac.th/api/v1/department?dname_en=Department of Electrical Engineering and Computer</td>
+            <td class="thai-font size-17">https://restapi.engr.tu.ac.th/api/v1/instructor?lname_th=มีชัย</td>
+        </tr>
+        <tr>
+            <td class="thai-font size-17">https://restapi.engr.tu.ac.th/api/v1/instructor?fname_en=Chokdee</td>
+        </tr>
+        <tr>
+            <td class="thai-font size-17">https://restapi.engr.tu.ac.th/api/v1/instructor?lname_en=Meechai</td>
+        </tr>
+        <tr>
+            <td class="thai-font size-17">https://restapi.engr.tu.ac.th/api/v1/instructor?department=สำนักงานศูนย์เทคโนโลยีสารสนเทศและการสื่อสาร</td>
+        </tr>
+        <tr>
+            <td class="thai-font size-17">https://restapi.engr.tu.ac.th/api/v1/instructor?email=chockdee@engr.tu.ac.th</td>
         </tr>
     </table>
 
@@ -146,12 +159,17 @@
                 {<br>
                 &emsp;&emsp;"output": [<br>
                 &emsp;&emsp;&emsp;&emsp;{<br>
-                &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;"id": 6210123456,<br>
-                &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;"dname_th": "ภาควิชาวิศวกรรมไฟฟ้าและคอมพิวเตอร์",<br>
-                &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;"dname_en": "Department of Electrical Engineering and Computer"<br>
+                &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;"id": 6210612567,<br>
+                &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;"fname_th": "โชคดี",<br>
+                &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;"lname_th": "มีชัย",<br>
+                &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;"fname_en": "Chokdee",<br>
+                &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;"lname_en": "Meechai",<br>
+                &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;"department": "สำนักงานศูนย์เทคโนโลยีสารสนเทศและการสื่อสาร",<br>
+                &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;"email": "chockdee@engr.tu.ac.th"<br>
                 &emsp;&emsp;&emsp;&emsp;}<br>
                 &emsp;&emsp;]<br>
-                }<br><br>
+                }<br>
+                <br>
             </code>
         </div>
     </div>
@@ -173,7 +191,7 @@
             <div class="w3-container navy-blue" style="margin-left: 0.5em; margin-top: -1.5em;">
                 <code class="font-white">
                     <br>
-                    curl --location --request GET "https://restapi.engr.tu.ac.th/api/v1/department" \ <br>
+                    curl --location --request GET "https://restapi.engr.tu.ac.th/api/v1/instructor" \ <br>
                     &emsp;&emsp;--header "Content-Type: application/json" \<br>
                     &emsp;&emsp;--header "Application-Key: {Access token}" \<br>
                     &emsp;&emsp;--data ""
@@ -193,7 +211,7 @@
                     $curl = curl_init();<br>
                     <br>
                     &emsp;&emsp;curl_setopt_array($curl, array(<br>
-                    &emsp;&emsp;CURLOPT_URL => "https://restapi.engr.tu.ac.th/api/v1/department",<br>
+                    &emsp;&emsp;CURLOPT_URL => "https://restapi.engr.tu.ac.th/api/v1/instructor",<br>
                     &emsp;&emsp;CURLOPT_RETURNTRANSFER => true,<br>
                     &emsp;&emsp;CURLOPT_ENCODING => "",<br>
                     &emsp;&emsp;CURLOPT_MAXREDIRS => 10,<br>
@@ -241,7 +259,7 @@
                     
                     func main() {<br>
                     <br>
-                    &emsp;&emsp;url := "https://restapi.engr.tu.ac.th/api/v1/department"<br>
+                    &emsp;&emsp;url := "https://restapi.engr.tu.ac.th/api/v1/instructor"<br>
                     &emsp;&emsp;method := "GET"<br>
                     <br>
                     &emsp;&emsp;payload := strings.NewReader("")<br>
@@ -281,7 +299,7 @@
                     var options = {<br>
                     &emsp;&emsp;'method': 'GET',<br>
                     'hostname': 'restapi.engr.tu.ac.th',<br>
-                    &emsp;&emsp;'path': '/api/v1/department',<br>
+                    &emsp;&emsp;'path': '/api/v1/instructor',<br>
                     &emsp;&emsp;'headers': {<br>
                     &emsp;&emsp;&emsp;&emsp;'Content-Type': 'application/json',<br>
                     &emsp;&emsp;&emsp;&emsp;'Application-Key': '{Access token}'<br>
@@ -367,17 +385,17 @@
         <tr>
             <td class="thai-font size-17">200 OK</td>
             <td class="thai-font size-17">TRUE</td>
-            <td class="thai-font size-17">Get Data Major Student All Success!</td>
-        </tr>
-        <tr>
-            <td class="thai-font size-17">200 OK</td>
-            <td class="thai-font size-17">TRUE</td>
-            <td class="thai-font size-17">Get Data Major Student by filter Success!</td>
+            <td class="thai-font size-17">Get Profile Instructors Success!</td>
         </tr>
         <tr>
             <td class="thai-font size-17">400 Bad Request</td>
             <td class="thai-font size-17">FALSE</td>
-            <td class="thai-font size-17">Major ID is Invalid!. Must follow the scheme,'/major?id=6210xxxxxx'</td>
+            <td class="thai-font size-17">Data is Empty</td>
+        </tr>
+        <tr>
+            <td class="thai-font size-17">400 Bad Request</td>
+            <td class="thai-font size-17">FALSE</td>
+            <td class="thai-font size-17">Request Query String a GET operation (HTTP method)!,"?First_Name_Th=โชคดี</td>
         </tr>
         <tr>
             <td class="thai-font size-17">401 Unauthorized</td>
