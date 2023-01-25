@@ -92,3 +92,47 @@ class InstructorApiView(APIView):
             instructor_data['department'] = instructor_data['department'].dname_th
         print('1')
         return Response({'output':instructor_context_list}, status=status.HTTP_200_OK)
+
+
+class ReportStdGenderApiView(APIView):
+    permission_classes = [Is2FAAuthenticated]
+
+    def get(self, request, *args, **kwargs):
+        student_male_all = StudentShowdetail3.objects.filter(title_name_len='Mr.')
+        student_female_all = StudentShowdetail3.objects.filter(title_name_len='Miss.')
+        student_all = StudentShowdetail3.objects.all()
+        
+        return Response(
+            [
+            {
+                "Gender": "Male",
+                "Total": len(student_male_all)
+            },
+            {
+                "Gender": "Female",
+                "Total": len(student_female_all)
+            },
+            {
+                "Gender": "All",
+                "Total": len(student_all)
+            },
+            ]
+            , status=status.HTTP_200_OK)
+
+
+class ReportStdAdyearApiView(APIView):
+    permission_classes = [Is2FAAuthenticated]
+
+    def get(self, request, *args, **kwargs):
+        std_code_list = StudentShowdetail3.objects.values_list('std_code', flat=True).distinct()
+        adyear_list = []
+        adyear_dict = {}
+        for std_code in std_code_list:
+            if not std_code[:2] in adyear_list:
+                adyear_list.append(std_code[:2])
+                adyear_dict['25'+std_code[:2]] = 0
+        std_all = StudentShowdetail3.objects.all()
+        for std in std_all:
+            adyear_dict['25'+std.std_code[:2]] += 1
+
+        return Response(adyear_dict, status=status.HTTP_200_OK)

@@ -2,6 +2,16 @@
 {% extends "web/layout.html" %}
 {% load my_tags %}
 {% block body %}
+<script language="javascript">
+    function save_2fa(){
+            window.location.replace('/activate_2fac');
+            return true;
+        }
+    function delete_2fa(){
+            window.location.replace('/delete_2fac');
+            return true;
+        }
+</script>
 <style>
     /* The Modal (background) */
     .modal {
@@ -151,7 +161,7 @@
         {% endif %}
 
         <!-- if enable 2factor -->
-        <button id="myBtn2" class="btn-dagr thai-font size-16" style="width: 300px;">
+        <button id="myBtn2" class="btn-dagr thai-font size-16" style="width: 300px;" onclick="return delete_2fa()">
             Remove Two-Factor Authentication
         </button>
 
@@ -160,7 +170,7 @@
             <!-- Modal content -->
             <div class="modal-content">
                 <span class="close2">&times;</span>
-        
+
                 <h4 class="thai-font w3-round baby-blue2" style="margin-top: -2em; width: 90%; height: 50px; padding: 0.7em;">
                     Remove Two-Factor Authentication
                 </h4>
@@ -230,7 +240,7 @@
                         <p class="thai-font size-16">Please Scan QR Code with Google Authenticator !!</p>
                         <img src="data:image/png;base64,{{ request.session.user_id | get_2_factor_authen_qrcode}}" style="width: 250px; height:250px; margin: 2em;" alt="QR Code">
                         <p class="thai-font size-16 font-red">*กรุณาตรวจสอบบน Authenticator ของท่านก่อนคลิกปุ่ม Save</p>
-                        <button class="btn-normal thai-font" style="margin-bottom: 2em;" onclick="save_alert()">Save</button>
+                        <button class="btn-normal thai-font" style="margin-bottom: 2em;" onclick="return save_2fa()">Save</button>
                     </div>
                     <button id="btn" class="btn-agr thai-font" onclick="showDiv()">
                         Enable
@@ -384,11 +394,7 @@
                 } 
             }
         
-        function save_alert(){
-            alert("เพิ่มข้อมูลเรียบร้อย");
-            window.close();
-            document.location.reload(true);
-        }
+        
     </script>
 
 
