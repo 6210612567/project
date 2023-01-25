@@ -33,7 +33,9 @@ urlpatterns = [
     path("docs/student", views.student, name="student"),
     path("docs/GettingStudentinfo",
          views.gettingStudentinfo, name="gettingStudentinfo"),
-
-
+    path("docs/GettingStudentMajor", views.gettingStudentMajor,
+         name="gettingStudentMajor"),
+    path("docs/GettingStudentDepartment", views.gettingStudentDepartment,
+         name="gettingStudentDepartment"),
     path("test/<int:pin>", views.test_page, name="test_page"),
 ]

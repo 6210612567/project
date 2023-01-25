@@ -155,6 +155,14 @@ def gettingStudentinfo(request):
     return render(request, "web/gettingStudentinfo.html")
 
 
+def gettingStudentMajor(request):
+    return render(request, "web/gettingStudentMajor.html")
+
+
+def gettingStudentDepartment(request):
+    return render(request, "web/gettingStudentDepartment.html")
+
+
 def test_page(request, pin):
     try:
         authtor = AuthInfo.objects.get(user=request.session['user_id'])
