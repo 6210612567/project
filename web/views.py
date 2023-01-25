@@ -303,6 +303,22 @@ def activate_2fac_view(request):
 
 
 def delete_2fac_view(request):
-    auth = AuthInfo.objects.get(user=request.session['user_id'])
-    auth.delete()
-    return HttpResponseRedirect(reverse("web:setting_page"))
+    try:
+        data = json.loads(request.body)
+        pin = data['pin']
+        user_id = data['user_id']
+        response = check_2_factor_authen(user_id, pin)
+        if response['status'] == 'True':
+            auth = AuthInfo.objects.get(user=request.session['user_id'])
+            auth.delete()
+            data = {'status': 'True'}
+        else:
+            data = {'status': 'False'}
+        response = JsonResponse(data)
+        response['X-Frame-Options'] = 'SAMEORIGIN'
+        return response
+    except:
+        data = {'status': 'False'}
+        response = JsonResponse(data)
+        response['X-Frame-Options'] = 'SAMEORIGIN'
+        return response

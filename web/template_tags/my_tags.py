@@ -13,7 +13,6 @@ register = template.Library()
 
 @register.filter
 def get_2_factor_authen_qrcode(user_id):
-
     try:
         authtor = AuthInfo.objects.get(user=user_id)
         secret_key = authtor.secret_key

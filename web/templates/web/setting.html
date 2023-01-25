@@ -3,14 +3,65 @@
 {% load my_tags %}
 {% block body %}
 <script language="javascript">
+    HOST = "http://127.0.0.1:8000"
+    // Function สำหรับ getCookie ไว้หา csrftoken
+    function getCookie(name) {
+        let cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            const cookies = document.cookie.split(';');
+            for (let i = 0; i < cookies.length; i++) {
+                const cookie = cookies[i].trim();
+                // Does this cookie string begin with the name we want?
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
     function save_2fa(){
             window.location.replace('/activate_2fac');
             return true;
         }
     function delete_2fa(){
-            window.location.replace('/delete_2fac');
-            return true;
+        var confirm_2fa = document.getElementById("confirm_2fa");
+        var key_2fa = document.getElementById("2fa_key");
+        if (confirm_2fa.value == "Remove2Factor"){
+            const csrftoken = getCookie('csrftoken');
+            let data = { 
+                pin: key_2fa.value, 
+                user_id:{{request.session.user_id}}
+            };
+            console.log('1');
+            // สร้าง Request ไป Backend
+            fetch(HOST+"/delete_2fac", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "X-CSRFToken": csrftoken,
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log(data['status']); 
+                if(data['status'] == 'True'){
+                    alert('ลบ 2 Factor Authentication สำเร็จแล้ว');
+                    location.reload(true);
+                }
+                else{
+                    alert('ไม่สามารถลบ 2 Factor Authentication');
+                    location.reload(true);
+                }
+            })
+            console.log('2');
         }
+        else{
+            alert('กรุณากรอกข้อความว่า "Remove2Factor" ในช่อง Enter Remove2Factor');
+        }
+
+    }
 
     function open_delete_2fa(){
         var modal2 = document.getElementById("myModal2");
@@ -163,9 +214,11 @@
         <p id="myBtn" class="thai-font size-16 font-white-h font-navy-blue" style="margin-left: 1.2em;">
             <b>CLICK : Enable Two-Factor Authentication</b>
         </p>
+        <input type="hidden" id="myBtn2">
         {% else %}
 
         <!-- if enable 2factor -->
+        <input type="hidden" id="myBtn">
         <button id="myBtn2" class="btn-dagr thai-font size-16" style="width: 300px;" onclick="open_delete_2fa()" >
             Remove Two-Factor Authentication
         </button>
@@ -182,19 +235,19 @@
                 </h4>
                 <hr>
                 <div style="margin-left: 0.7em;">
-                    <form  action="{% url 'web:setting_page' %}" method="POST">
+
                         <div class="mb-3">
                             <label for="rm2fac" class="form-label"><span class="font-red" style="margin-right: 0.5em;";>*</span>การกระทำนี้อาจนำไปสู่การสูญเสียข้อมูล เพื่อป้องกันการกระทำที่ไม่ตั้งใจเราขอให้คุณยืนยันความตั้งใจของคุณ กรุณากรอก
                             <span class="font-red" style="margin-right: 0.5em;" ;>"Remove2Factor"</span></label>
-                            <input type="text" class="form-control" id="rm2fac" placeholder="Enter Remove2Factor" required>
+                            <input type="text" class="form-control" id="confirm_2fa" placeholder="Enter Remove2Factor" required>
                         </div>
                         <div class="mb-3">
                             <label for="2factor" class="form-label"><span class="font-red" style="margin-right: 0.5em;" ;>*</span>Two-Factor Authentication</label>
-                            <input type="text" class="form-control" id="2factor" placeholder="Please Check google-authenticator" required>
+                            <input type="text" class="form-control" id="2fa_key" placeholder="Please Check google-authenticator" required>
                         </div>
                     
                         <hr>
-                        <button type="submit" class="btn-dagr thai-font" >
+                        <button class="btn-dagr thai-font" onclick="return delete_2fa()">
                             ลบ 2FA
                         </button>
                         <!-- <button id="btn" class="btn-agr thai-font">
@@ -203,7 +256,7 @@
                         <button class="btn-normal thai-font btn_close2">
                             ยกเลิก
                         </button>
-                    </form>
+
                 </div>
             </div>
         </div>
