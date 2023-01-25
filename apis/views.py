@@ -3,7 +3,6 @@ import json
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
-from apis.custom.apis import Is2FAAuthenticated
 
 
 from .authentication import ldap3_authen
@@ -11,16 +10,33 @@ from .authentication import ldap3_authen
 
 # from django.contrib.auth.models import User
 
-# MariadDB connect
-import mariadb
-import sys
-
 # Import models
-from web.models import major as Major , StudentShowdetail3 , department as Department ,instructor as Instructor
+from web.models import major as Major , StudentShowdetail3 , department as Department ,instructor as Instructor ,ChannelForAPI
 from .filter import MajorFilter,StudentShowdetail3Filter,DepartmentFilter,InstructorFilter
+from datetime import datetime
 
 
+def check_permission(request):
+        try:
+            auth_key = request.headers['Application-Key']
+            ChannelForAPI.objects.get(auth_key=auth_key,status=True)
+            return True
+        except:
+            return False
 
+
+def update_api_limit(secretkey,time):
+    channel = ChannelForAPI.objects.get(auth_key=secretkey)
+    if channel.limit_time != time:
+        channel.limit = 3000
+        channel.limit_time = time
+        channel.save()
+    if channel.limit > 0:
+        channel.limit -= 1
+        channel.save()
+        return True
+    else:
+        return False
 
 class AuthenticationApiView(APIView):
     permission_classes = []
@@ -35,9 +51,21 @@ class AuthenticationApiView(APIView):
 
 ############### NEW FIND STUDENT DATA BY USING DJANGO FILTER ###############
 class StudentDataApiView(APIView):
-    permission_classes = [Is2FAAuthenticated]
-
+    permission_classes = []
+    
     def get(self, request, *args, **kwargs):
+        if not check_permission(request):
+            return Response({
+                "status": False,
+                "error": "Authentication failed due to the following reason: invalid token. Confirm that the access token in the authorization header is valid."
+            }, status=status.HTTP_403_FORBIDDEN)
+
+        if not update_api_limit(request.headers['Application-Key'],datetime.now().hour):
+            return Response({
+            "status": False,
+            "error": "Api request limit"
+            }, status=status.HTTP_408_REQUEST_TIMEOUT)
+
         student_data_all = StudentShowdetail3.objects.all()
         # Get all data by use filter
         students = StudentShowdetail3Filter(request.GET,queryset=student_data_all).qs
@@ -45,13 +73,29 @@ class StudentDataApiView(APIView):
         student_context_list=[]
         for student in students:
             student_context_list.append(student.context_data)
-        return Response({'output':student_context_list}, status=status.HTTP_200_OK)
+        return Response({
+            "status": True,
+            "message": "Success",
+            "data": student_context_list
+            }, status=status.HTTP_200_OK)
 
 
 class MajorApiView(APIView):
-    permission_classes = [Is2FAAuthenticated]
+    permission_classes = []
 
     def get(self, request, *args, **kwargs):
+        if not check_permission(request):
+            return Response({
+                "status": False,
+                "error": "Authentication failed due to the following reason: invalid token. Confirm that the access token in the authorization header is valid."
+            }, status=status.HTTP_403_FORBIDDEN)
+
+        if not update_api_limit(request.headers['Application-Key'],datetime.now().hour):
+            return Response({
+            "status": False,
+            "error": "Api request limit"
+            }, status=status.HTTP_408_REQUEST_TIMEOUT)
+
         major_data_all = Major.objects.all()
         # Get all data by use filter
         majors = MajorFilter(request.GET,queryset=major_data_all).qs
@@ -59,13 +103,32 @@ class MajorApiView(APIView):
         major_context_list=[]
         for major in majors:
             major_context_list.append(major.context_data)
-        return Response({'output':major_context_list}, status=status.HTTP_200_OK)
+        return Response({
+            "status": True,
+            "message": "Success",
+            "data": major_context_list
+            }
+            
+            , status=status.HTTP_200_OK)
+
 
 
 class DepartmentApiView(APIView):
-    permission_classes = [Is2FAAuthenticated]
+    permission_classes = []
 
     def get(self, request, *args, **kwargs):
+        if not check_permission(request):
+            return Response({
+                "status": False,
+                "error": "Authentication failed due to the following reason: invalid token. Confirm that the access token in the authorization header is valid."
+            }, status=status.HTTP_403_FORBIDDEN)
+
+        if not update_api_limit(request.headers['Application-Key'],datetime.now().hour):
+            return Response({
+            "status": False,
+            "error": "Api request limit"
+            }, status=status.HTTP_408_REQUEST_TIMEOUT)
+
         department_data_all = Department.objects.all()
         # Get all data by use filter
         departments = DepartmentFilter(request.GET,queryset=department_data_all).qs
@@ -73,13 +136,31 @@ class DepartmentApiView(APIView):
         department_context_list=[]
         for department in departments:
             department_context_list.append(department.context_data)
-        return Response({'output':department_context_list}, status=status.HTTP_200_OK)
+        return Response({
+            "status": True,
+            "message": "Success",
+            "data": department_context_list
+            }
+            
+            , status=status.HTTP_200_OK)
 
 
 class InstructorApiView(APIView):
-    permission_classes = [Is2FAAuthenticated]
+    permission_classes = []
 
     def get(self, request, *args, **kwargs):
+        if not check_permission(request):
+            return Response({
+                "status": False,
+                "error": "Authentication failed due to the following reason: invalid token. Confirm that the access token in the authorization header is valid."
+            }, status=status.HTTP_403_FORBIDDEN)
+        
+        if not update_api_limit(request.headers['Application-Key'],datetime.now().hour):
+            return Response({
+            "status": False,
+            "error": "Api request limit"
+            }, status=status.HTTP_408_REQUEST_TIMEOUT)
+
         instructor_data_all = Instructor.objects.all()
         # Get all data by use filter
         instructors = InstructorFilter(request.GET,queryset=instructor_data_all).qs
@@ -95,9 +176,21 @@ class InstructorApiView(APIView):
 
 
 class ReportStdGenderApiView(APIView):
-    permission_classes = [Is2FAAuthenticated]
+    permission_classes = []
 
     def get(self, request, *args, **kwargs):
+        if not check_permission(request):
+            return Response({
+                "status": False,
+                "error": "Authentication failed due to the following reason: invalid token. Confirm that the access token in the authorization header is valid."
+            }, status=status.HTTP_403_FORBIDDEN)
+        
+        if not update_api_limit(request.headers['Application-Key'],datetime.now().hour):
+            return Response({
+            "status": False,
+            "error": "Api request limit"
+            }, status=status.HTTP_408_REQUEST_TIMEOUT)
+
         student_male_all = StudentShowdetail3.objects.filter(title_name_len='Mr.')
         student_female_all = StudentShowdetail3.objects.filter(title_name_len='Miss.')
         student_all = StudentShowdetail3.objects.all()
@@ -121,9 +214,21 @@ class ReportStdGenderApiView(APIView):
 
 
 class ReportStdAdyearApiView(APIView):
-    permission_classes = [Is2FAAuthenticated]
+    permission_classes = []
 
     def get(self, request, *args, **kwargs):
+        if not check_permission(request):
+            return Response({
+                "status": False,
+                "error": "Authentication failed due to the following reason: invalid token. Confirm that the access token in the authorization header is valid."
+            }, status=status.HTTP_403_FORBIDDEN)
+
+        if not update_api_limit(request.headers['Application-Key'],datetime.now().hour):
+            return Response({
+            "status": False,
+            "error": "Api request limit"
+            }, status=status.HTTP_408_REQUEST_TIMEOUT)
+
         std_code_list = StudentShowdetail3.objects.values_list('std_code', flat=True).distinct()
         adyear_list = []
         adyear_dict = {}

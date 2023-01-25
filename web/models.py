@@ -138,6 +138,8 @@ class ChannelForAPI(models.Model):
     auth_key = models.CharField(max_length=100, blank=True, null=True)
     status = models.BooleanField(default=False)
     user = models.CharField(max_length=255)
+    limit = models.IntegerField(max_length=255,default=3000)
+    limit_time = models.IntegerField(max_length=2,default=0)
 
     @property
     def context_data(self):
