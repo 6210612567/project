@@ -243,12 +243,12 @@
                 })
                 .then(data => {
                     console.log(data)
-                    const title_th = data['output'][0]['tittle_name_lth']
-                    const fname_th = data['output'][0]['fname_th'];
-                    const lname_th = data['output'][0]['lname_th'];
-                    const major_th = data['output'][0]['major_th'];
-                    const department_th = data['output'][0]['department_th'];
-                    const email = data['output'][0]['email'];
+                    const title_th = data['data'][0]['tittle_name_lth']
+                    const fname_th = data['data'][0]['fname_th'];
+                    const lname_th = data['data'][0]['lname_th'];
+                    const major_th = data['data'][0]['major_th'];
+                    const department_th = data['data'][0]['department_th'];
+                    const email = data['data'][0]['email'];
                     document.querySelector('#title').insertAdjacentHTML('beforeend', title_th);
                     document.querySelector('#firstname').insertAdjacentHTML('beforeend', fname_th);
                     document.querySelector('#lastname').insertAdjacentHTML('beforeend', lname_th);
