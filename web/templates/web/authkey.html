@@ -64,6 +64,14 @@
         text-decoration: none;
         cursor: pointer;
     }
+    textarea{
+        width:100%;
+    }
+    .textwrapper{
+        border:1px solid #999999;
+        margin:5px 0;
+        padding:3px;
+    }
 
 </style>
 
@@ -242,9 +250,6 @@
 
 
 <div class="w3-col m7">
-
-
-
     <div class="w3-card w3-round w3-margin tiffany-green box-shadow-h"><br>
         <div class="w3-container light-green" style="margin-left: 0.5em; margin-top: -1.5em;">
             <p class="thai-font size-16" style="margin-top: 1em; margin-left: 1em;">
@@ -315,7 +320,7 @@
                             <p>
                                 <label for="description" class="form-label thai-font size-17"><span class="font-red" style="margin-right: 0.5em;";>*</span>รายละเอียด</label>
                             </p>
-                            <textarea id="description_input" name="description" rows="5" cols="80" style="margin-top: -1em;" class="thai-font" placeholder="กรุณากรอกรายละเอียด" maxlength="250" required></textarea>
+                            <textarea id="description_input" name="description" rows="5" cols="80" style="margin-top: -1em;" class="thai-font textwrapper" placeholder="กรุณากรอกรายละเอียด" maxlength="250" required></textarea>
                             <p class="thai-font size-13" style="margin-left: 0.5em;">ไม่เกิน 255 ตัวอักษร</p>
                         </div>
                         <div class="mb-3">
@@ -340,18 +345,33 @@
 
         <!-- แชนแนล -->
         {% for channel in channel_list %}
-        <div class="row-md-auto ">
-            <button id="channel_{{channel.id}}" class="btn thai-font" style="margin-left: 1em; width: 305px;" onclick="return edit_channel('{{channel.id}}')">
-                <div class="w3-container w3-card w3-round white box-shadow-h" style="height: 80px;"><br>
-                    <b id="channel_{{channel.id}}_name">{{channel.name}}</b>  
-                    <b id="channel_{{channel.id}}_desc">{{channel.desc}}</b>  
-                    <b id="channel_{{channel.id}}_status">{{channel.status}}</b>  
-                    <b id="channel_{{channel.id}}_user">{{channel.user}}</b>  
-                    
-                    <b >{{channel.auth_key}}</b>  
-                </div> 
-            </button>
-            <a href="{% url 'web:delete_channel' channel.id %}" onclick="return confirm_delete()">Delete</a>
+        <div class="row justify-content-md ">
+            <div class="w3-card w3-round white box-shadow"
+                style="height: auto; max-width: 95%; margin-bottom:1em; margin-left: 1.4em; background-color: #ddeef8;">
+                <br>
+                <div class="thai-font" style="margin-left: 1em; font-size: 16px;">
+                    <span>ชื่อแชลแนล: </span><b id="channel_{{channel.id}}_name" style="margin-left: 4em;">{{channel.name}}</b>
+                    <br>
+                    <span>สถานะ: </span><b id="channel_{{channel.id}}_status" style="margin-left: 6em;">{{channel.status}}</b>
+                    <br>
+                    <span>user: </span><b id="channel_{{channel.id}}_user" style="margin-left: 6.9em;">{{channel.user}}</b>
+                    <br>
+                    <span>Authentication key: </span><b style="margin-left: 0.7em;">{{channel.auth_key}}</b>
+                    </span><b id="channel_{{channel.id}}_desc" style="margin-left: 4em; color: rgba(0, 0, 0, 0);">{{channel.desc}}</b>
+                    <br>
+                </div>
+                <br>
+                <div>
+                    <button id="channel_{{channel.id}}" class="btn-save" style="margin-left: 1em;"
+                        onclick="return edit_channel('{{channel.id}}')">
+                        <p style="margin: 0.4em;" class="thai-font ">แก้ไข</p>
+                    </button>
+                    <button class="btn-dagr" href="{% url 'web:delete_channel' channel.id %}" class="ul-rm "
+                        onclick="return confirm_delete()">
+                        <p class="thai-font" style="margin-top:0.3em">ลบแชนแนล</p>
+                    </button>
+                </div>
+            </div>
         </div>
         {% endfor %}
 
@@ -390,18 +410,14 @@
 
                         <div class="mb-3">
                             <p>
-                                <label for="edit_channel_status" class="form-label thai-font size-17"><span class="font-red" style="margin-right: 0.5em;";>*</span>รายละเอียด</label>
+                                <label for="edit_channel_status" class="form-label thai-font size-17"><span class="font-red" style="margin-right: 0.5em;";>*</span>สถานะ</label>
                             </p>
-                            <select id="edit_channel_status">
-                                <option value=True>เปิดการทำงาน</option>
-                                <option value=False>ปิดการใช้บริการ</option>
+                            <select id="edit_channel_status" class="thai-font">
+                                <option value=True class="thai-font">เปิดการทำงาน</option>
+                                <option value=False class="thai-font">ปิดการใช้บริการ</option>
                             </select> 
                         </div>
 
-
-
-
-                           
                         <div class="mb-3">
                             <label for="description" class="form-label thai-font size-17">
                                 <span class="font-red" style="margin-right: 0.5em;";>*</span>
