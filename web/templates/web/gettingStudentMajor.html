@@ -35,8 +35,9 @@
                 class="ul-rm font-misty-blue-h font-midnight-blue thai-font">เอกสาร</a>&ensp;/
             <a href="{% url 'web:documents' %}" class="ul-rm font-misty-blue-h font-midnight-blue thai-font">APIs
                 Documents</a>&ensp;/
-            <a href="{% url 'web:student' %}" class="ul-rm font-misty-blue-h font-midnight-blue thai-font">บริการข้อมูลนักศึกษา</a>&ensp;/
-            Getting Student info
+            <a href="{% url 'web:student' %}"
+                class="ul-rm font-misty-blue-h font-midnight-blue thai-font">บริการข้อมูลนักศึกษา</a>&ensp;/
+            Getting Student major
         </p>
     </div>
 
@@ -55,7 +56,16 @@
     </div>
     <table class="w3-card w3-round white">
         <tr>
-            <td class="thai-font size-17">https://restapi.engr.tu.ac.th/api/v1/student?std_code=6210xxxxxx</td>
+            <td class="thai-font size-17">https://restapi.engr.tu.ac.th/api/v1/major</td>
+        </tr>
+        <tr>
+            <td class="thai-font size-17">https://restapi.engr.tu.ac.th/api/v1/major?id=6210xxxxxx</td>
+        </tr>
+        <tr>
+            <td class="thai-font size-17">https://restapi.engr.tu.ac.th/api/v1/major?mname_th=วิศวกรรมเครื่องกล</td>
+        </tr>
+        <tr>
+            <td class="thai-font size-17">https://restapi.engr.tu.ac.th/api/v1/major?mname_en=Mechanical Engineering</td>
         </tr>
     </table>
 
@@ -133,23 +143,13 @@
         <div class="w3-container navy-blue" style="margin-left: 0.5em; margin-top: -1.5em;">
             <code class="font-white">
                 <br>
-                { <br>
+                {<br>
                 &emsp;&emsp;"output": [<br>
-                &emsp;&emsp;&emsp;{<br>
-                &emsp;&emsp;&emsp;&emsp;"std_code": "6210123456",<br>
-                &emsp;&emsp;&emsp;&emsp;"tittle_name_lth": "นาย",<br>
-                &emsp;&emsp;&emsp;&emsp;"title_name_len": "Mr.",<br>
-                &emsp;&emsp;&emsp;&emsp;"fname_th": "firstname",<br>
-                &emsp;&emsp;&emsp;&emsp;"lname_th": "lastname",<br>
-                &emsp;&emsp;&emsp;&emsp;"fname_en": "",<br>
-                &emsp;&emsp;&emsp;&emsp;"lname_en": "",<br>
-                &emsp;&emsp;&emsp;&emsp;"major_th": "วิศวกรรมศาสตรบัณฑิตภาคภาษาอังกฤษ (TEPE)",<br>
-                &emsp;&emsp;&emsp;&emsp;"major_en": "Thammasat English Programme of Engineering",<br>
-                &emsp;&emsp;&emsp;&emsp;"department_th": "โครงการ TEP-TEPE",<br>
-                &emsp;&emsp;&emsp;&emsp;"department_en": "TEP-TEPE",<br>
-                &emsp;&emsp;&emsp;&emsp;"advisor_id": "",<br>
-                &emsp;&emsp;&emsp;&emsp;"email": null<br>
-                &emsp;&emsp;&emsp;}<br>
+                &emsp;&emsp;&emsp;&emsp;{<br>
+                &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;"id": 6210123456,<br>
+                &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;"mname_th": "วิศวกรรมเครื่องกล",<br>
+                &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;"mname_en": "Mechanical Engineering"<br>
+                &emsp;&emsp;&emsp;&emsp;}<br>
                 &emsp;&emsp;]<br>
                 }<br><br>
             </code>
@@ -173,7 +173,7 @@
             <div class="w3-container navy-blue" style="margin-left: 0.5em; margin-top: -1.5em;">
                 <code class="font-white">
                     <br>
-                    curl --location --request GET "https://restapi.engr.tu.ac.th/api/v1/student?std_code=6210xxxxxx" \ <br>
+                    curl --location --request GET "https://restapi.engr.tu.ac.th/api/v1/major" \ <br>
                     &emsp;&emsp;--header "Content-Type: application/json" \<br>
                     &emsp;&emsp;--header "Application-Key: {Access token}" \<br>
                     &emsp;&emsp;--data ""
@@ -183,7 +183,7 @@
             </div>
         </div>
     </div>
-    
+
     <div id="PHP" class="city" style="display:none">
         <br>
         <div class="w3-card w3-round navy-blue w3-margin-left w3-margin-right"><br>
@@ -193,7 +193,7 @@
                     $curl = curl_init();<br>
                     <br>
                     &emsp;&emsp;curl_setopt_array($curl, array(<br>
-                    &emsp;&emsp;CURLOPT_URL => "https://restapi.engr.tu.ac.th/api/v1/student?std_code=6210xxxxxx",<br>
+                    &emsp;&emsp;CURLOPT_URL => "https://restapi.engr.tu.ac.th/api/v1/major",<br>
                     &emsp;&emsp;CURLOPT_RETURNTRANSFER => true,<br>
                     &emsp;&emsp;CURLOPT_ENCODING => "",<br>
                     &emsp;&emsp;CURLOPT_MAXREDIRS => 10,<br>
@@ -221,7 +221,7 @@
             </div>
         </div>
     </div>
-    
+
     <div id="GO" class="city" style="display:none">
         <br>
         <div class="w3-card w3-round navy-blue w3-margin-left w3-margin-right"><br>
@@ -241,7 +241,7 @@
                     
                     func main() {<br>
                     <br>
-                    &emsp;&emsp;url := "https://restapi.engr.tu.ac.th/student?std_code=6210xxxxxx"<br>
+                    &emsp;&emsp;url := "https://restapi.engr.tu.ac.th/api/v1/major"<br>
                     &emsp;&emsp;method := "GET"<br>
                     <br>
                     &emsp;&emsp;payload := strings.NewReader("")<br>
@@ -281,7 +281,7 @@
                     var options = {<br>
                     &emsp;&emsp;'method': 'GET',<br>
                     'hostname': 'restapi.engr.tu.ac.th',<br>
-                    &emsp;&emsp;'path': '/api/v1/student?std_code=6210xxxxxx',<br>
+                    &emsp;&emsp;'path': '/api/v1/major',<br>
                     &emsp;&emsp;'headers': {<br>
                     &emsp;&emsp;&emsp;&emsp;'Content-Type': 'application/json',<br>
                     &emsp;&emsp;&emsp;&emsp;'Application-Key': '{Access token}'<br>
@@ -310,7 +310,7 @@
             </div>
         </div>
     </div>
-    
+
     <script>
         function openCity(cityName) {
                 var i;
@@ -327,7 +327,7 @@
         <h3><b>Status codes</b></h3>
         <hr>
     </div>
-    
+
     <table class="w3-card w3-round white">
         <tr>
             <th class="thai-font size-18">Codes</th>
@@ -348,7 +348,7 @@
         <tr>
             <td class="thai-font size-17">403 Forbidden</td>
             <td class="thai-font size-17">Not authorized to access the resource.
-            Confirm that your account or plan is authorized to access the resource.</td>
+                Confirm that your account or plan is authorized to access the resource.</td>
         </tr>
     </table>
     <br>
@@ -357,7 +357,7 @@
         <h3><b>Status Message</b></h3>
         <hr>
     </div>
-    
+
     <table class="w3-card w3-round white">
         <tr>
             <th class="thai-font size-18">Codes</th>
@@ -367,35 +367,37 @@
         <tr>
             <td class="thai-font size-17">200 OK</td>
             <td class="thai-font size-17">TRUE</td>
-            <td class="thai-font size-17">Get Profile Student Success</td>
+            <td class="thai-font size-17">Get Data Major Student All Success!</td>
+        </tr>
+        <tr>
+            <td class="thai-font size-17">200 OK</td>
+            <td class="thai-font size-17">TRUE</td>
+            <td class="thai-font size-17">Get Data Major Student by filter Success!</td>
         </tr>
         <tr>
             <td class="thai-font size-17">400 Bad Request</td>
             <td class="thai-font size-17">FALSE</td>
-            <td class="thai-font size-17">Student ID Invalid!</td>
-        </tr>
-        <tr>
-            <td class="thai-font size-17">400 Bad Request</td>
-            <td class="thai-font size-17">FALSE</td>
-            <td class="thai-font size-17">You cannot send a request body using a GET operation (HTTP method)!,"?std_code=6210xxxxxx"</td>
+            <td class="thai-font size-17">Major ID is Invalid!. Must follow the scheme,'/major?id=6210xxxxxx'</td>
         </tr>
         <tr>
             <td class="thai-font size-17">401 Unauthorized</td>
             <td class="thai-font size-17">FALSE</td>
             <td class="thai-font size-17">Application-Key header required
-            . Must follow the scheme, "Application-Key: ACCESS TOKEN"</td>
+                . Must follow the scheme, "Application-Key: ACCESS TOKEN"</td>
         </tr>
         <tr>
             <td class="thai-font size-17">403 Forbidden</td>
             <td class="thai-font size-17">FALSE</td>
-            <td class="thai-font size-17">Application-Key failed due to the following reason: invalid token. Confirm that the access token in the authorization
-            header is valid.</td>
+            <td class="thai-font size-17">Application-Key failed due to the following reason: invalid token. Confirm
+                that the access token in the authorization
+                header is valid.</td>
         </tr>
     </table>
     <br>
     <div class="w3-row-padding w3-margin">
         <p class="thai-font size-15">
-            <a href="{% url 'web:home' %}" class="ul-rm font-misty-blue-h font-midnight-blue thai-font">หน้าหลัก</a>&ensp;/
+            <a href="{% url 'web:home' %}"
+                class="ul-rm font-misty-blue-h font-midnight-blue thai-font">หน้าหลัก</a>&ensp;/
             <a href="{% url 'web:document' %}"
                 class="ul-rm font-misty-blue-h font-midnight-blue thai-font">เอกสาร</a>&ensp;/
             <a href="{% url 'web:documents' %}" class="ul-rm font-misty-blue-h font-midnight-blue thai-font">APIs
