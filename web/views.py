@@ -163,6 +163,14 @@ def gettingStudentDepartment(request):
     return render(request, "web/gettingStudentDepartment.html")
 
 
+def instructors(request):
+    return render(request, "web/instructors.html")
+
+
+def gettingInstructorsInfo(request):
+    return render(request, "web/gettingInstructorsInfo.html")
+
+
 def test_page(request, pin):
     try:
         authtor = AuthInfo.objects.get(user=request.session['user_id'])
@@ -285,12 +293,14 @@ def delete_channel_view(request, channel_id):
         return HttpResponseRedirect(reverse("web:createChannel_page"))
     except:
         return HttpResponseRedirect(reverse("web:createChannel_page"))
- 
+
+
 def activate_2fac_view(request):
     auth = AuthInfo.objects.get(user=request.session['user_id'])
     auth.status = True
     auth.save()
     return HttpResponseRedirect(reverse("web:setting_page"))
+
 
 def delete_2fac_view(request):
     auth = AuthInfo.objects.get(user=request.session['user_id'])
