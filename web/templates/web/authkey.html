@@ -334,7 +334,9 @@
                         </div>
                     
                         <hr>
-                        <button class="btn-agr thai-font" onclick="return insert_channel()" value="เพิ่ม"></button>
+                        <button class="btn-agr thai-font" onclick="return insert_channel()" value="เพิ่ม">
+                            สร้างแชนแนล
+                        </button>
                         <button class="btn-dagr thai-font btn_close">
                             ยกเลิก
                         </button>
@@ -366,10 +368,12 @@
                         onclick="return edit_channel('{{channel.id}}')">
                         <p style="margin: 0.4em;" class="thai-font ">แก้ไข</p>
                     </button>
-                    <a class="btn btn-dagr" href="{% url 'web:delete_channel' channel.id %}" class="ul-rm "
-                        onclick="return confirm_delete()">
-                        <p class="thai-font" style="margin-top:0.3em">ลบแชนแนล</p>
-                    </a>
+                    <button class="btn-dagr" >
+                        <a href="{% url 'web:delete_channel' channel.id %}" class="ul-rm font-black-h" onclick="return confirm_delete()">
+                            <p class="thai-font" style="margin-top:0.3em">ลบแชนแนล</p>
+                        </a>
+                    </button>
+                    
                 </div>
             </div>
         </div>
@@ -429,10 +433,12 @@
                         </div>
                     
                         <hr>
-                        <button class="btn-agr thai-font" onclick="return confirm_edit_channel()" value="เพิ่ม"></button>
-                        <button class="btn-dagr thai-font btn_close">
-                            ยกเลิก
+                        <button class="btn-agr thai-font" onclick="return confirm_edit_channel()" value="เพิ่ม">
+                            ยืนยัน
                         </button>
+                        <!-- <button class="btn-dagr thai-font btn_close2">
+                            ยกเลิก
+                        </button> -->
                     <!-- </form> -->
                 </div>
             </div>
@@ -457,6 +463,7 @@
         var span = document.getElementsByClassName("close")[0];
     
         var btn_close = document.getElementsByClassName("btn_close")[0];
+        // var btn_close2 = document.getElementsByClassName("btn_close2")[0];
 
         
         // When the user clicks the button, open the modal 
@@ -472,6 +479,9 @@
         btn_close.onclick = function () {
             modal.style.display = "none";
         }
+        // btn_close2.onclick = function () {
+        //         modal.style.display = "none";
+        //     }
 
         // When the user clicks anywhere outside of the modal, close it
         window.onclick = function (event) {
