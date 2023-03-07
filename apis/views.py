@@ -11,7 +11,8 @@ from .authentication import ldap3_authen
 # from django.contrib.auth.models import User
 
 # Import models
-from web.models import major as Major , StudentShowdetail3 , department as Department ,instructor as Instructor ,ChannelForAPI
+from web.models import major as Major , StudentShowdetail3 , engr_department as Department ,instructor as Instructor ,ChannelForAPI
+# Import filter
 from .filter import MajorFilter,StudentShowdetail3Filter,DepartmentFilter,InstructorFilter
 from datetime import datetime
 
@@ -44,9 +45,17 @@ class AuthenticationApiView(APIView):
     def post(self, request, *args, **kwargs):
         response = ldap3_authen(request.data['username'],request.data['password'])
         if response[0] == True:
-            return Response({'name':response[1]}, status=status.HTTP_200_OK)
+            return Response({
+                'status':True,
+                'message':'Authorized',
+                'name':response[1]
+                }, status=status.HTTP_200_OK)
         else:
-            return Response('Unauthorized', status=status.HTTP_401_UNAUTHORIZED)
+            return Response({
+                'status':False,
+                'message':'Unauthorized',
+                'name':response[1]
+                }, status=status.HTTP_401_UNAUTHORIZED)
         
 
 ############### NEW FIND STUDENT DATA BY USING DJANGO FILTER ###############
@@ -58,7 +67,7 @@ class StudentDataApiView(APIView):
             return Response({
                 "status": False,
                 "error": "Authentication failed due to the following reason: invalid token. Confirm that the access token in the authorization header is valid."
-            }, status=status.HTTP_403_FORBIDDEN)
+            }, status=status.HTTP_401_UNAUTHORIZED)
 
         if not update_api_limit(request.headers['Application-Key'],datetime.now().hour):
             return Response({
@@ -88,7 +97,7 @@ class MajorApiView(APIView):
             return Response({
                 "status": False,
                 "error": "Authentication failed due to the following reason: invalid token. Confirm that the access token in the authorization header is valid."
-            }, status=status.HTTP_403_FORBIDDEN)
+            }, status=status.HTTP_401_UNAUTHORIZED)
 
         if not update_api_limit(request.headers['Application-Key'],datetime.now().hour):
             return Response({
@@ -121,7 +130,7 @@ class DepartmentApiView(APIView):
             return Response({
                 "status": False,
                 "error": "Authentication failed due to the following reason: invalid token. Confirm that the access token in the authorization header is valid."
-            }, status=status.HTTP_403_FORBIDDEN)
+            }, status=status.HTTP_401_UNAUTHORIZED)
 
         if not update_api_limit(request.headers['Application-Key'],datetime.now().hour):
             return Response({
@@ -153,7 +162,7 @@ class InstructorApiView(APIView):
             return Response({
                 "status": False,
                 "error": "Authentication failed due to the following reason: invalid token. Confirm that the access token in the authorization header is valid."
-            }, status=status.HTTP_403_FORBIDDEN)
+            }, status=status.HTTP_401_UNAUTHORIZED)
         
         if not update_api_limit(request.headers['Application-Key'],datetime.now().hour):
             return Response({
@@ -171,8 +180,14 @@ class InstructorApiView(APIView):
         
         for instructor_data in instructor_context_list:
             instructor_data['department'] = instructor_data['department'].dname_th
-        print('1')
-        return Response({'output':instructor_context_list}, status=status.HTTP_200_OK)
+
+        return Response({
+            "status": True,
+            "message": "Success",
+            "data": instructor_context_list
+            }
+            
+            , status=status.HTTP_200_OK)
 
 
 class ReportStdGenderApiView(APIView):
@@ -183,7 +198,7 @@ class ReportStdGenderApiView(APIView):
             return Response({
                 "status": False,
                 "error": "Authentication failed due to the following reason: invalid token. Confirm that the access token in the authorization header is valid."
-            }, status=status.HTTP_403_FORBIDDEN)
+            }, status=status.HTTP_401_UNAUTHORIZED)
         
         if not update_api_limit(request.headers['Application-Key'],datetime.now().hour):
             return Response({
@@ -195,8 +210,10 @@ class ReportStdGenderApiView(APIView):
         student_female_all = StudentShowdetail3.objects.filter(title_name_len='Miss.')
         student_all = StudentShowdetail3.objects.all()
         
-        return Response(
-            [
+        return Response({
+            "status": True,
+            "message": "Success",
+            "data" : [
             {
                 "Gender": "Male",
                 "Total": len(student_male_all)
@@ -210,7 +227,7 @@ class ReportStdGenderApiView(APIView):
                 "Total": len(student_all)
             },
             ]
-            , status=status.HTTP_200_OK)
+            }, status=status.HTTP_200_OK)
 
 
 class ReportStdAdyearApiView(APIView):
@@ -221,7 +238,7 @@ class ReportStdAdyearApiView(APIView):
             return Response({
                 "status": False,
                 "error": "Authentication failed due to the following reason: invalid token. Confirm that the access token in the authorization header is valid."
-            }, status=status.HTTP_403_FORBIDDEN)
+            }, status=status.HTTP_401_UNAUTHORIZED)
 
         if not update_api_limit(request.headers['Application-Key'],datetime.now().hour):
             return Response({
@@ -240,4 +257,9 @@ class ReportStdAdyearApiView(APIView):
         for std in std_all:
             adyear_dict['25'+std.std_code[:2]] += 1
 
-        return Response(adyear_dict, status=status.HTTP_200_OK)
+        return Response({
+            "status": True,
+            "message": "Success",
+            "data" : adyear_dict
+            }
+            , status=status.HTTP_200_OK)

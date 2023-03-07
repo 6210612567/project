@@ -20,7 +20,8 @@ from django.http import HttpResponseRedirect
 
 
 # Create your views here.
-HOST = "http://127.0.0.1:8000"
+# HOST = "http://127.0.0.1:8000"
+HOST = "https://restapi.engr.tu.ac.th"
 
 
 def index(request):

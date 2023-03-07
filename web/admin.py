@@ -9,8 +9,7 @@ from .models import *
 # for model in models:
 #     admin.site.register(model)
 
-admin.site.register(student)
-admin.site.register(department)
+
 admin.site.register(instructor)
 admin.site.register(major)
 admin.site.register(AuthInfo)

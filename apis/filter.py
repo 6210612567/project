@@ -1,5 +1,5 @@
 import django_filters
-from web.models import major as Major ,  StudentShowdetail3 , department as Department ,instructor as Instructor
+from web.models import major as Major ,  StudentShowdetail3 , engr_department as Department ,instructor as Instructor
 
 
 
