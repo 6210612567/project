@@ -101,6 +101,28 @@ DATABASES = {
         'OPTIONS': {
                     'charset': 'utf8',
                     'use_unicode': True, },
+    },
+    'prg_human': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'prg_human',
+        'USER': 'root',
+        'PASSWORD': 'toor',
+        'HOST': '127.0.0.1',
+        'PORT': '3307',
+        'OPTIONS': {
+                    'charset': 'utf8',
+                    'use_unicode': True, },
+    },
+    'student_student': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'student_student',
+        'USER': 'root',
+        'PASSWORD': 'toor',
+        'HOST': '127.0.0.1',
+        'PORT': '3307',
+        'OPTIONS': {
+                    'charset': 'utf8',
+                    'use_unicode': True, },
     }
 }
 

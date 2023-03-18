@@ -1,19 +1,20 @@
 from django.urls import path, include
 from .views import AuthenticationApiView
 from .views import StudentDataApiView
-from .views import MajorApiView
-from .views import DepartmentApiView
+# from .views import MajorApiView
+from .views import StudentDepartmentApiView
+from .views import InstructorDepartmentApiView
 from .views import InstructorApiView
-from .views import ReportStdGenderApiView
-from .views import ReportStdAdyearApiView
+# from .views import ReportStdGenderApiView
+# from .views import ReportStdAdyearApiView
 # from .views import TestApiView
 
 app_name = 'apis'
 
 report_std_urls = (
     [
-        path('gender/', ReportStdGenderApiView.as_view()),
-        path('adyear/', ReportStdAdyearApiView.as_view()),
+        # path('gender/', ReportStdGenderApiView.as_view()),
+        # path('adyear/', ReportStdAdyearApiView.as_view()),
         
     ],
     'report_std')
@@ -23,12 +24,16 @@ report_std_urls = (
 v1_urls = (
     [
         path('authentication/', AuthenticationApiView.as_view()),
-        path('student', StudentDataApiView.as_view()),
-        path('major', MajorApiView.as_view()),
-        path('department', DepartmentApiView.as_view()),
-        path('instructor', InstructorApiView.as_view()),
-        # path('test', TestApiView.as_view()),
-        path('report/std/', include(report_std_urls)),
+        ####### Student API
+        path('stu/student', StudentDataApiView.as_view()),
+        path('stu/department', StudentDepartmentApiView.as_view()),
+        ####### Student Report API
+        # path('report/std/', include(report_std_urls)),
+        ####### Instuctor API
+        path('ins/instructor', InstructorApiView.as_view()),
+        path('ins/department', InstructorDepartmentApiView.as_view()),
+
+        
     ],
     'v1')
 

@@ -156,8 +156,8 @@ def gettingStudentinfo(request):
     return render(request, "web/gettingStudentinfo.html")
 
 
-def gettingStudentMajor(request):
-    return render(request, "web/gettingStudentMajor.html")
+def gettingInstructorsDepartment(request):
+    return render(request, "web/gettingInstructorsDepartment.html")
 
 
 def gettingStudentDepartment(request):

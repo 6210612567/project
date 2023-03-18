@@ -55,13 +55,38 @@
     </div>
     <table class="w3-card w3-round white">
         <tr>
-            <td class="thai-font size-17">https://restapi.engr.tu.ac.th/api/v1/student</td>
+            <td class="thai-font size-17">https://restapi.engr.tu.ac.th/api/v1/stu/student</td>
         </tr>
         <tr>
-            <td class="thai-font size-17">https://restapi.engr.tu.ac.th/api/v1/student?{fieldname}={value}</td>
+            <td class="thai-font size-17">https://restapi.engr.tu.ac.th/api/v1/stu/student?{fieldname}={value}</td>
         </tr>
         <tr>
-            <td class="thai-font size-17">https://restapi.engr.tu.ac.th/api/v1/student?std_code=6210xxxxxx</td>
+            <td class="thai-font size-17">https://restapi.engr.tu.ac.th/api/v1/stu/student?std_code=6210xxxxxx</td>
+        </tr>
+        <tr>
+            <td class="thai-font size-17">https://restapi.engr.tu.ac.th/api/v1/stu/student?fname_th=พัฒนา</td>
+        </tr>
+        <tr>
+            <td class="thai-font size-17">https://restapi.engr.tu.ac.th/api/v1/stu/student?lname_th=ทรัพย์พนาชัย</td>
+        </tr>
+        <tr>
+            <td class="thai-font size-17">https://restapi.engr.tu.ac.th/api/v1/stu/student?fname_en=Pattana</td>
+        </tr>
+        <tr>
+            <td class="thai-font size-17">https://restapi.engr.tu.ac.th/api/v1/stu/student?lname_en=Sapphanachai</td>
+        </tr>
+        <tr>
+            <td class="thai-font size-17">https://restapi.engr.tu.ac.th/api/v1/stu/student?advisor_id=1001028</td>
+        </tr>
+        <tr>
+            <td class="thai-font size-17">https://restapi.engr.tu.ac.th/api/v1/stu/student?email=day25436@hotmail.co.th</td>
+        </tr>
+        <tr>
+            <td class="thai-font size-17">https://restapi.engr.tu.ac.th/api/v1/stu/student?department_id=1</td>
+        </tr>
+
+        <tr>
+            <td class="thai-font size-17">https://restapi.engr.tu.ac.th/api/v1/stu/student?advisor_th=วีรชัย อโณทัยไพบูลย์</td>
         </tr>
     </table>
 
@@ -145,18 +170,23 @@
                 &emsp;&emsp;"data": [<br>
                 &emsp;&emsp;&emsp;{<br>
                 &emsp;&emsp;&emsp;&emsp;"std_code": "6210123456",<br>
-                &emsp;&emsp;&emsp;&emsp;"tittle_name_lth": "นาย",<br>
-                &emsp;&emsp;&emsp;&emsp;"title_name_len": "Mr.",<br>
-                &emsp;&emsp;&emsp;&emsp;"fname_th": "firstname",<br>
-                &emsp;&emsp;&emsp;&emsp;"lname_th": "lastname",<br>
-                &emsp;&emsp;&emsp;&emsp;"fname_en": "",<br>
-                &emsp;&emsp;&emsp;&emsp;"lname_en": "",<br>
-                &emsp;&emsp;&emsp;&emsp;"major_th": "วิศวกรรมศาสตรบัณฑิตภาคภาษาอังกฤษ (TEPE)",<br>
-                &emsp;&emsp;&emsp;&emsp;"major_en": "Thammasat English Programme of Engineering",<br>
-                &emsp;&emsp;&emsp;&emsp;"department_th": "โครงการ TEP-TEPE",<br>
-                &emsp;&emsp;&emsp;&emsp;"department_en": "TEP-TEPE",<br>
-                &emsp;&emsp;&emsp;&emsp;"advisor_id": "",<br>
-                &emsp;&emsp;&emsp;&emsp;"email": null<br>
+                &emsp;&emsp;&emsp;&emsp;"degree": "   (Bachelor Degree) ",<br>
+                &emsp;&emsp;&emsp;&emsp;"std_code": "6210612831",<br>
+                &emsp;&emsp;&emsp;&emsp;"fname_th": "พัฒนา",<br>
+                &emsp;&emsp;&emsp;&emsp;"lname_th": "ทรัพย์พนาชัย",<br>
+                &emsp;&emsp;&emsp;&emsp;"fname_en": "Pattana",<br>
+                &emsp;&emsp;&emsp;&emsp;"lname_en": "Sapphanachai",<br>
+                &emsp;&emsp;&emsp;&emsp;"advisor_id": "1001028",<br>
+                &emsp;&emsp;&emsp;&emsp;"email": "day25436@hotmail.co.th",<br>
+                &emsp;&emsp;&emsp;&emsp;"title_id": "1",<br>
+                &emsp;&emsp;&emsp;&emsp;"department_id": "1",<br>
+                &emsp;&emsp;&emsp;&emsp;"title_name_fth": " ",<br>
+                &emsp;&emsp;&emsp;&emsp;"title_name_lth": " ",<br>
+                &emsp;&emsp;&emsp;&emsp;"department_en": "Department of  Electrical Engineering and Computer",<br>
+                &emsp;&emsp;&emsp;&emsp;"department_th": " ",<br>
+                &emsp;&emsp;&emsp;&emsp;"major_en": "Computer Engineering",<br>
+                &emsp;&emsp;&emsp;&emsp;"major_th": " ",<br>
+                &emsp;&emsp;&emsp;&emsp;"advisor_th": "วีรชัย อโณทัยไพบูลย์"<br>
                 &emsp;&emsp;&emsp;}<br>
                 &emsp;&emsp;]<br>
                 }<br><br>
@@ -181,7 +211,7 @@
             <div class="w3-container navy-blue" style="margin-left: 0.5em; margin-top: -1.5em;">
                 <code class="font-white">
                     <br>
-                    curl --location --request GET "https://restapi.engr.tu.ac.th/api/v1/student?std_code=6210xxxxxx" \ <br>
+                    curl --location --request GET "https://restapi.engr.tu.ac.th/api/v1/stu/student?std_code=6210xxxxxx" \ <br>
                     &emsp;&emsp;--header "Content-Type: application/json" \<br>
                     &emsp;&emsp;--header "Application-Key: {Access token}" \<br>
                     &emsp;&emsp;--data ""
@@ -201,7 +231,7 @@
                     $curl = curl_init();<br>
                     <br>
                     &emsp;&emsp;curl_setopt_array($curl, array(<br>
-                    &emsp;&emsp;CURLOPT_URL => "https://restapi.engr.tu.ac.th/api/v1/student?std_code=6210xxxxxx",<br>
+                    &emsp;&emsp;CURLOPT_URL => "https://restapi.engr.tu.ac.th/api/v1/stu/student?std_code=6210xxxxxx",<br>
                     &emsp;&emsp;CURLOPT_RETURNTRANSFER => true,<br>
                     &emsp;&emsp;CURLOPT_ENCODING => "",<br>
                     &emsp;&emsp;CURLOPT_MAXREDIRS => 10,<br>
@@ -289,7 +319,7 @@
                     var options = {<br>
                     &emsp;&emsp;'method': 'GET',<br>
                     'hostname': 'restapi.engr.tu.ac.th',<br>
-                    &emsp;&emsp;'path': '/api/v1/student?std_code=6210xxxxxx',<br>
+                    &emsp;&emsp;'path': '/api/v1/stu/student?std_code=6210xxxxxx',<br>
                     &emsp;&emsp;'headers': {<br>
                     &emsp;&emsp;&emsp;&emsp;'Content-Type': 'application/json',<br>
                     &emsp;&emsp;&emsp;&emsp;'Application-Key': '{Access token}'<br>

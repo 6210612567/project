@@ -56,31 +56,40 @@
     </div>
     <table class="w3-card w3-round white">
         <tr>
-            <td class="thai-font size-17">https://restapi.engr.tu.ac.th/api/v1/instructor</td>
+            <td class="thai-font size-17">https://restapi.engr.tu.ac.th/api/v1/ins/instructor</td>
         </tr>
         <tr>
-            <td class="thai-font size-17">https://restapi.engr.tu.ac.th/api/v1/instructor?{field_name}={value}</td>
+            <td class="thai-font size-17">https://restapi.engr.tu.ac.th/api/v1/ins/instructor?{field_name}={value}</td>
         </tr>
         <tr>
-            <td class="thai-font size-17">https://restapi.engr.tu.ac.th/api/v1/instructor?id=6210xxxxxx</td>
+            <td class="thai-font size-17">https://restapi.engr.tu.ac.th/api/v1/ins/instructor?personid=0000001</td>
         </tr>
         <tr>
-            <td class="thai-font size-17">https://restapi.engr.tu.ac.th/api/v1/instructor?fname_th=โชคดี</td>
+            <td class="thai-font size-17">https://restapi.engr.tu.ac.th/api/v1/ins/instructor?title=1</td>
         </tr>
         <tr>
-            <td class="thai-font size-17">https://restapi.engr.tu.ac.th/api/v1/instructor?lname_th=มีชัย</td>
+            <td class="thai-font size-17">https://restapi.engr.tu.ac.th/api/v1/ins/instructor?fname_t=อาจารย์</td>
         </tr>
         <tr>
-            <td class="thai-font size-17">https://restapi.engr.tu.ac.th/api/v1/instructor?fname_en=Chokdee</td>
+            <td class="thai-font size-17">https://restapi.engr.tu.ac.th/api/v1/ins/instructor?lname_t=ทดสอบระบบ</td>
         </tr>
         <tr>
-            <td class="thai-font size-17">https://restapi.engr.tu.ac.th/api/v1/instructor?lname_en=Meechai</td>
+            <td class="thai-font size-17">https://restapi.engr.tu.ac.th/api/v1/ins/instructor?fname_e=Ajarn</td>
         </tr>
         <tr>
-            <td class="thai-font size-17">https://restapi.engr.tu.ac.th/api/v1/instructor?department=สำนักงานศูนย์เทคโนโลยีสารสนเทศและการสื่อสาร</td>
+            <td class="thai-font size-17">https://restapi.engr.tu.ac.th/api/v1/ins/instructor?lname_e=Test</td>
         </tr>
         <tr>
-            <td class="thai-font size-17">https://restapi.engr.tu.ac.th/api/v1/instructor?email=chockdee@engr.tu.ac.th</td>
+            <td class="thai-font size-17">https://restapi.engr.tu.ac.th/api/v1/ins/instructor?department=1</td>
+        </tr>
+        <tr>
+            <td class="thai-font size-17">https://restapi.engr.tu.ac.th/api/v1/ins/instructor?title_academic=0</td>
+        </tr>
+        <tr>
+            <td class="thai-font size-17">https://restapi.engr.tu.ac.th/api/v1/ins/instructor?lname_e=Test</td>
+        </tr>
+        <tr>
+            <td class="thai-font size-17">https://restapi.engr.tu.ac.th/api/v1/ins/instructor?email=null</td>
         </tr>
     </table>
 
@@ -163,18 +172,25 @@
                 &emsp;&emsp;"message": "Success",<br>
                 &emsp;&emsp;"data": [<br>
                 &emsp;&emsp;&emsp;&emsp;{<br>
-                &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;"id": 6210612567,<br>
-                &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;"fname_th": "โชคดี",<br>
-                &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;"lname_th": "มีชัย",<br>
-                &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;"fname_en": "Chokdee",<br>
-                &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;"lname_en": "Meechai",<br>
-                &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;"department": "สำนักงานศูนย์เทคโนโลยีสารสนเทศและการสื่อสาร",<br>
-                &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;"email": "chockdee@engr.tu.ac.th"<br>
+                &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;"personid": "0000001",<br>
+                &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;"title": 1,<br>
+                &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;"fname_t": "อาจารย์",<br>
+                &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;"lname_t": "ทดสอบระบบ",<br>
+                &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;"fname_e": "Ajarn",<br>
+                &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;"lname_e": "Test",<br>
+                &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;"department": 1,<br>
+                &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;"title_academic": 0,<br>
+                &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;"ad_user": null,<br>
+                &emsp;&emsp;&emsp;&emsp;&emsp;&emsp; "full_ad": "0",<br>
+                &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;"email": null<br>
                 &emsp;&emsp;&emsp;&emsp;}<br>
                 &emsp;&emsp;]<br>
                 }<br>
                 <br>
             </code>
+
+
+            
         </div>
     </div>
     <br>
@@ -195,7 +211,7 @@
             <div class="w3-container navy-blue" style="margin-left: 0.5em; margin-top: -1.5em;">
                 <code class="font-white">
                     <br>
-                    curl --location --request GET "https://restapi.engr.tu.ac.th/api/v1/instructor" \ <br>
+                    curl --location --request GET "https://restapi.engr.tu.ac.th/api/v1/ins/instructor" \ <br>
                     &emsp;&emsp;--header "Content-Type: application/json" \<br>
                     &emsp;&emsp;--header "Application-Key: {Access token}" \<br>
                     &emsp;&emsp;--data ""
@@ -215,7 +231,7 @@
                     $curl = curl_init();<br>
                     <br>
                     &emsp;&emsp;curl_setopt_array($curl, array(<br>
-                    &emsp;&emsp;CURLOPT_URL => "https://restapi.engr.tu.ac.th/api/v1/instructor",<br>
+                    &emsp;&emsp;CURLOPT_URL => "https://restapi.engr.tu.ac.th/api/v1/ins/instructor",<br>
                     &emsp;&emsp;CURLOPT_RETURNTRANSFER => true,<br>
                     &emsp;&emsp;CURLOPT_ENCODING => "",<br>
                     &emsp;&emsp;CURLOPT_MAXREDIRS => 10,<br>
@@ -263,7 +279,7 @@
                     
                     func main() {<br>
                     <br>
-                    &emsp;&emsp;url := "https://restapi.engr.tu.ac.th/api/v1/instructor"<br>
+                    &emsp;&emsp;url := "https://restapi.engr.tu.ac.th/api/v1/ins/instructor"<br>
                     &emsp;&emsp;method := "GET"<br>
                     <br>
                     &emsp;&emsp;payload := strings.NewReader("")<br>
@@ -303,7 +319,7 @@
                     var options = {<br>
                     &emsp;&emsp;'method': 'GET',<br>
                     'hostname': 'restapi.engr.tu.ac.th',<br>
-                    &emsp;&emsp;'path': '/api/v1/instructor',<br>
+                    &emsp;&emsp;'path': '/api/v1/ins/instructor',<br>
                     &emsp;&emsp;'headers': {<br>
                     &emsp;&emsp;&emsp;&emsp;'Content-Type': 'application/json',<br>
                     &emsp;&emsp;&emsp;&emsp;'Application-Key': '{Access token}'<br>

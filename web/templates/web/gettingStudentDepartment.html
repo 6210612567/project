@@ -56,19 +56,28 @@
     </div>
     <table class="w3-card w3-round white">
         <tr>
-            <td class="thai-font size-17">https://restapi.engr.tu.ac.th/api/v1/department</td>
+            <td class="thai-font size-17">https://restapi.engr.tu.ac.th/api/v1/stu/department</td>
         </tr>
         <tr>
-            <td class="thai-font size-17">https://restapi.engr.tu.ac.th/api/v1/department?{field_name}={value}</td>
+            <td class="thai-font size-17">https://restapi.engr.tu.ac.th/api/v1/stu/department?{field_name}={value}</td>
         </tr>
         <tr>
-            <td class="thai-font size-17">https://restapi.engr.tu.ac.th/api/v1/department?id=6210xxxxxx</td>
+            <td class="thai-font size-17">https://restapi.engr.tu.ac.th/api/v1/stu/department?depid=1</td>
         </tr>
         <tr>
-            <td class="thai-font size-17">https://restapi.engr.tu.ac.th/api/v1/department?dname_th=ภาควิชาวิศวกรรมไฟฟ้าและคอมพิวเตอร์</td>
+            <td class="thai-font size-17">https://restapi.engr.tu.ac.th/api/v1/stu/department?major_th=major_name</td>
         </tr>
         <tr>
-            <td class="thai-font size-17">https://restapi.engr.tu.ac.th/api/v1/department?dname_en=Department of Electrical Engineering and Computer</td>
+            <td class="thai-font size-17">https://restapi.engr.tu.ac.th/api/v1/stu/department?major_en=Computer Engineering</td>
+        </tr>
+        <tr>
+            <td class="thai-font size-17">https://restapi.engr.tu.ac.th/api/v1/stu/department?department_th=department_name</td>
+        </tr>
+        <tr>
+            <td class="thai-font size-17">https://restapi.engr.tu.ac.th/api/v1/stu/department?department_en=Department of  Electrical Engineering and Computer</td>
+        </tr>
+        <tr>
+            <td class="thai-font size-17">https://restapi.engr.tu.ac.th/api/v1/stu/department?dep_refer=EE</td>
         </tr>
     </table>
 
@@ -151,9 +160,12 @@
                 &emsp;&emsp;"message": "Success",<br>
                 &emsp;&emsp;"data": [<br>
                 &emsp;&emsp;&emsp;&emsp;{<br>
-                &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;"id": 0,<br>
-                &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;"dname_th": "ภาควิชาวิศวกรรมไฟฟ้าและคอมพิวเตอร์",<br>
-                &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;"dname_en": "Department of Electrical Engineering and Computer"<br>
+                &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;"depid": 1,<br>
+                &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;"major_th": "   ",<br>
+                &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;"major_en": "Computer Engineering",<br>
+                &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;"department_th": "   ",<br>
+                &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;"department_en": "Department of  Electrical Engineering and Computer",<br>
+                &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;"dep_refer": "EE" <br>
                 &emsp;&emsp;&emsp;&emsp;}<br>
                 &emsp;&emsp;]<br>
                 }<br><br>
@@ -178,7 +190,7 @@
             <div class="w3-container navy-blue" style="margin-left: 0.5em; margin-top: -1.5em;">
                 <code class="font-white">
                     <br>
-                    curl --location --request GET "https://restapi.engr.tu.ac.th/api/v1/department" \ <br>
+                    curl --location --request GET "https://restapi.engr.tu.ac.th/api/v1/stu/department" \ <br>
                     &emsp;&emsp;--header "Content-Type: application/json" \<br>
                     &emsp;&emsp;--header "Application-Key: {Access token}" \<br>
                     &emsp;&emsp;--data ""
@@ -198,7 +210,7 @@
                     $curl = curl_init();<br>
                     <br>
                     &emsp;&emsp;curl_setopt_array($curl, array(<br>
-                    &emsp;&emsp;CURLOPT_URL => "https://restapi.engr.tu.ac.th/api/v1/department",<br>
+                    &emsp;&emsp;CURLOPT_URL => "https://restapi.engr.tu.ac.th/api/v1/stu/department",<br>
                     &emsp;&emsp;CURLOPT_RETURNTRANSFER => true,<br>
                     &emsp;&emsp;CURLOPT_ENCODING => "",<br>
                     &emsp;&emsp;CURLOPT_MAXREDIRS => 10,<br>
@@ -246,7 +258,7 @@
                     
                     func main() {<br>
                     <br>
-                    &emsp;&emsp;url := "https://restapi.engr.tu.ac.th/api/v1/department"<br>
+                    &emsp;&emsp;url := "https://restapi.engr.tu.ac.th/api/v1/stu/department"<br>
                     &emsp;&emsp;method := "GET"<br>
                     <br>
                     &emsp;&emsp;payload := strings.NewReader("")<br>
@@ -286,7 +298,7 @@
                     var options = {<br>
                     &emsp;&emsp;'method': 'GET',<br>
                     'hostname': 'restapi.engr.tu.ac.th',<br>
-                    &emsp;&emsp;'path': '/api/v1/department',<br>
+                    &emsp;&emsp;'path': '/api/v1/stu/department',<br>
                     &emsp;&emsp;'headers': {<br>
                     &emsp;&emsp;&emsp;&emsp;'Content-Type': 'application/json',<br>
                     &emsp;&emsp;&emsp;&emsp;'Application-Key': '{Access token}'<br>
