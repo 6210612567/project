@@ -10,8 +10,6 @@ from .models import *
 #     admin.site.register(model)
 
 
-admin.site.register(instructor)
-admin.site.register(major)
+
 admin.site.register(AuthInfo)
 admin.site.register(ChannelForAPI)
-admin.site.register(StudentShowdetail3)

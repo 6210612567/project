@@ -77,7 +77,8 @@
 
 
 <script language="javascript">
-    const HOST = "http://127.0.0.1:8000"
+    // const HOST = "http://127.0.0.1:8000"
+    const HOST = "https://restapi.engr.tu.ac.th"
     // Confirm Delete function
     function confirm_delete()
     {
@@ -358,8 +359,11 @@
                     <br>
                     <span>user: </span><b id="channel_{{channel.id}}_user" style="margin-left: 6.9em;">{{channel.user}}</b>
                     <br>
+                    <span>คำอธิบาย: </span><b id="channel_{{channel.id}}_desc" style="margin-left: 5em; ">{{channel.desc}}</b>
+                    <br>
+                    <span>limit: </span><b style="margin-left: 6.9em; ">{{channel.limit}} / 3000</b>
+                    <br>
                     <span>Authentication key: </span><b style="margin-left: 0.7em;">{{channel.auth_key}}</b>
-                    </span><b id="channel_{{channel.id}}_desc" style="margin-left: 4em; color: rgba(0, 0, 0, 0);">{{channel.desc}}</b>
                     <br>
                 </div>
                 <br>

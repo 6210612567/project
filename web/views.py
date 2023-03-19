@@ -27,7 +27,6 @@ HOST = "https://restapi.engr.tu.ac.th"
 def index(request):
     try:
         if request.session['user_id']:
-            # print(request.session['user_id'])
             return HttpResponseRedirect(reverse("web:home"))
     except Exception as e:
         print(e)
@@ -37,7 +36,6 @@ def index(request):
 def login_view(request):
     try:
         if request.session['user_id']:
-            # print(request.session['user_id'])
             return render(request, "web/index2.html")
     except:
         if request.method == "POST":
@@ -52,8 +50,8 @@ def login_view(request):
                 HOST+'/api/v1/authentication/', data=data)
             if response.status_code == status.HTTP_200_OK:
                 request.session['user_id'] = username
-                print(request.session['user_id'])
-                # print("render policy page")
+                request.session['name'] = response.json()['name']
+                request.session['api'] = 'Cn08Cn08'
                 request.session['login_status'] = username
                 request.session.modified = True
                 # return render(request, "web/policy.html")
@@ -73,13 +71,19 @@ def pdpa_page(request):
         if request.session['user_id']:
             return render(request, "web/policy.html")
     except Exception as e:
-        # print(request.session['user_id'])
-        # print(e)
         return render(request, "web/index.html")
 
 
 def setting_page(request):
-    return render(request, "web/setting.html")
+    
+    url = 'https://restapi.engr.tu.ac.th/api/v1/stu/student?stu_code='+request.session['user_id']
+    headers = {'Application-Key':'Cn08Cn08'}
+    res = requests.get(url, headers=headers)
+    return render(request, "web/setting.html" ,{
+                    'department_th': res.json()['data'][0]['department_th'],
+                    'major_th':res.json()['data'][0]['major_th'],
+                    'email':res.json()['data'][0]['email']
+                })
 
 
 def privacy_page(request):
@@ -200,8 +204,6 @@ def createChannel_page(request):
         if request.session['user_id']:
             pass
     except Exception as e:
-        # print(request.session['user_id'])
-        # print(e)
         return render(request, "web/index.html")
     try:
         # data =json.loads(request.body)
@@ -215,7 +217,6 @@ def createChannel_page(request):
     channel_lists = []
     for channel in channels:
         channel_lists.append(channel)
-    print(channel_lists)
     return render(request, "web/authkey.html", {'channel_list': channel_lists})
 
 

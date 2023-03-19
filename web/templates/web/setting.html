@@ -3,7 +3,8 @@
 {% load my_tags %}
 {% block body %}
 <script language="javascript">
-    HOST = "http://127.0.0.1:8000"
+    // HOST = "http://127.0.0.1:8000"
+    const HOST = "https://restapi.engr.tu.ac.th"
     // Function สำหรับ getCookie ไว้หา csrftoken
     function getCookie(name) {
         let cookieValue = null;
@@ -153,9 +154,6 @@
         <div class="row justify-content-md-center">
             <div class="col-md-auto" style="margin-left: 3em; margin-bottom: 1.5em;">
                 <p class="thai-font size-16 font-black" style="text-align: left; margin-left: 1em;">
-                    สถานะ APIs:
-                </p>
-                <p class="thai-font size-16 font-black" style="text-align: left; margin-left: 1em;">
                     ชื่อ:
                 </p>
                 <p class="thai-font size-16 font-black" style="text-align: left; margin-left: 1em;">
@@ -170,21 +168,18 @@
             </div>
             <div class="col" style="margin-bottom: 1.5em;">
                 <p class="thai-font size-16 font-black" style="text-align: left; margin-left: 1em;">
-                    สถานะ APIs:
-                </p>
-                <p class="thai-font size-16 font-black" style="text-align: left; margin-left: 1em;">
-                    <span id="title1"></span>
+                    <span id="title1">{{request.session.name}}</span>
                     <span id="firstname1"></span>
                     <span id="lastname1"></span>
                 </p>
                 <p class="thai-font size-16 font-black" style="text-align: left; margin-left: 1em;">
-                    <span id="email"></span>
+                    <span id="email">{{email}}</span>
                 </p>
                 <p class="thai-font size-16 font-black" style="text-align: left; margin-left: 1em;">
-                    <span id="depart"></span>
+                    <span id="depart">{{department_th}}</span>
                 </p>
                 <p class="thai-font size-16 font-black" style="text-align: left; margin-left: 1em;">
-                    <span id="major"></span>
+                    <span id="major">{{major_th}}</span>
                 </p>
             </div>
         </div>

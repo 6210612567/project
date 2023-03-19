@@ -9,7 +9,7 @@
             <div class="w3-col m12 ">
                 <div class="w3-card w3-round">
                     <div class="w3-container w3-padding text-center tral">
-                        <h1 class="thai-font font-black" style="margin-top:1.5em;">ยินดีต้อนรับ ({{request.session.user_id}})</strong></h1>
+                        <h1 class="thai-font font-black" style="margin-top:1.5em;">ยินดีต้อนรับ ({{request.session.name}})</strong></h1>
                         <p class="thai-font size-19 font-black" style="text-align: left; margin-left: 10%; margin-right: 10%; margin-top: 2em; "> 
                             ENGR Developer ช่วยให้นักพัฒนาระบบของคณะวิศวกรรมศาสตร์มหาวิทยาลัยธรรมศาสตร์สามารถสร้างแอพที่เชื่อมต่อกับ สำนักงานศูนย์เทคโนโลยีสารสนเทศและการสื่อสาร 
                         </p>
@@ -78,11 +78,6 @@
         <div class="w3-container w3-card w3-white w3-round w3-margin scroller"><br>
             <h4 class="thai-font" style="margin-left: 0.5em;">เอกสาร</h4>
             <hr class="w3-clear">
-            <p class="thai-font size-15" style="margin-bottom: -0.5em;">
-                <i class="fa fa-book" style="font-size: 16px; margin-right: 2em;"></i>บริการข้อมูลนักศึกษา: ข้อมูลคณะ
-                <a href="{% url 'web:gettingStudentMajor' %}" class="btn-read pull-right ul-rm size-13 font-charcoal-h">Read</a>
-            </p>
-            <hr>
             <p class="thai-font size-15" style="margin-bottom: -0.5em;"> 
                 <i class="fa fa-book" style="font-size: 16px; margin-right: 2em;"></i>บริการข้อมูลนักศึกษา : ข้อมูลสาขา
                 <a href="{% url 'web:gettingStudentDepartment' %}" class="btn-read pull-right ul-rm size-13 font-charcoal-h">Read</a>
