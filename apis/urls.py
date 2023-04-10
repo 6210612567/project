@@ -9,6 +9,7 @@ from .views import StudentReportGenderApiView
 from .views import StudentReportAdyearApiView
 from .views import StudentEditDataApiView
 from .views import InstructorEditDataApiView
+from .views import AdvisorApiView
 # from .views import TestApiView
 
 app_name = 'apis'
@@ -17,32 +18,29 @@ report_std_urls = (
     [
         path('gender/', StudentReportGenderApiView.as_view()),
         path('adyear/', StudentReportAdyearApiView.as_view()),
-        
+
     ],
     'report_std')
-
 
 
 v1_urls = (
     [
         path('authentication/', AuthenticationApiView.as_view()),
-        ####### Student API
+        # Student API
         path('stu/student', StudentDataApiView.as_view()),
         path('stu/department', StudentDepartmentApiView.as_view()),
         path('stu/edit', StudentEditDataApiView.as_view()),
-        ####### Student Report API
+        # Student Report API
         path('stu/report/', include(report_std_urls)),
-        ####### Instuctor API
+        # Instuctor API
         path('ins/instructor', InstructorApiView.as_view()),
         path('ins/department', InstructorDepartmentApiView.as_view()),
         path('ins/edit', InstructorEditDataApiView.as_view()),
+        path('advisor/', AdvisorApiView.as_view()),
 
-        
+
     ],
     'v1')
-
-
-
 
 
 urlpatterns = [
