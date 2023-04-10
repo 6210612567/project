@@ -5,16 +5,18 @@ from .views import StudentDataApiView
 from .views import StudentDepartmentApiView
 from .views import InstructorDepartmentApiView
 from .views import InstructorApiView
-# from .views import ReportStdGenderApiView
-# from .views import ReportStdAdyearApiView
+from .views import StudentReportGenderApiView
+from .views import StudentReportAdyearApiView
+from .views import StudentEditDataApiView
+from .views import InstructorEditDataApiView
 # from .views import TestApiView
 
 app_name = 'apis'
 
 report_std_urls = (
     [
-        # path('gender/', ReportStdGenderApiView.as_view()),
-        # path('adyear/', ReportStdAdyearApiView.as_view()),
+        path('gender/', StudentReportGenderApiView.as_view()),
+        path('adyear/', StudentReportAdyearApiView.as_view()),
         
     ],
     'report_std')
@@ -27,11 +29,13 @@ v1_urls = (
         ####### Student API
         path('stu/student', StudentDataApiView.as_view()),
         path('stu/department', StudentDepartmentApiView.as_view()),
+        path('stu/edit', StudentEditDataApiView.as_view()),
         ####### Student Report API
-        # path('report/std/', include(report_std_urls)),
+        path('stu/report/', include(report_std_urls)),
         ####### Instuctor API
         path('ins/instructor', InstructorApiView.as_view()),
         path('ins/department', InstructorDepartmentApiView.as_view()),
+        path('ins/edit', InstructorEditDataApiView.as_view()),
 
         
     ],

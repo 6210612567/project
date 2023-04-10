@@ -160,6 +160,10 @@ def gettingStudentinfo(request):
     return render(request, "web/gettingStudentinfo.html")
 
 
+def settingStudentinfo(request):
+    return render(request, "web/settingStudentinfo.html")
+
+
 def gettingInstructorsDepartment(request):
     return render(request, "web/gettingInstructorsDepartment.html")
 
@@ -174,6 +178,10 @@ def instructors(request):
 
 def gettingInstructorsInfo(request):
     return render(request, "web/gettingInstructorsInfo.html")
+
+
+def settingInstructorsInfo(request):
+    return render(request, "web/settingInstructorsInfo.html")
 
 
 def test_page(request, pin):

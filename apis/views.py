@@ -1,3 +1,4 @@
+from django.shortcuts import get_object_or_404
 import requests
 import json
 from rest_framework.views import APIView
@@ -19,7 +20,8 @@ from apis.models import PrgPerPerson,PrgEngrDepartment,PrgPerPersonDetail
 # Import filter
 from .filter import StuStudentFilter,DepartmentFilter,InstructorDepartmentFilter,InstructorFilter
 from datetime import datetime
-
+# Import Serializers
+from .serializers import StudentSerializer,InstructorSerializer,InstructorEmailSerializer
 
 
 def check_permission(request):
@@ -71,12 +73,14 @@ class StudentDataApiView(APIView):
     permission_classes = []
     
     def get(self, request, *args, **kwargs):
+        # Check if token is valid
         if not check_permission(request):
             return Response({
                 "status": False,
                 "error": "Authentication failed due to the following reason: invalid token. Confirm that the access token in the authorization header is valid."
             }, status=status.HTTP_401_UNAUTHORIZED)
 
+        # Check if api limit is useable
         if not update_api_limit(request.headers['Application-Key'],datetime.now().hour):
             return Response({
             "status": False,
@@ -127,17 +131,18 @@ class StudentDataApiView(APIView):
             }, status=status.HTTP_200_OK)
 
 
-
 class StudentDepartmentApiView(APIView):
     permission_classes = []
 
     def get(self, request, *args, **kwargs):
+        # Check if token is valid
         if not check_permission(request):
             return Response({
                 "status": False,
                 "error": "Authentication failed due to the following reason: invalid token. Confirm that the access token in the authorization header is valid."
             }, status=status.HTTP_401_UNAUTHORIZED)
 
+        # Check if api limit is useable
         if not update_api_limit(request.headers['Application-Key'],datetime.now().hour):
             return Response({
             "status": False,
@@ -163,12 +168,14 @@ class InstructorDepartmentApiView(APIView):
     permission_classes = []
 
     def get(self, request, *args, **kwargs):
+        # Check if token is valid
         if not check_permission(request):
             return Response({
                 "status": False,
                 "error": "Authentication failed due to the following reason: invalid token. Confirm that the access token in the authorization header is valid."
             }, status=status.HTTP_401_UNAUTHORIZED)
 
+        # Check if api limit is useable
         if not update_api_limit(request.headers['Application-Key'],datetime.now().hour):
             return Response({
             "status": False,
@@ -194,12 +201,14 @@ class InstructorApiView(APIView):
     permission_classes = []
 
     def get(self, request, *args, **kwargs):
+        # Check if token is valid
         if not check_permission(request):
             return Response({
                 "status": False,
                 "error": "Authentication failed due to the following reason: invalid token. Confirm that the access token in the authorization header is valid."
             }, status=status.HTTP_401_UNAUTHORIZED)
         
+        # Check if api limit is useable
         if not update_api_limit(request.headers['Application-Key'],datetime.now().hour):
             return Response({
             "status": False,
@@ -231,76 +240,186 @@ class InstructorApiView(APIView):
             , status=status.HTTP_200_OK)
 
 
-# class ReportStdGenderApiView(APIView):
-#     permission_classes = []
+class StudentReportGenderApiView(APIView):
+    permission_classes = []
 
-#     def get(self, request, *args, **kwargs):
-#         if not check_permission(request):
-#             return Response({
-#                 "status": False,
-#                 "error": "Authentication failed due to the following reason: invalid token. Confirm that the access token in the authorization header is valid."
-#             }, status=status.HTTP_401_UNAUTHORIZED)
+    def get(self, request, *args, **kwargs):
+        # Check if token is valid
+        if not check_permission(request):
+            return Response({
+                "status": False,
+                "error": "Authentication failed due to the following reason: invalid token. Confirm that the access token in the authorization header is valid."
+            }, status=status.HTTP_401_UNAUTHORIZED)
         
-#         if not update_api_limit(request.headers['Application-Key'],datetime.now().hour):
-#             return Response({
-#             "status": False,
-#             "error": "Api request limit"
-#             }, status=status.HTTP_408_REQUEST_TIMEOUT)
+        # Check if api limit is useable
+        if not update_api_limit(request.headers['Application-Key'],datetime.now().hour):
+            return Response({
+            "status": False,
+            "error": "Api request limit"
+            }, status=status.HTTP_408_REQUEST_TIMEOUT)
 
-#         student_male_all = StudentShowdetail3.objects.filter(title_name_len='Mr.')
-#         student_female_all = StudentShowdetail3.objects.filter(title_name_len='Miss.')
-#         student_all = StudentShowdetail3.objects.all()
+        student_male_all = StuStudent.objects.using('student_student').filter(title_id=1)
+        student_female_all = StuStudent.objects.using('student_student').filter(title_id__in=[2, 3])
+        student_all = StuStudent.objects.using('student_student').all()
         
-#         return Response({
-#             "status": True,
-#             "message": "Success",
-#             "data" : [
-#             {
-#                 "Gender": "Male",
-#                 "Total": len(student_male_all)
-#             },
-#             {
-#                 "Gender": "Female",
-#                 "Total": len(student_female_all)
-#             },
-#             {
-#                 "Gender": "All",
-#                 "Total": len(student_all)
-#             },
-#             ]
-#             }, status=status.HTTP_200_OK)
+        return Response({
+            "status": True,
+            "message": "Success",
+            "data" : [
+            {
+                "Gender": "Male",
+                "Total": len(student_male_all)
+            },
+            {
+                "Gender": "Female",
+                "Total": len(student_female_all)
+            },
+            {
+                "Gender": "All",
+                "Total": len(student_all)
+            },
+            ]
+            }, status=status.HTTP_200_OK)
 
 
-# class ReportStdAdyearApiView(APIView):
-    # permission_classes = []
+class StudentReportAdyearApiView(APIView):
+    permission_classes = []
 
-    # def get(self, request, *args, **kwargs):
-    #     if not check_permission(request):
-    #         return Response({
-    #             "status": False,
-    #             "error": "Authentication failed due to the following reason: invalid token. Confirm that the access token in the authorization header is valid."
-    #         }, status=status.HTTP_401_UNAUTHORIZED)
+    def get(self, request, *args, **kwargs):
+        # Check if token is valid
+        if not check_permission(request):
+            return Response({
+                "status": False,
+                "error": "Authentication failed due to the following reason: invalid token. Confirm that the access token in the authorization header is valid."
+            }, status=status.HTTP_401_UNAUTHORIZED)
 
-    #     if not update_api_limit(request.headers['Application-Key'],datetime.now().hour):
-    #         return Response({
-    #         "status": False,
-    #         "error": "Api request limit"
-    #         }, status=status.HTTP_408_REQUEST_TIMEOUT)
+        # Check if api limit is useable
+        if not update_api_limit(request.headers['Application-Key'],datetime.now().hour):
+            return Response({
+            "status": False,
+            "error": "Api request limit"
+            }, status=status.HTTP_408_REQUEST_TIMEOUT)
 
-    #     std_code_list = StudentShowdetail3.objects.values_list('std_code', flat=True).distinct()
-    #     adyear_list = []
-    #     adyear_dict = {}
-    #     for std_code in std_code_list:
-    #         if not std_code[:2] in adyear_list:
-    #             adyear_list.append(std_code[:2])
-    #             adyear_dict['25'+std_code[:2]] = 0
-    #     std_all = StudentShowdetail3.objects.all()
-    #     for std in std_all:
-    #         adyear_dict['25'+std.std_code[:2]] += 1
+        std_code_list = StuStudent.objects.using('student_student').values_list('stu_code', flat=True).distinct()
+        adyear_list = []
+        adyear_dict = {}
+        for std_code in std_code_list:
+            if not std_code[:2] in adyear_list:
+                adyear_list.append(std_code[:2])
+                adyear_dict['25'+std_code[:2]] = 0
+        std_all = StuStudent.objects.using('student_student').all()
+        for std in std_all:
+            adyear_dict['25'+std.stu_code[:2]] += 1
 
-    #     return Response({
-    #         "status": True,
-    #         "message": "Success",
-    #         "data" : adyear_dict
-    #         }
-    #         , status=status.HTTP_200_OK)
+        return Response({
+            "status": True,
+            "message": "Success",
+            "data" : adyear_dict
+            }
+            , status=status.HTTP_200_OK)
+    
+
+class StudentEditDataApiView(APIView):
+    permission_classes = []
+
+    
+    def patch(self, request, *args, **kwargs):
+
+        # Check if token is valid
+        if not check_permission(request):
+            return Response({
+                "status": False,
+                "error": "Authentication failed due to the following reason: invalid token. Confirm that the access token in the authorization header is valid."
+            }, status=status.HTTP_401_UNAUTHORIZED)
+        else:
+            user = ChannelForAPI.objects.get(auth_key=request.headers['Application-Key']).user
+        # Check if api limit is useable
+        if not update_api_limit(request.headers['Application-Key'],datetime.now().hour):
+            return Response({
+            "status": False,
+            "error": "Api request limit"
+            }, status=status.HTTP_408_REQUEST_TIMEOUT)
+        # Check if user is owner this object to patch
+        try:
+            if user == request.GET.get('stu_code'):
+                student_data = get_object_or_404(StuStudent.objects.using('student_student'), stu_code=user)
+                serializer = StudentSerializer(student_data, data=request.data, partial=True)
+                if serializer.is_valid(raise_exception=True):
+                    student_data = serializer.save()
+                return Response({
+                    "status": True,
+                    "message": "Success",
+                    "update data" : serializer.validated_data
+                    }
+                , status=status.HTTP_200_OK)
+            else:
+                return Response({
+                        "status": False,
+                        "message": "You are not onwer of this stu_code"
+                        }
+                    , status=status.HTTP_400_BAD_REQUEST)
+        except Exception as e:
+            return Response({
+                    "status": False,
+                    "message": "Error",
+                    "more information": e
+                    }
+                , status=status.HTTP_400_BAD_REQUEST)
+        
+
+class InstructorEditDataApiView(APIView):
+    permission_classes = []
+
+    
+    def patch(self, request, *args, **kwargs):
+
+        # Check if token is valid
+        if not check_permission(request):
+            return Response({
+                "status": False,
+                "error": "Authentication failed due to the following reason: invalid token. Confirm that the access token in the authorization header is valid."
+            }, status=status.HTTP_401_UNAUTHORIZED)
+        else:
+            user = ChannelForAPI.objects.get(auth_key=request.headers['Application-Key']).user
+        # Check if api limit is useable
+        if not update_api_limit(request.headers['Application-Key'],datetime.now().hour):
+            return Response({
+            "status": False,
+            "error": "Api request limit"
+            }, status=status.HTTP_408_REQUEST_TIMEOUT)
+        # Check if user is owner this object to patch
+        try:
+            def Merge(dict1, dict2):
+                res = {**dict1, **dict2}
+                return res
+            if user == request.GET.get('personid'):
+                # edite data in PrgPerPerson
+                Instructor_data = get_object_or_404(PrgPerPerson.objects.using('prg_human'), personid=user)
+                serializer = InstructorSerializer(Instructor_data, data=request.data, partial=True)
+                if serializer.is_valid(raise_exception=True):
+                    Instructor_data = serializer.save()
+                # edite data in PrgPerPersonDetail
+                Instructor_email = get_object_or_404(PrgPerPersonDetail.objects.using('prg_human'), personid=user)
+                serializer_email = InstructorEmailSerializer(Instructor_email, data=request.data, partial=True)
+                if serializer_email.is_valid(raise_exception=True):
+                    Instructor_email = serializer_email.save()
+                merge_instructor_data = (serializer.validated_data,serializer_email.validated_data)
+                return Response({
+                    "status": True,
+                    "message": "Success",
+                    "update data" : merge_instructor_data
+                    }
+                , status=status.HTTP_200_OK)
+            else:
+                return Response({
+                        "status": False,
+                        "message": "You are not onwer of this personid"
+                        }
+                    , status=status.HTTP_400_BAD_REQUEST)
+        except Exception as e:
+            return Response({
+                    "status": False,
+                    "message": "Error",
+                    "more information": e
+                    }
+                , status=status.HTTP_400_BAD_REQUEST)

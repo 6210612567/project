@@ -1,0 +1,447 @@
+{% extends "web/layout.html" %}
+
+{% block body %}
+<style>
+    table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 95.5%;
+        margin-top: 0.5em;
+        margin-left: 1.25em;
+    }
+
+    td,
+    th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding-left: 1em;
+        padding-top: 8px;
+        padding-bottom: 8px;
+    }
+
+    tr:nth-child(even) {
+        background-color: #f0f0f0;
+    }
+</style>
+
+<title>Setting Student Info - ENGR APIs Developer</title>
+
+<div class="w3-col m7">
+    <div class="w3-row-padding w3-margin">
+        <p class="thai-font size-15">
+            <a href="{% url 'web:home' %}"
+                class="ul-rm font-misty-blue-h font-midnight-blue thai-font">หน้าหลัก</a>&ensp;/
+            <a href="{% url 'web:document' %}"
+                class="ul-rm font-misty-blue-h font-midnight-blue thai-font">เอกสาร</a>&ensp;/
+            <a href="{% url 'web:documents' %}" class="ul-rm font-misty-blue-h font-midnight-blue thai-font">APIs
+                Documents</a>&ensp;/
+            <a href="{% url 'web:student' %}" class="ul-rm font-misty-blue-h font-midnight-blue thai-font">บริการข้อมูลนักศึกษา</a>&ensp;/
+            Getting Student info
+        </p>
+    </div>
+
+    <!-- HTTP request : POST -->
+    <div class="w3-margin">
+        <h3><b>HTTP request</b></h3>
+        <hr>
+    </div>
+
+    <div class="w3-card w3-round baby-blue  w3-margin-left w3-margin-right"><br>
+        <div class="w3-container white" style="margin-left: 0.5em; margin-top: -1.5em;">
+            <h5 class="thai-font">
+                <b>HTTP request : GET</b>
+            </h5>
+        </div>
+    </div>
+    <table class="w3-card w3-round white">
+        <tr>
+            <td class="thai-font size-17">https://restapi.engr.tu.ac.th/api/v1/stu/student</td>
+        </tr>
+        <tr>
+            <td class="thai-font size-17">https://restapi.engr.tu.ac.th/api/v1/stu/student?{fieldname}={value}</td>
+        </tr>
+        <tr>
+            <td class="thai-font size-17">https://restapi.engr.tu.ac.th/api/v1/stu/student?std_code=6210xxxxxx</td>
+        </tr>
+        <tr>
+            <td class="thai-font size-17">https://restapi.engr.tu.ac.th/api/v1/stu/student?fname_th=พัฒนา</td>
+        </tr>
+        <tr>
+            <td class="thai-font size-17">https://restapi.engr.tu.ac.th/api/v1/stu/student?lname_th=ทรัพย์พนาชัย</td>
+        </tr>
+        <tr>
+            <td class="thai-font size-17">https://restapi.engr.tu.ac.th/api/v1/stu/student?fname_en=Pattana</td>
+        </tr>
+        <tr>
+            <td class="thai-font size-17">https://restapi.engr.tu.ac.th/api/v1/stu/student?lname_en=Sapphanachai</td>
+        </tr>
+        <tr>
+            <td class="thai-font size-17">https://restapi.engr.tu.ac.th/api/v1/stu/student?advisor_id=1001028</td>
+        </tr>
+        <tr>
+            <td class="thai-font size-17">https://restapi.engr.tu.ac.th/api/v1/stu/student?email=day25436@hotmail.co.th</td>
+        </tr>
+        <tr>
+            <td class="thai-font size-17">https://restapi.engr.tu.ac.th/api/v1/stu/student?department_id=1</td>
+        </tr>
+
+        <tr>
+            <td class="thai-font size-17">https://restapi.engr.tu.ac.th/api/v1/stu/student?advisor_th=วีรชัย อโณทัยไพบูลย์</td>
+        </tr>
+    </table>
+
+    <br>
+
+    <!-- Rate limits -->
+    <div class="w3-margin">
+        <h3><b>Rate limits</b></h3>
+        <hr>
+    </div>
+
+    <div class="w3-card w3-round baby-blue  w3-margin-left w3-margin-right"><br>
+        <div class="w3-container white" style="margin-left: 0.5em; margin-top: -1.5em;">
+            <h5 class="thai-font">
+                <b>API call</b>
+            </h5>
+        </div>
+    </div>
+    <table class="w3-card w3-round white">
+        <tr>
+            <td class="thai-font size-17">3,000 requests per hour per user/key</td>
+        </tr>
+    </table>
+    <br>
+
+    <!-- Request header -->
+    <div class="w3-margin">
+        <h3><b>Request headers : <a href="{% url 'web:createChannel_page' %}"
+                    class="thai-font font-midnight-blue font-black-h">Application-Key</a></b></h3>
+        <hr>
+    </div>
+
+    <table class="w3-card w3-round white">
+        <tr>
+            <th class="thai-font size-18">Header</th>
+            <th class="thai-font size-18">Http request</th>
+        </tr>
+        <tr>
+            <td class="thai-font size-17">Content-Type</td>
+            <td class="thai-font size-17">application/json</td>
+        </tr>
+        <tr>
+            <td class="thai-font size-17">Application-Key</td>
+            <td class="thai-font size-17">Access token</td>
+        </tr>
+    </table>
+    <br>
+
+    <!-- Request body -->
+    <div class="w3-margin">
+        <h3><b>Cannot Request body: -</b></h3>
+        <hr>
+    </div>
+
+    <!-- <table class="w3-card w3-round white">
+        <tr>
+            <th class="thai-font size-18">Property</th>
+            <th class="thai-font size-18">Type</th>
+            <th class="thai-font size-18">Value</th>
+        </tr>
+        <tr>
+            <td class="thai-font size-17">example</td>
+            <td class="thai-font size-17">example</td>
+            <td class="thai-font size-17">example</td>
+        </tr>
+
+    </table> -->
+    <br>
+    <!-- Example response -->
+    <div class="w3-margin">
+        <h3><b>Example response</b></h3>
+        <hr>
+    </div>
+    <div class="w3-card w3-round navy-blue w3-margin-left w3-margin-right"><br>
+        <div class="w3-container navy-blue" style="margin-left: 0.5em; margin-top: -1.5em;">
+            <code class="font-white">
+                <br>
+                { <br>
+                &emsp;&emsp;"status": true,<br>
+                &emsp;&emsp;"message": "Success",<br>
+                &emsp;&emsp;"data": [<br>
+                &emsp;&emsp;&emsp;{<br>
+                &emsp;&emsp;&emsp;&emsp;"std_code": "6210123456",<br>
+                &emsp;&emsp;&emsp;&emsp;"degree": "   (Bachelor Degree) ",<br>
+                &emsp;&emsp;&emsp;&emsp;"std_code": "6210612831",<br>
+                &emsp;&emsp;&emsp;&emsp;"fname_th": "พัฒนา",<br>
+                &emsp;&emsp;&emsp;&emsp;"lname_th": "ทรัพย์พนาชัย",<br>
+                &emsp;&emsp;&emsp;&emsp;"fname_en": "Pattana",<br>
+                &emsp;&emsp;&emsp;&emsp;"lname_en": "Sapphanachai",<br>
+                &emsp;&emsp;&emsp;&emsp;"advisor_id": "1001028",<br>
+                &emsp;&emsp;&emsp;&emsp;"email": "day25436@hotmail.co.th",<br>
+                &emsp;&emsp;&emsp;&emsp;"title_id": "1",<br>
+                &emsp;&emsp;&emsp;&emsp;"department_id": "1",<br>
+                &emsp;&emsp;&emsp;&emsp;"title_name_fth": " ",<br>
+                &emsp;&emsp;&emsp;&emsp;"title_name_lth": " ",<br>
+                &emsp;&emsp;&emsp;&emsp;"department_en": "Department of  Electrical Engineering and Computer",<br>
+                &emsp;&emsp;&emsp;&emsp;"department_th": " ",<br>
+                &emsp;&emsp;&emsp;&emsp;"major_en": "Computer Engineering",<br>
+                &emsp;&emsp;&emsp;&emsp;"major_th": " ",<br>
+                &emsp;&emsp;&emsp;&emsp;"advisor_th": "วีรชัย อโณทัยไพบูลย์"<br>
+                &emsp;&emsp;&emsp;}<br>
+                &emsp;&emsp;]<br>
+                }<br><br>
+            </code>
+        </div>
+    </div>
+    <br>
+    <!-- Example Code -->
+    <div class="w3-margin">
+        <h3><b>Example Code</b></h3>
+        <hr>
+    </div>
+    <div class="w3-bar baby-blue " style="width: auto; max-width: 96%; margin-left: 1em;">
+        <button class="w3-bar-item baby-blue navy-blue-h" onclick="openCity('cURL')">cURL</button>
+        <button class="w3-bar-item baby-blue navy-blue-h" onclick="openCity('PHP')">PHP</button>
+        <button class="w3-bar-item baby-blue navy-blue-h" onclick="openCity('GO')">GO</button>
+        <button class="w3-bar-item baby-blue navy-blue-h" onclick="openCity('Node')">Node</button>
+    </div>
+    <div id="cURL" class="city">
+        <br>
+        <div class="w3-card w3-round navy-blue w3-margin-left w3-margin-right"><br>
+            <div class="w3-container navy-blue" style="margin-left: 0.5em; margin-top: -1.5em;">
+                <code class="font-white">
+                    <br>
+                    curl --location --request GET "https://restapi.engr.tu.ac.th/api/v1/stu/student?std_code=6210xxxxxx" \ <br>
+                    &emsp;&emsp;--header "Content-Type: application/json" \<br>
+                    &emsp;&emsp;--header "Application-Key: {Access token}" \<br>
+                    &emsp;&emsp;--data ""
+                    <br>
+                    <br>
+                </code>
+            </div>
+        </div>
+    </div>
+    
+    <div id="PHP" class="city" style="display:none">
+        <br>
+        <div class="w3-card w3-round navy-blue w3-margin-left w3-margin-right"><br>
+            <div class="w3-container navy-blue" style="margin-left: 0.5em; margin-top: -1.5em;">
+                <code class="font-white">
+                    <br>
+                    $curl = curl_init();<br>
+                    <br>
+                    &emsp;&emsp;curl_setopt_array($curl, array(<br>
+                    &emsp;&emsp;CURLOPT_URL => "https://restapi.engr.tu.ac.th/api/v1/stu/student?std_code=6210xxxxxx",<br>
+                    &emsp;&emsp;CURLOPT_RETURNTRANSFER => true,<br>
+                    &emsp;&emsp;CURLOPT_ENCODING => "",<br>
+                    &emsp;&emsp;CURLOPT_MAXREDIRS => 10,<br>
+                    &emsp;&emsp;CURLOPT_TIMEOUT => 0,<br>
+                    &emsp;&emsp;CURLOPT_FOLLOWLOCATION => false,<br>
+                    &emsp;&emsp;CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,<br>
+                    &emsp;&emsp;CURLOPT_CUSTOMREQUEST => "GET",<br>
+                    &emsp;&emsp;CURLOPT_HTTPHEADER => array(<br>
+                    &emsp;&emsp;&emsp;&emsp;"Content-Type: application/json",<br>
+                    &emsp;&emsp;&emsp;&emsp;"Application-Key: {Access token}"<br>
+                    &emsp;&emsp;&emsp;&emsp;),<br>
+                    &emsp;&emsp;));<br>
+                    <br>
+                    $response = curl_exec($curl);<br>
+                    $err = curl_error($curl);<br>
+                    <br>
+                    curl_close($curl);<br>
+                    <br>
+                    if ($err) {<br>
+                    &emsp;&emsp;echo "cURL Error #:" . $err;<br>
+                    } else {<br>
+                    &emsp;&emsp;echo $response;<br>
+                    }<br><br>
+                </code>
+            </div>
+        </div>
+    </div>
+    
+    <div id="GO" class="city" style="display:none">
+        <br>
+        <div class="w3-card w3-round navy-blue w3-margin-left w3-margin-right"><br>
+            <div class="w3-container navy-blue" style="margin-left: 0.5em; margin-top: -1.5em;">
+                <code class="font-white">
+                    <br>
+                    package main<br>
+                    <br>
+                    import (<br>
+                    &emsp;&emsp;"fmt"<br>
+                    &emsp;&emsp;"strings"<br>
+                    &emsp;&emsp;"os"<br>
+                    &emsp;&emsp;"path/filepath"<br>
+                    &emsp;&emsp;"net/http"<br>
+                    &emsp;&emsp;"io/ioutil"<br>
+                    )<br>
+                    
+                    func main() {<br>
+                    <br>
+                    &emsp;&emsp;url := "https://restapi.engr.tu.ac.th/student?std_code=6210xxxxxx"<br>
+                    &emsp;&emsp;method := "GET"<br>
+                    <br>
+                    &emsp;&emsp;payload := strings.NewReader("")<br>
+                    <br>
+                    &emsp;&emsp;client := &http.Client {<br>
+                    &emsp;&emsp;&emsp;&emsp;CheckRedirect: func(req *http.Request, via []*http.Request) error {<br>
+                    &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;return http.ErrUseLastResponse<br>
+                    &emsp;&emsp;&emsp;&emsp;},<br>
+                    &emsp;&emsp;}<br>
+                    &emsp;&emsp;req, err := http.NewRequest(method, url, payload)<br>
+                    <br>
+                    &emsp;&emsp;if err != nil {<br>
+                    &emsp;&emsp;&emsp;&emsp;fmt.Println(err)<br>
+                    &emsp;&emsp;}<br>
+                    &emsp;&emsp;req.Header.Add("Content-Type", "application/json")<br>
+                    &emsp;&emsp;req.Header.Add("Application-Key", "{Access token}")<br>
+                    <br>
+                    &emsp;&emsp;res, err := client.Do(req)<br>
+                    &emsp;&emsp;defer res.Body.Close()<br>
+                    &emsp;&emsp;body, err := ioutil.ReadAll(res.Body)<br>
+                    <br>
+                    &emsp;&emsp;fmt.Println(string(body))<br>
+                    }<br><br>
+                </code>
+            </div>
+        </div>
+    </div>
+
+    <div id="Node" class="city" style="display:none">
+        <br>
+        <div class="w3-card w3-round navy-blue w3-margin-left w3-margin-right"><br>
+            <div class="w3-container navy-blue" style="margin-left: 0.5em; margin-top: -1.5em;">
+                <code class="font-white">
+                    <br>
+                    var https = require('https');<br>
+                    <br>
+                    var options = {<br>
+                    &emsp;&emsp;'method': 'GET',<br>
+                    'hostname': 'restapi.engr.tu.ac.th',<br>
+                    &emsp;&emsp;'path': '/api/v1/stu/student?std_code=6210xxxxxx',<br>
+                    &emsp;&emsp;'headers': {<br>
+                    &emsp;&emsp;&emsp;&emsp;'Content-Type': 'application/json',<br>
+                    &emsp;&emsp;&emsp;&emsp;'Application-Key': '{Access token}'<br>
+                    &emsp;&emsp;}<br>
+                    };<br>
+                    <br>
+                    var req = https.request(options, function (res) {<br>
+                    &emsp;&emsp;var chunks = [];<br>
+                    <br>
+                    &emsp;&emsp;res.on("data", function (chunk) {<br>
+                    &emsp;&emsp;&emsp;&emsp;chunks.push(chunk);<br>
+                    &emsp;&emsp;});<br>
+                    <br>
+                    &emsp;&emsp;res.on("end", function (chunk) {<br>
+                    &emsp;&emsp;&emsp;&emsp;var body = Buffer.concat(chunks);<br>
+                    &emsp;&emsp;console.log(body.toString());<br>
+                    &emsp;&emsp;});<br>
+                    <br>
+                    &emsp;&emsp;res.on("error", function (error) {<br>
+                    &emsp;&emsp;&emsp;&emsp;console.error(error);<br>
+                    &emsp;&emsp;});<br>
+                    });<br>
+                    <br>
+                    req.end();<br><br>
+                </code>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        function openCity(cityName) {
+                var i;
+                var x = document.getElementsByClassName("city");
+                for (i = 0; i < x.length; i++) {
+                    x[i].style.display = "none";
+                }
+                document.getElementById(cityName).style.display = "block";
+            }
+    </script>
+    <br>
+    <!-- Status codes -->
+    <div class="w3-margin">
+        <h3><b>Status codes</b></h3>
+        <hr>
+    </div>
+    
+    <table class="w3-card w3-round white">
+        <tr>
+            <th class="thai-font size-18">Codes</th>
+            <th class="thai-font size-18">Description</th>
+        </tr>
+        <tr>
+            <td class="thai-font size-17">200 OK</td>
+            <td class="thai-font size-17">Success</td>
+        </tr>
+        <tr>
+            <td class="thai-font size-17">400 Bad Request</td>
+            <td class="thai-font size-17">Problem with the request</td>
+        </tr>
+        <tr>
+            <td class="thai-font size-17">401 Unauthorized</td>
+            <td class="thai-font size-17">Valid channel access token is not specified</td>
+        </tr>
+        <tr>
+            <td class="thai-font size-17">403 Forbidden</td>
+            <td class="thai-font size-17">Not authorized to access the resource.
+            Confirm that your account or plan is authorized to access the resource.</td>
+        </tr>
+    </table>
+    <br>
+    <!-- Status Message -->
+    <div class="w3-margin">
+        <h3><b>Status Message</b></h3>
+        <hr>
+    </div>
+    
+    <table class="w3-card w3-round white">
+        <tr>
+            <th class="thai-font size-18">Codes</th>
+            <th class="thai-font size-18">Status </th>
+            <th class="thai-font size-18">Message</th>
+        </tr>
+        <tr>
+            <td class="thai-font size-17">200 OK</td>
+            <td class="thai-font size-17">TRUE</td>
+            <td class="thai-font size-17">Get Profile Student Success</td>
+        </tr>
+        <tr>
+            <td class="thai-font size-17">400 Bad Request</td>
+            <td class="thai-font size-17">FALSE</td>
+            <td class="thai-font size-17">Student ID Invalid!</td>
+        </tr>
+        <tr>
+            <td class="thai-font size-17">400 Bad Request</td>
+            <td class="thai-font size-17">FALSE</td>
+            <td class="thai-font size-17">You cannot send a request body using a GET operation (HTTP method)!,"?std_code=6210xxxxxx"</td>
+        </tr>
+        <tr>
+            <td class="thai-font size-17">401 Unauthorized</td>
+            <td class="thai-font size-17">FALSE</td>
+            <td class="thai-font size-17">Application-Key header required
+            . Must follow the scheme, "Application-Key: ACCESS TOKEN"</td>
+        </tr>
+        <tr>
+            <td class="thai-font size-17">403 Forbidden</td>
+            <td class="thai-font size-17">FALSE</td>
+            <td class="thai-font size-17">Application-Key failed due to the following reason: invalid token. Confirm that the access token in the authorization
+            header is valid.</td>
+        </tr>
+    </table>
+    <br>
+    <div class="w3-row-padding w3-margin">
+        <p class="thai-font size-15">
+            <a href="{% url 'web:home' %}" class="ul-rm font-misty-blue-h font-midnight-blue thai-font">หน้าหลัก</a>&ensp;/
+            <a href="{% url 'web:document' %}"
+                class="ul-rm font-misty-blue-h font-midnight-blue thai-font">เอกสาร</a>&ensp;/
+            <a href="{% url 'web:documents' %}" class="ul-rm font-misty-blue-h font-midnight-blue thai-font">APIs
+                Documents</a>&ensp;/
+            <a href="{% url 'web:student' %}"
+                class="ul-rm font-misty-blue-h font-midnight-blue thai-font">บริการข้อมูลนักศึกษา</a>&ensp;/
+            Getting Student info
+        </p>
+    </div>
+</div>
+{% endblock%}
